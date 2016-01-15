@@ -15,7 +15,7 @@ function getAllUsers(req,res){
     {username: "alice", firstName:"Alice", lastName:"wonderland"},
     {username: "bob",firstName:"Bob", lastName:"Builder"},
         {username: "harry",firstName:"Harry", lastName:"Potter"},
-        {username: "ron", firstName: "Ronald ", lastName:"weasley"}
+        {username: "ron", firstName: "Ronald", lastName:"weasley"}
     ];
     res.json(users);
 }
