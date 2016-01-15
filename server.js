@@ -13,7 +13,8 @@ app.get('/user',getAllUsers);
 function getAllUsers(req,res){
     var users =[
     {username: "alice", firstName:"Alice", lastName:"wonderland"},
-    {username: "bob",firstName:"Bob", lastName:"Builder"}
+    {username: "bob",firstName:"Bob", lastName:"Builder"},
+        {username: "harry",firstName:"Harry", lastName:"Potter"}
     ];
     res.json(users);
 }
