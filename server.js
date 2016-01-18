@@ -8,15 +8,12 @@ app.get('/hello', function(req, res){
     res.send('hello world 123');
 });
 
-app.get('/user',getAllUsers);
 
-function getAllUsers(req,res){
+app.get('/user',function(req,res){
     var users =[
-    {username: "alice", firstName:"Alice", lastName:"wonderland"},
-    {username: "bob",firstName:"Bob", lastName:"Builder"},
-        {username: "harry",firstName:"Harry", lastName:"Potter"},
-        {username: "ron", firstName: "Ronald", lastName:"weasley"}
+    {username: 'alice', first:'Alice', last:'wonderland'},
+    {username: 'bob',first:'Bob', last:'Builder'}
     ];
     res.json(users);
-}
+});
 app.listen(port, ipaddress);
