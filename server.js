@@ -12,7 +12,8 @@ app.get('/hello', function(req, res){
 app.get('/user',function(req,res){
     var users =[
     {username: 'alice', first:'Alice', last:'wonderland'},
-    {username: 'bob',first:'Bob', last:'Builder'}
+    {username: 'bob',first:'Bob', last:'Builder'},
+        {username:'sravani', first:'Sravani',last:'Beeram'}
     ];
     res.json(users);
 });
