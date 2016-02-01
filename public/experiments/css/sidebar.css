@@ -1,21 +1,50 @@
 @media (min-width: 768px) {
+
+
     .sidebar-nav .navbar .navbar-collapse {
         padding: 0;
         max-height: none;
-        
     }
+
     .sidebar-nav .navbar ul {
         float: none;
     }
+
     .sidebar-nav .navbar ul:not {
         display: block;
     }
+
     .sidebar-nav .navbar li {
         float: none;
         display: block;
     }
+
     .sidebar-nav .navbar li a {
         padding-top: 12px;
         padding-bottom: 12px;
     }
+
+    .sidebar-nav {
+        max-width: 200px;
+        z-index: 10000;
+        position: fixed;
+        min-height: 100%;
+    }
+
+    .navbar {
+        border-radius: 0 !important;
+    }
+
+    .navbar-default {
+        margin: 0 !important;
+        height: 100vh;
+        /*min-height: 100%;*/
+    }
+
+    /*  .sidebar-navbar-collapse {
+        position: fixed;
+        height: 100%;
+        top: 0;
+        left: 0;
+      }*/
 }
