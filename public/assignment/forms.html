@@ -16,6 +16,8 @@
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+
 
 </head>
 
@@ -31,6 +33,13 @@
             <a class="navbar-brand" href="#">Form Maker</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right check-sidebar">
+                <li><a href="home.html"><span class="glyphicon glyphicon-home"></span> Home<span class="sr-only">(current)</span></a></li>
+                <li><a href="profile.html"><span class="glyphicon glyphicon-list-alt"></span> Profile</a></li>
+                <li><a href="admin.html"><span class="glyphicon glyphicon-queen"></span> Admin</a></li>
+                <li class="active"><a><span class="glyphicon glyphicon-list"></span> Forms</a></li>
+            </ul>
+
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="register.html"><span class="glyphicon glyphicon-edit"></span> Register</a></li>
                 <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -48,13 +57,13 @@
                 <li><a href="home.html">Home</a></li>
                 <li><a href="profile.html">Profile</a></li>
                 <li><a href="admin.html">Admin</a></li>
-                <li class="active"><a href="#">Forms<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a>Forms<span class="sr-only">(current)</span></a></li>
             </ul>
         </div>
         <div class="col-sm-8 col-sm-offset-3 col-md-9 col-md-offset-2 main">
             <h1>Forms</h1>
             <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#">Forms</a></li>
+                <li role="presentation" class="active"><a>Forms</a></li>
                 <li role="presentation"><a href="form-fields.html">Fields</a></li>
             </ul>
 
@@ -70,26 +79,26 @@
 
                     <tr>
                         <td><input type="text" placeholder="Form Name"></td>
-                        <td><a href="#" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></a>
+                        <td class="text-nowrap"><a href="#" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></a>
                             <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></a></td>
 
                     </tr>
 
                     <tr>
                         <td>Registration Form</td>
-                        <td><a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                        <td class="text-nowrap"><a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                             <a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a></td>
                     </tr>
 
                     <tr>
                         <td>Contact List</td>
-                        <td><a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                        <td class="text-nowrap"><a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                             <a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a></td>
                     </tr>
 
                     <tr>
                         <td>To Do List</td>
-                        <td><a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                        <td class="text-nowrap"><a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                             <a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a></td>
                     </tr>
 

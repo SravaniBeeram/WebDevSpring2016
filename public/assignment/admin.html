@@ -16,6 +16,8 @@
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+
 
 </head>
 
@@ -31,6 +33,13 @@
             <a class="navbar-brand" href="#">Form Maker</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right check-sidebar">
+                <li><a href="home.html"><span class="glyphicon glyphicon-home"></span> Home<span class="sr-only">(current)</span></a></li>
+                <li><a href="profile.html"><span class="glyphicon glyphicon-list-alt"></span> Profile</a></li>
+                <li class="active"><a><span class="glyphicon glyphicon-queen"></span> Admin</a></li>
+                <li><a href="forms.html"><span class="glyphicon glyphicon-list"></span> Forms</a></li>
+            </ul>
+
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="register.html"><span class="glyphicon glyphicon-edit"></span> Register</a></li>
                 <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -47,7 +56,7 @@
             <ul class="nav nav-sidebar">
                 <li><a href="home.html">Home</a></li>
                 <li><a href="profile.html">Profile</a></li>
-                <li class="active"><a href="#">Admin<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a>Admin<span class="sr-only">(current)</span></a></li>
                 <li><a href="forms.html">Forms</a></li>
             </ul>
         </div>
@@ -78,7 +87,7 @@
                     <th><input type="text" placeholder="Password"></th>
                     <th><input type="text" placeholder="Role1,Role2"></th>
 
-                    <td><a href="#" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></a>
+                    <td class="text-nowrap"><a href="#" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></a>
                         <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></a></td>
 
                 </tr>
@@ -87,7 +96,7 @@
                 <td>Alice</td>
                 <td>&nbsp;</td>
                 <td>Student</td>
-                <td><a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                <td class="text-nowrap"><a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                     <a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a></td>
                 </tr>
 
@@ -95,7 +104,7 @@
                     <td>Bob</td>
                     <td>&nbsp;</td>
                     <td>Faculty | Admin</td>
-                    <td><a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                    <td class="text-nowrap"><a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                         <a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a></td>
                 </tr>
 
@@ -103,7 +112,7 @@
                     <td>Charlie</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td><a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                    <td class="text-nowrap"><a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                         <a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a></td>
                 </tr>
 
