@@ -1,9 +1,9 @@
 .text-nowrap{
-   white-space: nowrap;
+   white-space: nowrap;!important;
 }
 
 .element-align{
-    float: right;
+    line-break: strict;
 }
 
 .check-sidebar
