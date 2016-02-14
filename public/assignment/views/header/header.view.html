@@ -9,18 +9,17 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Welcome to Web Development</title>
+    <title>Admin - Form Maker</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="assignment/css/dashboard.css" rel="stylesheet">
-
+    <link href="../css/dashboard.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 </head>
 
 <body>
-
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -30,38 +29,26 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Web Development</a>
+            <a class="navbar-brand" href="../views/home/home.view.html">Form Maker</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right check-sidebar">
+                <li class="active"><a><span class="glyphicon glyphicon-home"></span> Home<span class="sr-only">(current)</span></a></li>
+                <li><a href="../views/users/profile.view.html"><span class="glyphicon glyphicon-list-alt"></span> Profile</a></li>
+                <li><a href="../admin/admin.view.html"><span class="glyphicon glyphicon-queen"></span> Admin</a></li>
+                <li><a href="../forms/forms.view.html"><span class="glyphicon glyphicon-list"></span> Forms</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sravani Beeram</a></li>
+                <li><a href="../views/users/register.view.html"><span class="glyphicon glyphicon-edit"></span> Register</a></li>
+                <li><a href="../views/users/login.view.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="../views/users/profile.view.html"><span class="glyphicon glyphicon-user"></span> Username</a></li>
+                <li><a href="../views/users/login.view.html"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
-            </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h1>Welcome To CS5610!</h1>
-            <a href="assignment/views/home/home.view.html">Assignment</a>
-            <br>
-            <a href="project/index.html">Project</a>
-
-    </div>
-</div>
-</div>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </body>
