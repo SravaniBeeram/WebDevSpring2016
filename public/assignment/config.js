@@ -12,7 +12,7 @@
             })
 
             .when("/admin", {
-                templateUrl: "views/admin/admin.html"
+                templateUrl: "views/admin/admin.view.html"
             })
 
             .when("/profile", {
@@ -20,11 +20,11 @@
             })
 
             .when("/form", {
-                templateUrl: "views/form/form.view.html"
+                templateUrl: "views/forms/forms.view.html"
             })
 
             .when("/fields", {
-                templateUrl: "views/forms/field.view.html"
+                templateUrl: "views/forms/fields.view.html"
             })
 
             .when("/register", {
@@ -36,7 +36,7 @@
             })
 
             .when("/username", {
-                templateUrl: "views/profile/profile.view.html"
+                templateUrl: "views/users/profile.view.html"
             })
 
             .otherwise({
