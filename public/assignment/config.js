@@ -16,11 +16,13 @@
             })
 
             .when("/profile", {
-                templateUrl: "views/users/profile.view.html"
+                templateUrl: "views/users/profile.view.html",
+                controller:"ProfileController"
             })
 
             .when("/form", {
-                templateUrl: "views/forms/forms.view.html"
+                templateUrl: "views/forms/forms.view.html",
+                controller:"views/forms/controller.js"
             })
 
             .when("/fields", {
@@ -28,19 +30,17 @@
             })
 
             .when("/register", {
-                templateUrl: "views/users/register.view.html"
+                templateUrl: "views/users/register.view.html",
+                controller:"RegisterController"
             })
 
             .when("/login", {
-                templateUrl: "views/users/login.view.html"
+                templateUrl: "views/users/login.view.html",
+                controller:"LoginController"
             })
 
             .when("/username", {
                 templateUrl: "views/users/profile.view.html"
             })
-
-            .otherwise({
-                redirectTo: "home"
-            });
     }
 })();

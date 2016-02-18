@@ -20,10 +20,9 @@
                     </tr>
 
                     <tr>
-                        <td><input type="text" placeholder="Form Name"></td>
-                        <td><a href="#"><span class="glyphicon glyphicon-ok pull-right"></span></a>
-                            <a href="#"><span class="glyphicon glyphicon-plus pull-right"></span></a></td>
-
+                        <td><input type="text" ng-model="formname" placeholder="Form Name"></td>
+                        <td><a href="#" ng-click="addForm()"><span class="glyphicon glyphicon-ok pull-right"></span></a>
+                            <a href="#" ng-click="updateForm()"><span class="glyphicon glyphicon-plus pull-right"></span></a></td>
                     </tr>
 
                     <tr>
@@ -31,18 +30,6 @@
                         <td><a href="#"><span class="glyphicon glyphicon-pencil pull-right"></span></a>
                             <a href="#"><span class="glyphicon glyphicon-remove pull-right"></span></a>
                         </td>
-                    </tr>
-
-                    <tr>
-                        <td><a href="fields.view.html">Contact List</a></td>
-                        <td><a href="#"><span class="glyphicon glyphicon-pencil pull-right"></span></a>
-                            <a href="#"><span class="glyphicon glyphicon-remove pull-right"></span></a></td>
-                    </tr>
-
-                    <tr>
-                        <td><a href="fields.view.html">To Do List</a></td>
-                        <td><a href="#"><span class="glyphicon glyphicon-pencil pull-right"></span></a>
-                            <a href="#"><span class="glyphicon glyphicon-remove pull-right"></span></a></td>
                     </tr>
 
                 </table>
