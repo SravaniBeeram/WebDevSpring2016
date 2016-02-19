@@ -42,5 +42,9 @@
             .when("/username", {
                 templateUrl: "views/users/profile.view.html"
             })
+
+            .otherwise({
+                redirectTo:"home"
+            })
     }
 })();
