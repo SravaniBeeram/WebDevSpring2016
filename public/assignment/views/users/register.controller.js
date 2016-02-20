@@ -3,11 +3,14 @@
      angular.module("FormBuilderApp")
             .controller("RegisterController", RegisterController);
 
-    function RegisterController()
+    function RegisterController($location,$rootscope,UserService)
     {
+          function register()
+          {
+              
+          }
+
     }
+
     }
-
-
-
-)
+)()
