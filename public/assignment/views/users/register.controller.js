@@ -3,11 +3,11 @@
      angular.module("FormBuilderApp")
             .controller("RegisterController", RegisterController);
 
-    function RegisterController($location,$rootscope,UserService)
+    function RegisterController($location,UserService)
     {
           function register()
           {
-              
+              console.log("hello");
           }
 
     }
