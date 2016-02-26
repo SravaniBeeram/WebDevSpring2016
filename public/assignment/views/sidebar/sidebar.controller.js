@@ -7,5 +7,11 @@
     function SidebarController($scope, $location)
     {
         $scope.$location = $location;
+
+        $scope.IsAdmin = function () {
+            return $scope.roles =="admin"
+        }
     }
+
+
 })();

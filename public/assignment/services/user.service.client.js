@@ -2,9 +2,11 @@
     angular.module("FormBuilderApp")
         .factory("UserService",UserService);
 
-    function UserService($rootscope)
+    function UserService($rootScope)
     {
-         var model= {
+        console.log("entered  user.service");
+
+        var model= {
              users: [
                  {
                      "_id": 123, "firstName": "Alice", "lastName": "Wonderland",
@@ -25,10 +27,9 @@
                  {
                      "_id": 567, "firstName": "Edward", "lastName": "Norton",
                      "username": "ed", "password": "ed", "roles": ["student"]
-                 }
-                 ],
+                 }],
 
-                    findUserByUsernameAndPassword: findUserByCredentials,
+                    findUserByCredentials: findUserByCredentials,
                     findAllUsers: findAllUsers,
                     createUser: createUser,
                     deleteUserById: deleteUserById,

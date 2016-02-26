@@ -3,14 +3,13 @@
      angular.module("FormBuilderApp")
             .controller("RegisterController", RegisterController);
 
-    function RegisterController($location,UserService)
+    function RegisterController($scope,$location)
     {
+        $scope.register = register;
           function register()
           {
-              console.log("hello");
+              $location.path("views/users/profile.view.html");
           }
-
     }
-
     }
 )()
