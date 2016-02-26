@@ -11,12 +11,11 @@
 
         function login(user)
         {
-            console.log("entered login js");
-            var user = UserService.findUserByCredentials({username:user.username, password:user.password});
+            var user = UserService.findUserByCredentials(user.username, user.password);
             if(user)
             {
                 $rootScope.currentUser = user;
-                console.log(user.username);
+                UserService.setCurrentUser(user);
                 $location.url("/profile");
             }
 

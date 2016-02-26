@@ -3,8 +3,14 @@
     angular.module("FormBuilderApp")
            .controller("ProfileController", ProfileController);
 
-    function ProfileController()
+    function ProfileController($scope, UserService,$rootScope,$location)
     {
-         console.log("hello");
+         $scope.update = update;
+
+        function update(user)
+        {
+            var user = UserService.findUserByCredentials(user.username, user.password);
+
+        }
     }
 })();

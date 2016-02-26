@@ -9,7 +9,7 @@
         $scope.$location = $location;
 
         $scope.IsAdmin = function () {
-            return $scope.roles =="admin"
+            return $scope.roles === "admin"
         }
     }
 

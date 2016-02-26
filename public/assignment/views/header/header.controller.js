@@ -3,13 +3,11 @@
     angular.module("FormBuilderApp")
         .controller("HeaderController",HeaderController);
 
-    function HeaderController($scope, $rootScope, $location) {
-        $scope.$location = $location;
+    function HeaderController($scope,UserService) {
+        $scope.logout=logout;
 
-        $scope.logout = function(){
-            $rootScope.user = undefined;
-            $rootScope.form_list = [];
-            $location.path("/home");
+        function logout(){
+            UserService.setCurrentUser(null);
         };
     }
 })();

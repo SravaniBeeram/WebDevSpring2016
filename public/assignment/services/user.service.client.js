@@ -4,7 +4,6 @@
 
     function UserService($rootScope)
     {
-        console.log("entered  user.service");
 
         var model= {
              users: [
@@ -33,19 +32,39 @@
                     findAllUsers: findAllUsers,
                     createUser: createUser,
                     deleteUserById: deleteUserById,
-                    updateUser:updateUser
-                  };
+                    updateUser:updateUser,
+                    setCurrentUser:setCurrentUser,
+                    findUserByUsername:findUserByUsername
 
-         return model;
+    };
 
-        function findUserByCredentials(username, password, callback)
+        return model;
+
+        function findUserByUsername (username) {
+            for (var u in model.users) {
+                if (model.users[u].username === username) {
+                    return model.users[u];
+                }
+            }
+            return null;
+        }
+
+        function setCurrentUser (user)
         {
-          for(var u in model.users)
+            $rootScope.currentUser = user;
+        }
+
+        function findUserByCredentials(username, password,callback)
+        {
+            for(var u in model.users)
           {
               if(model.users[u].username === username &&
                  model.users[u].password === password)
-                 callback(model.users[u]);
+              {
+                  return(model.users[u]);
+              }
           }
+            return(null);
         }
 
         function findAllUsers(callback)
@@ -57,12 +76,10 @@
         {
              var user = {
                 username: user.username,
-                 password:user.password,
-                 firstName:user.firstName,
-                 lastName:user.lastName
+                 password:user.password
              }
-            model.users.push(user)
-                .success(callback);
+            model.users.push(user);
+            return user;
         }
 
         function deleteUserById(userId, callback)
