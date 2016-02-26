@@ -1,7 +1,7 @@
 (function() {
     "use strict";
 
-    angular.module("FormBuilderAPP")
+    angular.module("FormBuilderApp")
            .controller("FormController", FormController);
 
     function FormController()
@@ -9,4 +9,4 @@
 
     }
 
-})
+})();

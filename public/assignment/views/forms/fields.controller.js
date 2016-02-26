@@ -1,3 +1,12 @@
-/**
- * Created by beera on 2/14/2016.
- */
+(function() {
+    "use strict";
+
+    angular.module("FormBuilderApp")
+        .controller("FieldController", FieldController);
+
+    function FieldController()
+    {
+
+    }
+
+})();

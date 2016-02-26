@@ -1,11 +1,10 @@
-(function()
-{
+(function() {
     "use strict";
     angular.module("FormBuilderApp")
-           .controller("ProfileController",ProfileController);
+           .controller("ProfileController", ProfileController);
 
     function ProfileController()
     {
-
+         console.log("hello");
     }
-})
+})();

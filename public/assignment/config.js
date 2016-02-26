@@ -22,11 +22,12 @@
 
             .when("/form", {
                 templateUrl: "views/forms/forms.view.html",
-                controller:"views/forms/controller.js"
+                controller:"FormController"
             })
 
             .when("/fields", {
-                templateUrl: "views/forms/fields.view.html"
+                templateUrl: "views/forms/fields.view.html",
+                controller:"FieldController"
             })
 
             .when("/register", {
