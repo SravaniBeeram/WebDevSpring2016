@@ -42,7 +42,7 @@
                     <a href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 
                 <li ng-show="currentUser" ng-class="{'active': $location.url() == '/profile'}" data-toggle="collapse" data-target=".navbar-collapse.in">
-                    <a href="#/profile"><span class="glyphicon glyphicon-user"></span> {{currentUser.username}}</a></li>
+                    <a href="#/profile"><span class="glyphicon glyphicon-user"></span>{{currentUser.username}}</a></li>
 
                 <li ng-show="currentUser" data-toggle="collapse" data-target=".navbar-collapse.in">
                    <a href="#/home" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>

@@ -65,34 +65,26 @@
         }
 
         function deleteUserById(userId, callback) {
+            for(var u in model.users) {
+                if (model.users[u]._id === userId) {
+                    model.users.splice(u, 1);
+                }
+            }
+                callback(model.users);
+        }
+
+        function updateUser(userId, user, callback) {
             var flag ="false";
             for(var u in model.users) {
                 if (model.users[u]._id === userId) {
                     flag = "true";
-                    model.users.splice(u, 1);
-                    callback(model.users);
-                }
-            }
-                if(flag === "false"){
-                    callback(null);
-                }
-        }
-
-        function updateUser(userId, user, callback) {
-            var flag = "false";
-            for(var u in model.users) {
-                if (model.users[u]._id === userId) {
-                    flag = "true";
-                    model.users[u].username  = user.username;
-                    model.users[u].firstName = user.firstName;
-                    model.users[u].lastName  = user.lastName;
-                    model.users[u].password  = user.password;
+                    model.users[u] = user;
                     callback(model.users[u]);
                 }
             }
-               if(flag == "false") {
-                   callback(null);
-               }
+            if(flag = "false") {
+                callback(null);
+            }
         }
     }
 })();
