@@ -5,14 +5,18 @@
 
     function LoginController($scope, UserService,$rootScope,$location) {
         $scope.login = login;
+        $scope.message = null;
 
         function login(user) {
             UserService.findUserByCredentials(user.username, user.password,render);
 
             function render(user) {
-                $rootScope.currentUser = user;
-                UserService.setCurrentUser(user);
-                $location.url("/profile");
+                if(user){
+                    $rootScope.currentUser = user;
+                    UserService.setCurrentUser(user);
+                } else {
+                $scope.message = "Username or password doesnot match";
+                }
             }
         }
     }
