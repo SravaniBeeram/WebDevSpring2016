@@ -7,6 +7,7 @@
 
     function Configure($routeProvider) {
         $routeProvider
+
             .when("/home", {
                 templateUrl: "views/home/home.view.html"
             })
@@ -38,10 +39,6 @@
             .when("/login", {
                 templateUrl: "views/users/login.view.html",
                 controller:"LoginController"
-            })
-
-            .when("/username", {
-                templateUrl: "views/users/profile.view.html"
             })
 
             .otherwise({

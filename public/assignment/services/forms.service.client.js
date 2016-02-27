@@ -1,12 +1,10 @@
-(function()
-{
+(function() {
     "use strict";
 
     angular.module("FormBuilderApp")
            .factory("FormService",FormService);
 
-    function FormService()
-    {
+    function FormService() {
 
     }
-})
+})();

@@ -4,8 +4,7 @@
     angular.module("FormBuilderApp")
            .controller("FormController", FormController);
 
-    function FormController()
-    {
+    function FormController() {
 
     }
 
