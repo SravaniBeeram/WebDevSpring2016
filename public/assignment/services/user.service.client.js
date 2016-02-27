@@ -26,20 +26,10 @@
                     deleteUserById: deleteUserById,
                     updateUser:updateUser,
                     setCurrentUser:setCurrentUser,
-                    findUserByUsername:findUserByUsername
 
     };
 
         return model;
-
-        function findUserByUsername (username) {
-            for (var u in model.users) {
-                if (model.users[u].username === username) {
-                    return model.users[u];
-                }
-            }
-            return null;
-        }
 
         function setCurrentUser (user) {
             $rootScope.currentUser = user;
@@ -80,7 +70,7 @@
                 if (model.users[u]._id === userId) {
                     flag = "true";
                     model.users.splice(u, 1);
-                    callback(users);
+                    callback(model.users);
                 }
             }
                 if(flag === "false"){
@@ -92,11 +82,12 @@
             var flag = "false";
             for(var u in model.users) {
                 if (model.users[u]._id === userId) {
-                    var flag = "true";
-                    user.firstName = user.firstName;
-                    user.lastName = user.lastName;
-                    user.password = user.password;
-                    callback(user);
+                    flag = "true";
+                    model.users[u].username  = user.username;
+                    model.users[u].firstName = user.firstName;
+                    model.users[u].lastName  = user.lastName;
+                    model.users[u].password  = user.password;
+                    callback(model.users[u]);
                 }
             }
                if(flag == "false") {

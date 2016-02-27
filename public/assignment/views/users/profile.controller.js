@@ -7,7 +7,6 @@
          $scope.update = update;
 
         function update(user) {
-            $scope.error = null;
             $scope.message = null;
             var id = $rootScope.currentUser._id;
 
@@ -17,7 +16,7 @@
                 if (user) {
                     $scope.message = "User Updated Successfully";
                     UserService.setCurrentUser(user);
-                   // console.log(user);
+                  //  console.log(user);
                 } else {
                         $scope.message = "Unable to update the user";
                     }

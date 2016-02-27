@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
 <html lang="en" ng-controller="FormController">
 
-
-
             <h1>Forms</h1>
+
+            <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
+
             <ul class="nav nav-tabs">
                 <li role="presentation" class="active"><a>Forms</a></li>
                 <li role="presentation"><a href="#/fields">Fields</a></li>
@@ -20,16 +21,15 @@
                     </tr>
 
                     <tr>
-                        <td><input type="text" ng-model="formname" placeholder="Form Name"></td>
-                        <td><a href="#" ng-click="addForm()"><span class="glyphicon glyphicon-ok pull-right"></span></a>
-                            <a href="#" ng-click="updateForm()"><span class="glyphicon glyphicon-plus pull-right"></span></a></td>
+                        <td><input type="text" ng-model="newForm.formName" placeholder="Form Name"></td>
+                        <td><a ng-click="selectForm()"><span class="glyphicon glyphicon-plus"></span></a>
+                            <a ng-click="addForm()"><span class="glyphicon glyphicon-ok"></span></a></td>
                     </tr>
 
-                    <tr>
-                        <td><a href="fields.view.html">Registration Form</a></td>
-                        <td><a href="#"><span class="glyphicon glyphicon-pencil pull-right"></span></a>
-                            <a href="#"><span class="glyphicon glyphicon-remove pull-right"></span></a>
-                        </td>
+                    <tr ng-repeat="form in forms">
+                        <td>{{form.title}}</td>
+                        <td><a ng-click="deleteForm()"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a ng-click="updateForm(newForm)"><span class="glyphicon glyphicon-pencil"></span></a></td>
                     </tr>
 
                 </table>

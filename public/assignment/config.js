@@ -28,7 +28,6 @@
 
             .when("/fields", {
                 templateUrl: "views/forms/fields.view.html",
-                controller:"FieldController"
             })
 
             .when("/register", {
