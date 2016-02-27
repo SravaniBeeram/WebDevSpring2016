@@ -36,12 +36,6 @@
                   return;
               }
 
-              var user = UserService.findUserByUsername(user.username);
-              if (user !== null) {
-                  $scope.message = "User already exists";
-                  return;
-              }
-
               UserService.createUser($scope.user,render);
               function render(newUser) {
                   UserService.setCurrentUser(newUser);

@@ -1,11 +1,9 @@
-<!DOCTYPE HTML>
-<html lang="en" ng-controller="FormController">
+<div ng-controller = "FormController">
+     <h1>Forms</h1>
 
-            <h1>Forms</h1>
+     <div ng-show="alertMessage" class="alert alert-danger" role="alert">{{alertMessage}}</div>
 
-            <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
-
-            <ul class="nav nav-tabs">
+     <ul class="nav nav-tabs">
                 <li role="presentation" class="active"><a>Forms</a></li>
                 <li role="presentation"><a href="#/fields">Fields</a></li>
             </ul>
@@ -21,18 +19,19 @@
                     </tr>
 
                     <tr>
-                        <td><input type="text" ng-model="newForm.formName" placeholder="Form Name"></td>
-                        <td><a ng-click="selectForm()"><span class="glyphicon glyphicon-plus"></span></a>
-                            <a ng-click="addForm()"><span class="glyphicon glyphicon-ok"></span></a></td>
+                        <td><input type="text" ng-model="formName" placeholder="Form Name"></td>
+                        <td><a ng-click="addForm(formName)"><span class="glyphicon glyphicon-plus"></span></a>
+                            <a ng-click="updateForm(formName)"><span class="glyphicon glyphicon-ok"></span></a>
+                        </td>
                     </tr>
 
                     <tr ng-repeat="form in forms">
-                        <td>{{form.title}}</td>
-                        <td><a ng-click="deleteForm()"><span class="glyphicon glyphicon-remove"></span></a>
-                            <a ng-click="updateForm(newForm)"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                        <td><a>{{form.title}}</a></td>
+                        <td><a ng-click="deleteForm($index)"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a ng-click="selectForm($index)"><span class="glyphicon glyphicon-pencil"></span></a>
+                        </td>
                     </tr>
 
                 </table>
             </div>
-</html>
-
+    </div>

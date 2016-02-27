@@ -5,69 +5,59 @@
            .factory("FormService",FormService);
 
     function FormService() {
-        var model = {
-            forms:[
+        var forms = [
                 {"_id": "000", "title": "Contacts", "userId": 123},
                 {"_id": "010", "title": "ToDo",     "userId": 123},
-                {"_id": "020", "title": "CDs",      "userId": 234}],
+                {"_id": "020", "title": "CDs",      "userId": 234}]
 
-            createFormForUser:createFormForUser,
-            findAllFormsForUser:findAllFormsForUser,
-            deleteFormById:deleteFormById,
-            updateFormById:updateFormById
-    };
+        var model={ createFormForUser:createFormForUser,
+                    findAllFormsForUser:findAllFormsForUser,
+                    deleteFormById:deleteFormById,
+                    updateFormById:updateFormById
+        }
      return model;
 
         function createFormForUser(userId,form,callback){
             var form = {
                 _id:(new Date).getTime(),
+                 title:form.title,
                  userId:userId
         };
-            model.forms.push(form);
+            forms.push(form);
             callback(form);
         }
 
         function findAllFormsForUser(userId,callback){
-            var flag ="false";
-            for(var u in model.forms) {
-                if (model.forms[u].userId === userId) {
-                    flag = "true";
-                    callback(model.forms[u]);
+            var userForms = [];
+            for(var u in forms) {
+                if (forms[u].userId === userId) {
+                    userForms.push(forms[u]);
+                    console.log(userForms);
                 }
             }
-            if(flag === "false") {
-                callback(null);
-            }
+                callback(userForms);
         }
 
         function deleteFormById(formId,callback){
-            var flag ="false";
-            for(var u in model.forms) {
-                if (model.forms[u]._id === formId) {
-                    flag = "true";
-                    model.forms.splice(u, 1);
-                    callback(model.forms);
+            for(var u in forms) {
+                if (forms[u]._id === formId) {
+                    forms.splice(u, 1);
+                    break;
                 }
             }
-            if(flag === "false"){
-                callback(null);
-            }
+
+            callback(forms);
         }
 
         function updateFormById(formId, newForm, callback){
-            var flag = "false";
-            for(var u in model.forms) {
-                if (model.forms[u]._id === formId) {
-                    flag = "true";
-                    model.forms[u].title = newForm.title;
-                    callback(model.forms[u]);
+            for(var u in forms) {
+                if (forms[u]._id === formId) {
+                    forms[u].title  = newForm.title;
+                    forms[u].userId = newForm.userId;
+                    break;
                 }
             }
-            if(flag == "false") {
-                callback(null);
-            }
-
+            callback(forms[u]);
         }
-
     }
 })();
