@@ -58,7 +58,8 @@
              var user = {
                 username: user.username,
                  password:user.password,
-                 _id:(new Date).getTime()
+                 _id:(new Date).getTime(),
+                 email:user.email
              };
             model.users.push(user);
              callback(user);
