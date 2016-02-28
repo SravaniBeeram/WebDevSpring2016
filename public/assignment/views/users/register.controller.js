@@ -36,7 +36,8 @@
                   return;
               }
 
-              UserService.createUser($scope.user,render);
+              UserService.createUser(user,render);
+
               function render(newUser) {
                   UserService.setCurrentUser(newUser);
                   $location.url("/profile");
