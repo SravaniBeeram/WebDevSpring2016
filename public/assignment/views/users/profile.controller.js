@@ -28,11 +28,9 @@
 
             function render(user){
                 if (user) {
-                    $scope.message = "Your Profile has been updated!!!";
                     UserService.setCurrentUser(user);
-                } else {
-                        $scope.message = "Unable to update your Profile";
-                    }
+                    $scope.message = "Your Profile has been updated!!!";
+                }
             }
         }
     }
