@@ -1,0 +1,16 @@
+.text-nowrap{
+   white-space: nowrap;
+}
+
+.check-sidebar
+{
+   display: none;
+}
+
+@media (max-width: 768px)
+{
+   .check-sidebar {
+      display: block;
+   }
+}
+
