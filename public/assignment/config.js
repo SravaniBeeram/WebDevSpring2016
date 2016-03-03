@@ -27,7 +27,7 @@
             })
 
             .when("/fields", {
-                templateUrl: "views/forms/fields.view.html",
+                templateUrl: "views/forms/fields.view.html"
             })
 
             .when("/register", {
