@@ -17,11 +17,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.js"></script>
     <script src="app.js"></script>
     <script src="config.js"></script>
+    <script src="views/home/home.view.html"></script>
+    <script src="views/header/header.controller.js"></script>
+    <script src="views/users/login.controller.js"></script>
+    <script src="views/users/profile.controller.js"></script>
+    <script src="views/users/signup.controller.js"></script>
+    <script src="views/main/main.controller.js"></script>
+    <script src="services/user.service.client.js"></script>
+    <script src="services/pages.service.client.js"></script>
+    <script src="views/pages/pages.controller.js"></script>
 
     <title>Page Editor</title>
 </head>
 
-<body>
+<body ng-controller="MainController">
 
 <div ng-include="'views/header/header.view.html'">
 </div>
@@ -29,8 +38,8 @@
 <div class="container-fluid">
     <div class="row">
 
-        <div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main" ng-view>
-        </div>
+        <div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main" ng-view></div>
+
     </div>
 </div>
 

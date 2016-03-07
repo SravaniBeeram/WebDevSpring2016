@@ -21,7 +21,7 @@
                 "password":password,
                 "firstName":firstName,
                 "lastName":lastName,
-                "roles":currentUser.roles
+                "email":email
             }
 
             UserService.updateUser(id,user,render);

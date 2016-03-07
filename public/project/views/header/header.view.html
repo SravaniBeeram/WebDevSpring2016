@@ -18,20 +18,23 @@
             <!-- header -->
             <ul class="nav navbar-nav navbar-right">
 
-                <li  data-toggle="collapse" data-target=".navbar-collapse.in">
-                    <a href="#/home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li  ng-show= "currentUser" ng-class="{'active': $location.url() == '/pages'}" data-toggle="collapse" data-target=".navbar-collapse.in">
+                    <a href="#/pages">My Pages</a></li>
 
-                <li  data-toggle="collapse" data-target=".navbar-collapse.in">
-                    <a href="#/signup"><span class="glyphicon glyphicon-edit"></span> Sign Up</a></li>
+                <li  ng-class="{'active': $location.url() == '/home'}" data-toggle="collapse" data-target=".navbar-collapse.in">
+                    <a href="#/home">Home</a></li>
 
-                <li  data-toggle="collapse" data-target=".navbar-collapse.in">
-                    <a href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li ng-hide = "currentUser" ng-class="{'active': $location.url() == '/signup'}" data-toggle="collapse" data-target=".navbar-collapse.in">
+                    <a href="#/signup">Sign Up</a></li>
 
-                <li  data-toggle="collapse" data-target=".navbar-collapse.in">
-                    <a href="#/profile"><span class="glyphicon glyphicon-user"></span>{{currentUser.username}}</a></li>
+                <li  ng-hide = "currentUser" ng-class="{'active': $location.url() == '/login'}" data-toggle="collapse" data-target=".navbar-collapse.in">
+                    <a href="#/login">Login</a></li>
 
-                <li data-toggle="collapse" data-target=".navbar-collapse.in">
-                    <a href="#/home" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <li  ng-show= "currentUser" ng-class="{'active': $location.url() == '/profile'}" data-toggle="collapse" data-target=".navbar-collapse.in">
+                    <a href="#/profile">{{currentUser.username}}</a></li>
+
+                <li ng-show= "currentUser" data-toggle="collapse" data-target=".navbar-collapse.in">
+                    <a href="#/home" ng-click="logout()">Logout</a></li>
             </ul>
         </div>
     </div>

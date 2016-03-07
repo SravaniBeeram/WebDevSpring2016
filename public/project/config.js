@@ -27,6 +27,11 @@
                 controller:"LoginController"
             })
 
+            .when("/pages" , {
+                templateUrl:"views/pages/pages.view.html",
+                controller:"PageController"
+            })
+
             .otherwise({
                 redirectTo:"home"
             })
