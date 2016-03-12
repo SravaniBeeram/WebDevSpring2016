@@ -42,6 +42,11 @@
                 controller:"PageController"
             })
 
+            .when("/pageDetails" , {
+                templateUrl:"views/pages/pageDetails.view.html",
+                controller:"PageDetailsController"
+            })
+
             .otherwise({
                 redirectTo:"home"
             })
