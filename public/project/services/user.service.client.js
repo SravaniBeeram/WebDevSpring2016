@@ -50,18 +50,11 @@
         }
 
         function findAllUsers(callback) {
-            callback(users);
+            callback(model.users);
         }
 
-        function createUser(user, callback) {
-            var user = {
-                username: user.username,
-                password:user.password,
-                _id:(new Date).getTime(),
-                email:user.email
-            };
+        function createUser(user) {
             model.users.push(user);
-            callback(user);
         }
 
         function deleteUserById(userId, callback) {

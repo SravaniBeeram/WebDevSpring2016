@@ -32,6 +32,16 @@
                 controller:"PageController"
             })
 
+            .when("/users" , {
+                templateUrl:"views/users/users.view.html",
+                controller:"UserController"
+            })
+
+            .when("/pages" , {
+                templateUrl:"views/pages/pages.view.html",
+                controller:"PageController"
+            })
+
             .otherwise({
                 redirectTo:"home"
             })

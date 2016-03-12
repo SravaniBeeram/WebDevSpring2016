@@ -11,31 +11,22 @@
             {"_id": "020", "title": "Page-1", "userId": 234}]
 
         var model={ createPageForUser:createPageForUser,
-                    findAllPagesForUser:findAllPagesForUser,
+                    findAllPages:findAllPages,
                     deletePageById:deletePageById,
                     updatePageById:updatePageById
         }
         return model;
 
-        function createPageForUser(userId,page,callback){
+        function createPageForUser(page){
             var page = {
                 _id:(new Date).getTime(),
                 title:page.title,
-                userId:userId
             };
             pages.push(page);
-            callback(page);
         }
 
-        function findAllPagesForUser(userId,callback){
-            var userPages = [];
-            for(var u in pages) {
-                if (pages[u].userId === userId) {
-                    userPages.push(pages[u]);
-                    console.log(userPages);
-                }
-            }
-            callback(userPages);
+        function findAllPages(callback){
+            callback(pages);
         }
 
         function deletePageById(pageId,callback){

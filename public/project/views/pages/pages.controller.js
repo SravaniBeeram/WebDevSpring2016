@@ -10,13 +10,10 @@
         var currentUserPages = [];
         var currentUser;
 
-        if($rootScope.currentUser === null){
-            $location.url("/home");
-        }
-        else{
-            currentUser = $rootScope.currentUser;
-            PageService.findAllPagesForUser(currentUser._id,renderPages);
-        }
+
+        currentUser = $rootScope.currentUser;
+        PageService.findAllPages(renderPages);
+
 
         $scope.addPage = addPage;
         $scope.updatePage=updatePage;
@@ -35,16 +32,11 @@
                     "title": pageName,
                     "userId": null
                 };
-                PageService.createPageForUser(currentUser._id, newPage, renderAddPage);
+                PageService.createPageForUser(newPage);
+                $scope.pageName = null;
             }else{
                 $scope.alertMessage = "Please enter a name for the page";
             }
-        }
-
-        function renderAddPage(newPage){
-            $scope.pageName = null;
-            currentUserPages.push(newPage);
-            $scope.pages = currentUserPages;
         }
 
         function updatePage(pageName) {
@@ -64,7 +56,7 @@
         }
 
         function renderPagesAfterAction(userpages){
-            PageService.findAllPagesForUser(currentUser._id,renderPages);
+            PageService.findAllPages(renderPages);
         }
         function selectPage(index){
             pageIndexSelected = index;
