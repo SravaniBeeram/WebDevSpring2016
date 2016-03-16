@@ -1,10 +1,10 @@
-var mock = require("/user.mock.json");
+var mock = require("./user.mock.json");
 
-module.exports = function(app) {
+module.exports = function (app) {
 
     var api = {
         createUser: createUser,
-        findAll: findAll,
+        findAllUsers: findAllUsers,
         findById: findById,
         updateUser: updateUser,
         deleteUserById:deleteUserById,
@@ -13,7 +13,6 @@ module.exports = function(app) {
     };
 
     return api;
-
 
     function createUser(user) {
         var user = {
@@ -25,7 +24,7 @@ module.exports = function(app) {
         return (user);
     }
 
-    function findAll() {
+    function findAllUsers() {
         return (mock);
     }
 
@@ -82,10 +81,7 @@ module.exports = function(app) {
                 mock[u].password == credentials.password) {
                 return mock[u];
             }
-            else {
-                return null;
-            }
         }
-
+            return null;
     }
-}
+};

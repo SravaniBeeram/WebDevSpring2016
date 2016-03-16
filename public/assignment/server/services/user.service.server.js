@@ -2,8 +2,8 @@ module.exports = function(app,userModel){
     app.post("/api/assignment/user", createUser);
     app.get("/api/assignment/user",allUsers);
     app.get("/api/assignment/user/:id",findById);
-    app.get("/api/assignment/user?username=username",findUserByUsername);
-    app.get("/api/assignment/user?username=username&&password=password",findUserByCredentials)
+    app.get("/api/assignment/user/:username",findUserByUsername);
+    app.get("/api/assignment/user/:username/:password",findUserByCredentials);
     app.put("/api/assignment/user/:id",updateUser);
     app.delete("/api/assignment/user/:id",deleteUserById);
 
@@ -28,7 +28,10 @@ module.exports = function(app,userModel){
     }
 
     function findUserByCredentials(req,res){
-        var credentials = req.body;
+        var credentials = {
+            username:req.params.username,
+            password:req.params.password
+        };
         res.json(userModel.findUserByCredentials(credentials));
     }
 

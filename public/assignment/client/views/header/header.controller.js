@@ -9,6 +9,6 @@
         function logout(){
             UserService.setCurrentUser(null);
 
-        };
+        }
     }
 })();

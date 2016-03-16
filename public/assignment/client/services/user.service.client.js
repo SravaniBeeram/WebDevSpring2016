@@ -16,8 +16,8 @@
 
         return model;
 
-        function findUserByCredentials(username, password) {
-            return $http.get("/api/assignment/user?username=" + username + "&password=" + password);
+        function findUserByCredentials(credentials) {
+            return $http.get("/api/assignment/user/" +credentials.username+ "/" +credentials.password);
         }
 
         function findAllUsers() {
@@ -41,7 +41,7 @@
         }
 
         function findUserByUsername(username){
-            return $http.get("/api/assignment/user?username" +username);
+            return $http.get("/api/assignment/user/" +username);
         }
 
         function findById(userId){

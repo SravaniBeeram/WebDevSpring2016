@@ -4,21 +4,29 @@
            .controller("LoginController",LoginController);
 
     function LoginController($scope, UserService,$rootScope,$location) {
-        $scope.login = login;
-        $scope.message = null;
+        var vm = this;
+        vm.login = login;
+
+        function init(){
+
+        }init();
 
         function login(user) {
-            UserService.findUserByCredentials(user.username, user.password,render);
-
-            function render(user) {
-                if(user){
-                    $rootScope.currentUser = user;
-                    UserService.setCurrentUser(user);
-                    $location.url("/profile");
-                } else {
-                $scope.message = "Username or password doesnot match";
-                }
+            if(!user){
+                $scope.message = "Please enter login details";
+                return;
             }
+            UserService.findUserByCredentials
+                 ({username:user.username,
+                   password:user.password})
+                .then(function(response){
+                    if(response.data){
+                        UserService.setCurrentUser(response.data);
+                        $location.url("/profile");
+                    }else{
+                        $scope.message = "Username or password doesnot match";
+                    }
+                });
         }
     }
 })();
