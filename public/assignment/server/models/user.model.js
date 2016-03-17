@@ -52,7 +52,6 @@ module.exports = function (app) {
     }
 
     function updateUser(userId, user) {
-        var flag = "false";
         for (var u in mock) {
             if (mock[u]._id == userId) {
                 flag = "true";
@@ -60,9 +59,7 @@ module.exports = function (app) {
                 return (mock[u]);
             }
         }
-        if (flag = "false") {
-            return (null);
-        }
+        return (null);
     }
 
     function deleteUserById(userId) {

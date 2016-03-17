@@ -33,11 +33,11 @@
         }
 
         function deleteUserById(userId) {
-            return $http.delete("/api/assignment/user/:id" + userId);
+            return $http.delete("/api/assignment/user/" +userId);
         }
 
-        function updateUser(userId, user) {
-            return $http.put("/api/assignment/user/:id" + userId, user);
+        function updateUser(userId,user) {
+            return $http.put("/api/assignment/user/" +userId ,user);
         }
 
         function findUserByUsername(username){

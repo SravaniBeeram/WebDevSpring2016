@@ -1,11 +1,11 @@
 module.exports = function(app,userModel){
     app.post("/api/assignment/user", createUser);
     app.get("/api/assignment/user",allUsers);
-    app.get("/api/assignment/user/:id",findById);
+    app.get("/api/assignment/user/:userId",findById);
     app.get("/api/assignment/user/:username",findUserByUsername);
     app.get("/api/assignment/user/:username/:password",findUserByCredentials);
-    app.put("/api/assignment/user/:id",updateUser);
-    app.delete("/api/assignment/user/:id",deleteUserById);
+    app.put("/api/assignment/user/:userId",updateUser);
+    app.delete("/api/assignment/user/:userId",deleteUserById);
 
 
     function createUser(req,res){
