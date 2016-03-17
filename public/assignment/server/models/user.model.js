@@ -18,7 +18,8 @@ module.exports = function (app) {
         var user = {
             username: user.username,
             password: user.password,
-            _id: (new Date).getTime()
+            _id: (new Date).getTime(),
+            email:user.email
         };
         mock.push(user);
         return (user);
@@ -38,7 +39,6 @@ module.exports = function (app) {
             }
         }
     }
-
 
     function findUserByUsername(username) {
         for (var u in mock) {

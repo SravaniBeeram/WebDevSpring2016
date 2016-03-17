@@ -3,7 +3,7 @@
     angular.module("FormBuilderApp")
            .controller("LoginController",LoginController);
 
-    function LoginController($scope, UserService,$location) {
+    function LoginController($scope, UserService,$rootScope,$location) {
         var vm = this;
         vm.login = login;
 

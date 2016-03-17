@@ -4,10 +4,16 @@
             .controller("RegisterController", RegisterController);
 
     function RegisterController($scope,$location,UserService,$rootScope) {
-        $scope.message = null;
-        $scope.register = register;
 
-          function register(user) {
+        var vm = this;
+        vm.register = register;
+
+        function init(){
+
+        }init();
+
+
+        function register(user) {
 
               $scope.message = null;
 
@@ -36,12 +42,15 @@
                   return;
               }
 
-              UserService.createUser(user,render);
-
-              function render(newUser) {
-                  UserService.setCurrentUser(newUser);
-                  $location.url("/profile");
-              }
+              UserService.createUser(user)
+                  .then(function(response){
+                      if(response.data){
+                          UserService.setCurrentUser(response.data);
+                          $location.url("/profile");
+                      }else{
+                          $scope.message = "Please try again"
+                      }
+                  });
           }
     }
 })();
