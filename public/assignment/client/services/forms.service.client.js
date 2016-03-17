@@ -2,7 +2,7 @@
     "use strict";
 
     angular.module("FormBuilderApp")
-        .factory("FormService", FormService);
+           .factory("FormService", FormService);
 
     function FormService($http) {
         var model = {
