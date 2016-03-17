@@ -5,7 +5,6 @@
         .factory("FormService", FormService);
 
     function FormService($http) {
-
         var model = {
             createFormForUser: createFormForUser,
             findAllFormsForUser: findAllFormsForUser,
@@ -13,22 +12,24 @@
             updateFormById: updateFormById,
             findFormById:findFormById
         };
+
         return model;
 
         function createFormForUser(userId, form) {
-            return $http.post("/api/assignment/user/" + userId + "/form" +form);
+            return $http.post("/api/assignment/user/" +userId+ "/form" +form);
         }
 
         function findAllFormsForUser(userId) {
-            return $http.get("/api/assignment/user/" + userId + "/form");
+            console.log(userId);
+            return $http.get("/api/assignment/user/" +userId+ "/form");
         }
 
         function deleteFormById(formId) {
-            return $http.delete("/api/assignment/form/" + formId);
+            return $http.delete("/api/assignment/form/" +formId);
         }
 
         function updateFormById(formId, newForm) {
-            return $http.post("/api/assignment/form/" + formId, newForm);
+            return $http.post("/api/assignment/form/" +formId, newForm);
         }
 
         function findFormById(formId){

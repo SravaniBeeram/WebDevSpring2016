@@ -13,10 +13,10 @@ module.exports = function(app) {
 
     return api;
 
-    function createForm(userId,form){
+    function createForm(userId,formName){
         var form = {
             _id:(new Date).getTime(),
-            title:form.title,
+            title:formName,
             userId:userId
         };
         mock.push(form);
@@ -37,6 +37,7 @@ module.exports = function(app) {
     }
 
     function findAllFormsForUser(userId){
+        console.log("form.model.js");
         var userForms = [];
         for(var u in mock) {
             if (mock[u].userId === userId) {
@@ -59,8 +60,7 @@ module.exports = function(app) {
     function updateFormById(formId, newForm){
         for(var u in mock) {
             if (mock[u]._id === formId) {
-                mock[u].title  = newForm.title;
-                mock[u].userId = newForm.userId;
+                mock[u] = newForm;
                 break;
             }
         }
@@ -69,9 +69,10 @@ module.exports = function(app) {
 
     function findFormByTitle(title){
         for(var u in mock){
-            if(mock[u].title == title){
+            if(mock[u].title === title){
                 return(mock[u]);
             }
         }
+        return null;
     }
 }

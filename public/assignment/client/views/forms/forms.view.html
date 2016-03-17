@@ -19,16 +19,16 @@
                     </tr>
 
                     <tr>
-                        <td><input type="text" ng-model="formName" placeholder="Form Name"></td>
-                        <td><a ng-click="addForm(formName)"><span class="glyphicon glyphicon-plus"></span></a>
-                            <a ng-click="updateForm(formName)"><span class="glyphicon glyphicon-ok"></span></a>
+                        <td><input type="text" ng-model="model.formName" placeholder="Form Name"></td>
+                        <td><a ng-click="model.addForm(model.formName)"><span class="glyphicon glyphicon-plus"></span></a>
+                            <a ng-click="model.updateForm(model.formName)"><span class="glyphicon glyphicon-ok"></span></a>
                         </td>
                     </tr>
 
-                    <tr ng-repeat="form in forms">
+                    <tr ng-repeat="form in model.forms">
                         <td><a>{{form.title}}</a></td>
-                        <td><a ng-click="deleteForm($index)"><span class="glyphicon glyphicon-remove"></span></a>
-                            <a ng-click="selectForm($index)"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <td><a ng-click="model.deleteForm($index)"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a ng-click="model.selectForm($index)"><span class="glyphicon glyphicon-pencil"></span></a>
                         </td>
                     </tr>
 

@@ -38,6 +38,12 @@
                 controllerAs:"model"
             })
 
+            .when("/form/:formId/fields",{
+                templateUrl: "views/forms/fields.view.html",
+                controller: "FieldController",
+                controllerAs: "model"
+            })
+
             .when("/register", {
                 templateUrl: "views/users/register.view.html",
                 controller:"RegisterController",
