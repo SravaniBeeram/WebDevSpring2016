@@ -20,18 +20,17 @@
 
                     <tr>
                         <td><input type="text" ng-model="model.form.title" placeholder="Form Name"></td>
-                        <td><a ng-click="model.addForm(model.form)"><span class="glyphicon glyphicon-plus"></span></a>
-                            <a ng-click="model.updateForm(model.form)"><span class="glyphicon glyphicon-ok"></span></a>
+                        <td class="text-nowrap"><button ng-click="model.addForm(model.form)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
+                            <button ng-click="model.updateForm(model.form)" type="button" class="btn btn-info"><span class="glyphicon glyphicon-ok"></span></button>
                         </td>
                     </tr>
 
                     <tr ng-repeat="form in model.forms">
                         <td><a href="#/form/{{form._id}}/fields">{{form.title}}</a></td>
-                        <td><a ng-click="model.deleteForm(form)"><span class="glyphicon glyphicon-remove"></span></a>
-                            <a ng-click="model.selectForm($index)"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <td class="text-nowrap"><button ng-click="model.deleteForm(form)" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                            <button ng-click="model.selectForm($index)" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></button>
                         </td>
                     </tr>
-
                 </table>
             </div>
     </div>
