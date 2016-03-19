@@ -1,38 +1,38 @@
-module.exports = function(app,userModel,formModel) {
-    app.post("/api/assignment/form/:formId/field", findFormFields);
+module.exports = function(app,formModel,fieldModel) {
+    app.get("/api/assignment/form/:formId/field", findFormFields);
     app.get("/api/assignment/form/:formId/field/:fieldId", findFieldsById);
-    app.delete("/api/assignment/form:formId/field/:fieldId", deleteFieldsById);
+    app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldById);
     app.post("/api/assignment/form/:formId/field", createField);
     app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldById);
 
 
     function findFormFields(req,res){
-        var formId = req.formId;
-        res.json(findFormFields(formId));
+        var formId = req.params.formId;
+        res.json(fieldModel.findFieldByFormId(formId));
     }
 
     function findFieldsById(req,res){
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        res.json(findFieldsById(formId,fieldId));
+        res.json(fieldModel.findField(formId,fieldId));
     }
 
-    function deleteFieldsById(req,res){
+    function deleteFieldById(req,res){
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        res.json(deleteFieldsById(formId,fieldId));
+        res.json(fieldModel.deleteField(formId,fieldId));
     }
 
     function createField(req,res){
         var formId = req.params.formId;
         var field= req.body;
-        res.json(createField(formId,field));
+        res.json(fieldModel.createField(formId,field));
     }
 
     function updateFieldById(req,res){
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
         var form = req.body;
-        res.json(updateFieldById(formId,fieldId,form));
+        res.json(fieldModel.updateField(formId,fieldId,form));
     }
 };

@@ -30,8 +30,7 @@
         }
 
         function displayForms(){
-            console.log("entered controller");
-            FormService.findFormById(currentUser._id)
+            FormService.findAllFormsForUser(currentUser._id)
                 .then(renderForms);
             vm.form = null;
         }
@@ -45,7 +44,7 @@
         function addForm(form) {
             if (form.title != null) {
                 FormService.createFormForUser(currentUser._id, form)
-                           .then(renderForms);
+                           .then(displayForms);
             }else{
                 vm.alertMessage = "Please enter a name for the form";
             }
@@ -64,7 +63,6 @@
               FormService.deleteFormById(form._id)
                          .then(displayForms);
         }
-
 
         function selectForm(index){
             vm.form = vm.forms[index];

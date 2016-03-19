@@ -20,8 +20,7 @@
         }
 
         function findAllFormsForUser (userId) {
-            console.log("client" +userId);
-            return $http.get("/api/assignment/user/" +userId+ "/form");
+            return $http.get("/api/assignment/userForms/" +userId+ "/form");
         }
 
         function deleteFormById(formId) {

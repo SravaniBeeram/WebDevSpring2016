@@ -20,7 +20,6 @@ module.exports = function(uuid) {
             userId:userId,
             fields:[]
         };
-        console.log(form);
         mock.push(form);
         return mock;
     }
