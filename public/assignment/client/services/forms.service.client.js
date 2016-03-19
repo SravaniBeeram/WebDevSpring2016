@@ -5,7 +5,7 @@
            .factory("FormService", FormService);
 
     function FormService($http) {
-        var model = {
+        var api = {
             createFormForUser: createFormForUser,
             findAllFormsForUser: findAllFormsForUser,
             deleteFormById: deleteFormById,
@@ -13,14 +13,14 @@
             findFormById:findFormById
         };
 
-        return model;
+        return api;
 
         function createFormForUser(userId, form) {
-            return $http.post("/api/assignment/user/" +userId+ "/form" +form);
+            return $http.post("/api/assignment/user/" +userId+ "/form", form);
         }
 
-        function findAllFormsForUser(userId) {
-            console.log(userId);
+        function findAllFormsForUser (userId) {
+            console.log("client" +userId);
             return $http.get("/api/assignment/user/" +userId+ "/form");
         }
 
@@ -29,7 +29,7 @@
         }
 
         function updateFormById(formId, newForm) {
-            return $http.post("/api/assignment/form/" +formId, newForm);
+            return $http.put("/api/assignment/form/" +formId, newForm);
         }
 
         function findFormById(formId){

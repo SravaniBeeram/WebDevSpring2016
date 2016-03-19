@@ -11,7 +11,7 @@
             ng-class="{'active': $location.url() == '/admin'}"><a href="#/admin">Admin</a></li>
 
         <li ng-show="currentUser"
-            ng-class="{'active': $location.url() == '/form'}"><a href="#/form">Forms</a></li>
+            ng-class="{'active': $location.url() == '/form' || $location.url() == '/fields'}"><a href="#/form">Forms</a></li>
     </ul>
 </body>
 </html>

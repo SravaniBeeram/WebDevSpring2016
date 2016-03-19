@@ -1,15 +1,16 @@
-module.exports = function(app,formModel) {
-    app.get("/api/assignment/user/:userId/form",getFormsForUser);
-    app.get("/api/assignment/form/:formId",findFormById);
-    app.delete("/api/assignment/form/:formId",deleteFormById);
-    app.post("/api/assignment/user/:userId/form",createFormForUser);
-    app.put("/api/assignment/form/:formId",updateFormById);
+module.exports = function(app,formModel,userModel) {
 
-    function getFormsForUser(req,res){
-        console.log("form.service.server");
+    app.get("/api/assignment/form/:formId", findFormById);
+    app.delete("/api/assignment/form/:formId", deleteFormById);
+    app.post("/api/assignment/user/:userId/form", createFormForUser);
+    app.put("/api/assignment/form/:formId", updateFormById);
+    app.get("/api/assignment/user/:userId/form",findFormsByUserId);
+
+    function findFormsByUserId(req, res) {
+        console.log("server");
         var userId = req.params.userId;
         console.log(userId);
-        res.json(formModel.findAllFormsForUser(userId));
+        res.json(formModel.findFormsByUserId(userId));
     }
 
     function findFormById(req,res){
@@ -25,7 +26,7 @@ module.exports = function(app,formModel) {
     function createFormForUser(req,res){
         var userId = req.params.userId;
         var form = req.body;
-        res.json(formModel.createFormForUser(userId,form));
+        res.json(formModel.createForm(userId,form));
     }
 
     function updateFormById(req,res){

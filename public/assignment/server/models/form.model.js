@@ -1,30 +1,32 @@
 var mock = require("./form.mock.json");
 
-module.exports = function(app) {
+module.exports = function(uuid) {
 
      var api = { createForm:createForm,
                  findAll:findAll,
                  findFormById:findFormById,
-                 findAllFormsForUser:findAllFormsForUser,
+                 findFormsByUserId:findFormsByUserId,
                  deleteFormById:deleteFormById,
                  updateFormById:updateFormById,
                  findFormByTitle:findFormByTitle
-     }
+     };
 
     return api;
 
-    function createForm(userId,formName){
+    function createForm(userId,form){
         var form = {
-            _id:(new Date).getTime(),
-            title:formName,
-            userId:userId
+            _id:uuid.v1(),
+            title:form.title,
+            userId:userId,
+            fields:[]
         };
+        console.log(form);
         mock.push(form);
-        return(form);
+        return mock;
     }
 
     function findAll(){
-        return(mock);
+        return mock;
     }
 
     function findFormById(formId){
@@ -36,35 +38,31 @@ module.exports = function(app) {
         return null;
     }
 
-    function findAllFormsForUser(userId){
-        console.log("form.model.js");
+    function findFormsByUserId(userId) {
         var userForms = [];
-        for(var u in mock) {
-            if (mock[u].userId === userId) {
+        for (u in mock) {
+            if (mock[u].userId == userId) {
                 userForms.push(mock[u]);
             }
         }
-        return(userForms);
+        return userForms;
     }
 
     function deleteFormById(formId){
         for(var u in mock) {
             if (mock[u]._id === formId) {
                 mock.splice(u, 1);
-                break;
             }
         }
-        return(mock);
+        console.log(mock);
     }
 
     function updateFormById(formId, newForm){
         for(var u in mock) {
             if (mock[u]._id === formId) {
                 mock[u] = newForm;
-                break;
             }
         }
-        return(mock[u]);
     }
 
     function findFormByTitle(title){
@@ -75,4 +73,4 @@ module.exports = function(app) {
         }
         return null;
     }
-}
+};
