@@ -1,6 +1,6 @@
 var mock = require("./user.mock.json");
 
-module.exports = function (app) {
+module.exports = function (uuid) {
 
     var api = {
         createUser: createUser,
@@ -18,7 +18,7 @@ module.exports = function (app) {
         var user = {
             username: user.username,
             password: user.password,
-            _id: (new Date).getTime(),
+            _id: uuid.v1(),
             email:user.email
         };
         mock.push(user);

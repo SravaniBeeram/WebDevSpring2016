@@ -31,16 +31,6 @@
             formId = $routeParams.formId;
         }
 
-        var optionDetails =
-            [
-                {name: "Single Line Text Field",id:"TEXT"},
-                {name: "Multi Line Text Field" ,id:"TEXTAREA"},
-                {name: "Dropdown Field", id:"OPTIONS"},
-                {name: "Checkbox Field", id:"CHECKBOX"},
-                {name: "Radio Buttons Field", id:"RADIO"},
-                {name: "Date Field", id:"DATE"}
-            ];
-
         function init(){
 
         }init();
@@ -76,6 +66,7 @@
                     optionList.push(op[u].label+ ":" +op[u].id)
                 }
                 vm.optionText = optionList.join("\n");
+                console.log(vm.optionText);
             }
         }
 
@@ -88,10 +79,10 @@
                 console.log("optionText" +vm.optionText);
                 var op = vm.optionText;
                 for(var u in op){
-                    var val = op[u].split(':');
+                    var val = op[u].split(":");
                     optionList.push({
                         label:val[0],
-                        id:val[1]
+                        id:val[1],
                     });
                 }
                 vm.fieldEdit.options = optionList;
@@ -111,17 +102,50 @@
         }
 
         function addField(fieldType){
-            var field = {"label": "", "type":optionType(fieldType),"Placeholder":"","options":"null"};
+            var field;
+            switch(fieldType) {
+                case "TEXT":
+                    field = {"_id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
+                    break;
+                case "TEXTAREA":
+                    field = {"_id": null, "label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"};
+                    break;
+                case "DATE":
+                    field = {"_id": null, "label": "New Date Field", "type": "DATE"};
+                    break;
+                case "OPTIONS":
+                    field = {
+                        "_id": null, "label": "New Dropdown", "type": "OPTIONS", "options": [
+                            {"label": "Option 1", "value": "OPTION_1"},
+                            {"label": "Option 2", "value": "OPTION_2"},
+                            {"label": "Option 3", "value": "OPTION_3"}
+                        ]
+                    };
+                    break;
+
+                case "CHECKBOXES":
+                    field = {
+                        "_id": null, "label": "New Checkboxes", "type": "CHECKBOXES", "options": [
+                            {"label": "Option A", "value": "OPTION_A"},
+                            {"label": "Option B", "value": "OPTION_B"},
+                            {"label": "Option C", "value": "OPTION_C"}
+                        ]
+                    };
+                    break;
+                case "RADIOS":
+                    field = {
+                        "_id": null, "label": "New Radio Buttons", "type": "RADIOS", "options": [
+                            {"label": "Option X", "value": "OPTION_X"},
+                            {"label": "Option Y", "value": "OPTION_Y"},
+                            {"label": "Option Z", "value": "OPTION_Z"}
+                        ]
+                    };
+                    break;
+            }
+            console.log(field);
             FieldService.createField(formId,field)
                 .then(displayFields);
         }
 
-        function optionType(fieldType){
-            for(var u in optionDetails){
-                if(optionDetails[u].name == fieldType){
-                    return optionDetails[u].id;
-                }
-            }
-        }
     }
 })();
