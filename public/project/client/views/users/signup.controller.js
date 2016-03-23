@@ -3,15 +3,19 @@
      angular.module("PageEditorApp")
             .controller("SignUpController", SignUpController);
 
-    function SignUpController($scope,$location,UserService,$rootScope) {
-        $scope.message = null;
-        $scope.register = register;
+    function SignUpController($scope,$location,UserService) {
+        var vm = this;
+        vm.signUp = signUp;
 
-          function register(user) {
 
-              $scope.message = null;
+        function init(){
 
-              if(user == null) {
+        }init();
+
+        function signUp(user) {
+            $scope.message = null;
+
+            if(user == null) {
                   $scope.message = "Please fill in the required details";
                   return;
               }
@@ -36,12 +40,15 @@
                   return;
               }
 
-              UserService.createUser(user,render);
-
-              function render(newUser) {
-                  UserService.setCurrentUser(newUser);
-                  $location.url("/profile");
-              }
+              UserService.createUser(user)
+                  .then(function(response){
+                      if(response.data){
+                          UserService.setCurrentUser(response.data);
+                          $location.url("/profile");
+                      }else{
+                          $scope.message = "Please try again"
+                      }
+                  });
           }
     }
 })();

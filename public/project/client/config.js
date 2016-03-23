@@ -14,37 +14,38 @@
 
             .when("/signup", {
                 templateUrl: "views/users/signup.view.html",
-                controller:"SignUpController"
+                controller:"SignUpController",
+                controllerAs: "model"
             })
 
             .when("/profile", {
                 templateUrl: "views/users/profile.view.html",
-                controller:"ProfileController"
+                controller:"ProfileController",
+                controllerAs: "model"
             })
 
             .when("/login", {
                 templateUrl: "views/users/login.view.html",
-                controller:"LoginController"
+                controller:"LoginController",
+                controllerAs: "model"
             })
 
             .when("/pages" , {
                 templateUrl:"views/pages/pages.view.html",
-                controller:"PageController"
+                controller:"PageController",
+                controllerAs: "model"
             })
 
-            .when("/users" , {
-                templateUrl:"views/users/users.view.html",
-                controller:"UserController"
-            })
-
-            .when("/pages" , {
-                templateUrl:"views/pages/pages.view.html",
-                controller:"PageController"
+            .when("/admin" , {
+                templateUrl:"views/admin/admin.view.html",
+                controller:"UserController",
+                controllerAs: "model"
             })
 
             .when("/pageDetails" , {
                 templateUrl:"views/pages/pageDetails.view.html",
-                controller:"PageDetailsController"
+                controller:"PageDetailsController",
+                controllerAs: "model"
             })
 
             .otherwise({
