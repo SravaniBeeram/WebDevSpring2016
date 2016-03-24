@@ -38,7 +38,7 @@
 
             .when("/admin" , {
                 templateUrl:"views/admin/admin.view.html",
-                controller:"UserController",
+                controller:"adminController",
                 controllerAs: "model"
             })
 
