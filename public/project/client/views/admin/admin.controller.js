@@ -2,41 +2,46 @@
     "use strict";
 
     angular.module("PageEditorApp")
-        .controller("UserController",UserController);
+        .controller("adminController",adminController);
 
-    function UserController($scope,UserService,$rootScope) {
-        $scope.alertMessage = null;
+    function adminController($scope,UserService,$rootScope) {
+        var vm = this;
         var userIndexSelected;
         var currentUsers = [];
         var currentUser;
+        $scope.alertMessage = null;
 
-            currentUser = $rootScope.currentUser;
-            UserService.findAllUsers(renderUsers);
+        vm.addUser = addUser;
+        vm.updateUser=updateUser;
+        vm.deleteUser=deleteUser;
+        vm.selectUser=selectUser;
 
 
-        $scope.addUser = addUser;
-        $scope.updateUser=updateUser;
-        $scope.deleteUser=deleteUser;
-        $scope.selectUser=selectUser;
+        currentUser = $rootScope.currentUser;
 
-        function renderUsers(allUsers){
-            $scope.users = allUsers;
-            currentUsers = allUsers;
-        }
+        function init(){
+            UserService.findAllUsers()
+                .then(function(response){
+                    vm.users = response.data;
+                    currentUsers = response.data;
+                    console.log(vm.users);
+                    vm.username = null;
+                    vm.firstName = null;
+                    vm.lastName = null;
+
+
+                });
+        }init();
 
         function addUser(username,firstName,lastName) {
             if (username != null && firstName!= null && lastName != null) {
                 var newUser = {
-                    "_id": (new Date).getTime(),
                     "username": username,
                     "firstName":firstName,
                     "lastName":lastName
                 };
-                UserService.createUser(newUser);
-                $scope.username = null;
-                $scope.firstName = null;
-                $scope.lastName = null;
-
+                UserService.createUser(newUser)
+                    .then(init());
             }else{
                 $scope.alertMessage = "Please enter username ,firstName and lastName of the user";
             }
@@ -48,10 +53,8 @@
                 userSelected.username = username;
                 userSelected.firstName=firstName;
                 userSelected.lastName=lastName;
-                UserService.updateUser(userSelected._id, userSelected, renderUserAfterAction);
-                $scope.username = null;
-                $scope.firstName = null;
-                $scope.lastName = null;
+                UserService.updateUser(userSelected._id, userSelected)
+                    .then(init());
 
             }else {
                 $scope.alertMessage = "Please Select a user to update";
@@ -60,17 +63,15 @@
 
         function deleteUser(index){
             userIndexSelected = index;
-            UserService.deleteUserById(currentUsers[index]._id,renderUserAfterAction);
+            UserService.deleteUserById(currentUsers[index]._id)
+                .then(init());
         }
 
-        function renderUserAfterAction(allusers){
-            UserService.findAllUsers(renderUsers);
-        }
         function selectUser(index){
             userIndexSelected = index;
-            $scope.username = currentUsers[index].username;
-            $scope.firstName= currentUsers[index].firstName;
-            $scope.lastName = currentUsers[index].lastName;
+            vm.username = currentUsers[index].username;
+            vm.firstName= currentUsers[index].firstName;
+            vm.lastName = currentUsers[index].lastName;
         }
     }
 
