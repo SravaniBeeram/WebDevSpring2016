@@ -1,13 +1,13 @@
 (function() {
     "use strict";
 
-    angular.module("FormBuilderApp")
-        .controller("FieldController",FieldController);
+    angular.module("PageEditorApp")
+        .controller("PageDetailsController",PageDetailsController);
 
-    function FieldController(FieldService,FormService,$routeParams,$rootScope) {
+    function PageDetailsController(FieldService,PageService,$routeParams,$rootScope) {
         var vm = this;
 
-        var formId;
+        var pageId;
         vm.currentField = null;
         vm.fieldEdit=null;
         vm.commitEdit = commitEdit;
@@ -19,20 +19,20 @@
         var currentUser =$rootScope.currentUser;
 
 
-        if($routeParams.formId){
-            formId = $routeParams.formId;
+        if($routeParams.pageId){
+            pageId = $routeParams.pageId;
         }
 
         function init(){
 
-            FieldService.findFieldByForm(formId)
+            FieldService.findFieldByPage(pageId)
                 .then(function(response){
                     vm.fields = response.data;
                 });
 
-            FormService.findFormById(formId)
+            PageService.findPageByPageId(pageId)
                 .then(function(response){
-                    vm.form = response.data;
+                    vm.page = response.data;
                 })
 
         }init();
@@ -75,15 +75,15 @@
 
             vm.fieldEdit.label = vm.label;
 
-            FieldService.updateField(formId,vm.fieldEdit._id,vm.fieldEdit)
-                    .then(init());
+            FieldService.updateField(pageId,vm.fieldEdit._id,vm.fieldEdit)
+                .then(init());
             vm.label = null;
             vm.placeholder = null;
             vm.options = null;
         }
 
         function deleteField(fieldId){
-            FieldService.deleteField(formId,fieldId)
+            FieldService.deleteField(pageId,fieldId)
                 .then(init());
         }
 
@@ -129,12 +129,12 @@
                     break;
             }
             console.log(field);
-            FieldService.createField(formId,field)
+            FieldService.createField(pageId,field)
                 .then(init());
         }
 
         function repeatField(field){
-            FieldService.createField(formId,field)
+            FieldService.createField(pageId,field)
                 .then(init());
         }
     }

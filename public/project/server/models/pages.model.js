@@ -2,17 +2,27 @@ var mock = require("./pages.mock.json");
 
 module.exports = function (uuid) {
     var api = {
-        findPagesById: findPagesById,
+        findPagesForUser: findPagesForUser,
         createPageForUser: createPageForUser,
         findAllPages: findAllPages,
         deletePageById: deletePageById,
-        updatePageById: updatePageById
+        updatePageById: updatePageById,
+        findPageById:findPageById
     };
 
     return api;
 
 
-    function findPagesById(userId)
+    function findPageById(pageId){
+        for(var u in mock){
+            if(mock[u]._id == pageId){
+                return mock[u];
+            }
+        }
+        return null;
+    }
+
+    function findPagesForUser(userId)
     {
         var userPages = [];
         for (var u in mock) {

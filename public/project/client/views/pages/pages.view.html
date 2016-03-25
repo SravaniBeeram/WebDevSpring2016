@@ -18,7 +18,7 @@
             </tr>
 
             <tr ng-repeat="page in model.pages">
-                <td><a href="#/pageDetails">{{page.title}}</a></td>
+                <td><a href="#/page/{{page._id}}/fields">{{page.title}}</a></td>
                 <td class="text-nowrap"><a ng-click="model.deletePage($index)"><span class="glyphicon glyphicon-remove btn btn-danger"></span></a>
                                         <a ng-click="model.selectPage($index)"><span class="glyphicon glyphicon-pencil btn btn-warning"></span></a>
                 </td>

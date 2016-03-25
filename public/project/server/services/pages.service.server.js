@@ -4,7 +4,13 @@ module.exports = function(app,pageModel){
     app.get("/api/project/pages/:userId",findPagesById);
     app.put("/api/project/pages/:pageId",updatePageById);
     app.delete("/api/project/pages/:pageId",deletePageById);
+    app.get("/api/project/page/:pageId",findPagesByPageId);
 
+    function findPagesByPageId(req,res){
+        var pageId = req.params.pageId;
+        res.json(pageModel.findPageById(pageId));
+
+    }
 
     function createPageForUser(req,res){
         var page=req.body;
@@ -17,7 +23,7 @@ module.exports = function(app,pageModel){
 
     function findPagesById(req,res){
         var userId =req.params.userId;
-        res.json(pageModel.findPagesById(userId));
+        res.json(pageModel.findPagesForUser(userId));
     }
 
     function updatePageById(req,res){

@@ -20,7 +20,7 @@
 
         function init()
         {
-            PageService.findPagesById(currentUser._id)
+            PageService.findPageById(currentUser._id)
                 .then(function(response)
                 {
                     vm.pages = response.data;

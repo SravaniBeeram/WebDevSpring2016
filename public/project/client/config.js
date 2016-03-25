@@ -42,9 +42,15 @@
                 controllerAs: "model"
             })
 
-            .when("/pageDetails" , {
+            .when("/PageDetails" , {
                 templateUrl:"views/pages/pageDetails.view.html",
                 controller:"PageDetailsController",
+                controllerAs: "model"
+            })
+
+            .when("/page/:pageId/fields",{
+                templateUrl: "views/pages/pageDetails.view.html",
+                controller: "PageDetailsController",
                 controllerAs: "model"
             })
 

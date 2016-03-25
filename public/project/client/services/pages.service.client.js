@@ -10,7 +10,8 @@
             findAllPages: findAllPages,
             deletePageById: deletePageById,
             updatePageById: updatePageById,
-            findPagesById: findPagesById
+            findPageById: findPageById,
+            findPageByPageId:findPageByPageId
         };
         return model;
 
@@ -30,8 +31,13 @@
             return $http.put("/api/project/pages/" +pageId ,newPage);
         }
 
-        function findPagesById(userId){
+        function findPageById(userId){
             return $http.get("/api/project/pages/" +userId);
+        }
+
+        function findPageByPageId(pageId){
+            return $http.get("/api/project/page/" +pageId);
+
         }
 
     }
