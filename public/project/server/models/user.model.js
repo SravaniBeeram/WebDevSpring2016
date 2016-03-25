@@ -19,6 +19,8 @@ module.exports = function (uuid) {
             username: user.username,
             password: user.password,
             _id: uuid.v1(),
+            firstName:user.firstName,
+            lastName:user.lastName,
             email:user.email
         };
         mock.push(user);
@@ -64,7 +66,7 @@ module.exports = function (uuid) {
 
     function deleteUserById(userId) {
         for (var u in mock) {
-            if (mock[u]._id === userId) {
+            if (mock[u]._id == userId) {
                 mock.splice(u, 1);
             }
         }

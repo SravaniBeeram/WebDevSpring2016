@@ -1,4 +1,4 @@
-<div ng-controller = "UserController">
+<div ng-controller = "adminController">
     <h1>Users</h1>
 
     <div ng-show="alertMessage" class="alert alert-danger" role="alert">{{alertMessage}}</div>
@@ -13,21 +13,21 @@
             </tr>
 
             <tr>
-                <td><input type="text" ng-model="username" placeholder="user name"></td>
-                <td><input type="text" ng-model="firstName" placeholder="First Name"></td>
-                <td><input type="text" ng-model="lastName" placeholder="Last Name"></td>
+                <td><input type="text" ng-model="model.username" placeholder="user name"></td>
+                <td><input type="text" ng-model="model.firstName" placeholder="First Name"></td>
+                <td><input type="text" ng-model="model.lastName" placeholder="Last Name"></td>
 
-                <td><a ng-click="addUser(username,firstName,lastName)"><span class="glyphicon glyphicon-plus btn btn-primary"></span></a>
-                    <a ng-click="updateUser(username,firstName,lastName)"><span class="glyphicon glyphicon-ok btn btn-success"></span></a>
+                <td class="text-nowrap"><a ng-click="model.addUser(model.username,model.firstName,model.lastName)"><span class="glyphicon glyphicon-plus btn btn-primary"></span></a>
+                                        <a ng-click="model.updateUser(model.username,model.firstName,model.lastName)"><span class="glyphicon glyphicon-ok btn btn-success"></span></a>
                 </td>
             </tr>
 
-            <tr ng-repeat="user in users">
+            <tr ng-repeat="user in model.users">
                 <td><a>{{user.username}}</a></td>
                 <td><a>{{user.firstName}}</a></td>
                 <td><a>{{user.lastName}}</a></td>
-                <td><a ng-click="deleteUser($index)"><span class="glyphicon glyphicon-remove btn btn-danger"></span></a>
-                    <a ng-click="selectUser($index)"><span class="glyphicon glyphicon-pencil btn btn-warning"></span></a>
+                <td class="text-nowrap"><a ng-click="model.deleteUser($index)"><span class="glyphicon glyphicon-remove btn btn-danger"></span></a>
+                                        <a ng-click="model.selectUser($index)"><span class="glyphicon glyphicon-pencil btn btn-warning"></span></a>
                 </td>
             </tr>
 

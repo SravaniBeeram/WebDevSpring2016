@@ -21,18 +21,18 @@
                 <li ng-hide = "currentUser">
                     <a href="https://docs.google.com/document/d/1kOJ7Qgo64c_JNB3kdOoOUX8wJjnnETfOuHgJ0542b7U/edit?pref=2&pli=1" target="_blank">Project Documentation</a></li>
 
-                <li ng-class="{'active': $location.url() == '/signup'}" data-toggle="collapse" data-target=".navbar-collapse.in">
+                <li ng-class="{'active': $location.url() == '/home'}" data-toggle="collapse" data-target=".navbar-collapse.in">
                     <a href="#/home">Home</a></li>
 
                 <li ng-show="currentUser.roles.indexOf('admin') >= 0"
                     ng-class="{'active': $location.url() == '/admin'}" data-toggle="collapse" data-target=".navbar-collapse.in">
                     <a href="#/admin">Admin</a></li>
 
-                <li ng-hide = "currentUser" ng-class="{'active': $location.url() == '/signup'}" data-toggle="collapse" data-target=".navbar-collapse.in">
-                    <a href="#/signup">Sign Up</a></li>
-
                 <li  ng-hide = "currentUser" ng-class="{'active': $location.url() == '/login'}" data-toggle="collapse" data-target=".navbar-collapse.in">
                     <a href="#/login">Login</a></li>
+
+                <li ng-hide = "currentUser" ng-class="{'active': $location.url() == '/signup'}" data-toggle="collapse" data-target=".navbar-collapse.in">
+                    <a href="#/signup">Sign Up</a></li>
 
                 <li  ng-show= "currentUser" ng-class="{'active': $location.url() == '/profile'}" data-toggle="collapse" data-target=".navbar-collapse.in">
                     <a href="#/profile">{{currentUser.username}}</a></li>
