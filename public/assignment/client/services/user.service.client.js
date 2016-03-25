@@ -41,7 +41,7 @@
         }
 
         function findUserByUsername(username){
-            return $http.get("/api/assignment/user/" +username);
+            return $http.get("/api/assignment/username/" +username);
         }
 
         function findById(userId){

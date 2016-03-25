@@ -3,7 +3,7 @@
     angular.module("FormBuilderApp")
            .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope,UserService,$rootScope) {
+    function ProfileController(UserService,$rootScope) {
          var vm = this;
          vm.update = update;
          var currentUser = $rootScope.currentUser;
@@ -18,7 +18,7 @@
         }init();
 
         function update(username,password,firstName,lastName,email) {
-            $scope.message = null;
+            $vm.message = null;
             var id = currentUser._id;
             var userDetails={
                 "_id":id,
@@ -33,9 +33,9 @@
                     if(response.data)
                     {
                         UserService.setCurrentUser(response.data);
-                        $scope.message = "Your Profile has been updated!!!";
+                        vm.message = "Your Profile has been updated!!!";
                     }else{
-                        $scope.message = "Sorry! Please enter your details again!!!";
+                        vm.message = "Sorry! Please enter your details again!!!";
                     }
                 });
         }

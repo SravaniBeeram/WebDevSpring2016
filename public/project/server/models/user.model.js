@@ -43,14 +43,14 @@ module.exports = function (uuid) {
     }
 
     function findUserByUsername(username) {
-        for (var u in mock) {
-            if (mock[u].username == username) {
+        for (var u in mock)
+        {
+            if (mock[u].username == username)
+            {
                 return mock[u];
             }
-            else {
-                return null;
-            }
         }
+        return null;
     }
 
     function updateUser(userId, user) {

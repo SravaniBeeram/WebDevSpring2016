@@ -3,7 +3,7 @@ module.exports = function(app,userModel){
     app.post("/api/project/user", createUser);
     app.get("/api/project/user",allUsers);
     app.get("/api/project/user/:userId",findById);
-    app.get("/api/project/user/:username",findUserByUsername);
+    app.get("/api/project/username/:username",findUserByUsername);
     app.put("/api/project/user/:userId",updateUser);
     app.delete("/api/project/user/:userId",deleteUserById);
 

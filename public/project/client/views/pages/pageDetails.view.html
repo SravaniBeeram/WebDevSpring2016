@@ -1,19 +1,17 @@
 <div ng-controller="PageDetailsController">
 
     <h2>Page Details</h2>
-    <div class="space"></div>
-            <div class="col-sm-8 col-md-8">
-                <select class="btn-block">
-                    <option value="Heading">Heading</option>
-                    <option value="Label">Label</option>
-                    <option value="Button">Button</option>
-                    <option value="Paragraph">Paragraph</option>
-                    <option value="List">List</option>
-                    <option value="Form">Form</option>
-                    <option value="Link">Link</option>
-                    <option value="Image">Image</option>
-                </select>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar" ng-include="'views/sidebar/sidebar.view.html'">
             </div>
-        <div class="col-sm-2 col-md-2"><a class="glyphicon glyphicon-plus btn btn-success"></a></div>
+
+
+
+
+        </div>
+
+    </div>
+
 </div>
 

@@ -40,15 +40,26 @@
                   return;
               }
 
-              UserService.createUser(user)
-                  .then(function(response){
-                      if(response.data){
-                          UserService.setCurrentUser(response.data);
-                          $location.url("/profile");
-                      }else{
-                          vm.message = "Please try again"
-                      }
-                  });
+            UserService.findUserByUsername(user.username)
+                .then(function(response){
+                    if(response.data){
+                        vm.message = "Username already taken!!!";
+                    }else{
+                        registerUser();
+                    }
+                });
+
+            function registerUser() {
+                UserService.createUser(user)
+                    .then(function (response) {
+                        if (response.data) {
+                            UserService.setCurrentUser(response.data);
+                            $location.url("/profile");
+                        } else {
+                            vm.message = "Please try again"
+                        }
+                    });
+            }
           }
     }
 })();
