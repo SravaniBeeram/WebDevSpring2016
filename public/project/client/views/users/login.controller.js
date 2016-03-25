@@ -5,6 +5,7 @@
 
     function LoginController($scope,UserService,$location) {
         var vm = this;
+        vm.message = null;
         vm.login = login;
 
         function init(){
@@ -13,7 +14,7 @@
 
         function login(user) {
             if(!user){
-                $scope.message = "Please enter login details";
+                vm.message = "Please enter login details";
                 return;
             }
             UserService.findUserByCredentials
@@ -24,7 +25,7 @@
                         UserService.setCurrentUser(response.data);
                         $location.url("/profile");
                     }else{
-                        $scope.message = "Username or password doesnot match";
+                        vm.message = "Username or password doesnot match";
                     }
                 });
         }

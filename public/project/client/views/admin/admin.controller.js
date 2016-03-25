@@ -4,12 +4,12 @@
     angular.module("PageEditorApp")
         .controller("adminController",adminController);
 
-    function adminController($scope,UserService,$rootScope) {
+    function adminController(UserService,$rootScope) {
         var vm = this;
         var userIndexSelected;
         var currentUsers = [];
         var currentUser;
-        $scope.alertMessage = null;
+        vm.alertMessage = null;
 
         vm.addUser = addUser;
         vm.updateUser=updateUser;
@@ -43,7 +43,7 @@
                 UserService.createUser(newUser)
                     .then(init());
             }else{
-                $scope.alertMessage = "Please enter username ,firstName and lastName of the user";
+                vm.alertMessage = "Please enter username ,firstName and lastName of the user";
             }
         }
 
@@ -57,7 +57,7 @@
                     .then(init());
 
             }else {
-                $scope.alertMessage = "Please Select a user to update";
+                vm.alertMessage = "Please Select a user to update";
             }
         }
 

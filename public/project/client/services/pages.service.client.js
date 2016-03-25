@@ -4,50 +4,35 @@
     angular.module("PageEditorApp")
         .factory("PageService",PageService);
 
-    function PageService() {
-        var pages = [
-            {"_id": "000", "title": "Page-1", "userId": 123},
-            {"_id": "010", "title": "Page-2", "userId": 123},
-            {"_id": "020", "title": "Page-1", "userId": 234}]
-
-        var model={ createPageForUser:createPageForUser,
-                    findAllPages:findAllPages,
-                    deletePageById:deletePageById,
-                    updatePageById:updatePageById
-        }
+    function PageService($http) {
+        var model = {
+            createPageForUser: createPageForUser,
+            findAllPages: findAllPages,
+            deletePageById: deletePageById,
+            updatePageById: updatePageById,
+            findPagesById: findPagesById
+        };
         return model;
 
         function createPageForUser(page){
-            var page = {
-                _id:(new Date).getTime(),
-                title:page.title,
-            };
-            pages.push(page);
+            return $http.post("/api/project/pages" ,page);
         }
 
-        function findAllPages(callback){
-            callback(pages);
+        function findAllPages(){
+            return $http.get("/api/project/pages");
         }
 
-        function deletePageById(pageId,callback){
-            for(var u in pages) {
-                if (pages[u]._id === pageId) {
-                    pages.splice(u, 1);
-                    break;
-                }
-            }
-            callback(pages);
+        function deletePageById(pageId){
+            return $http.delete("/api/project/pages/" +pageId);
         }
 
-        function updatePageById(pageId, newPage, callback){
-            for(var u in pages) {
-                if (pages[u]._id === pageId) {
-                    pages[u].title  = newPage.title;
-                    pages[u].userId = newPage.userId;
-                    break;
-                }
-            }
-            callback(pages[u]);
+        function updatePageById(pageId, newPage){
+            return $http.put("/api/project/pages/" +pageId ,newPage);
         }
+
+        function findPagesById(userId){
+            return $http.get("/api/project/pages/" +userId);
+        }
+
     }
 })();

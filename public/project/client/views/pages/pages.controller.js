@@ -4,38 +4,42 @@
     angular.module("PageEditorApp")
         .controller("PageController",PageController);
 
-    function PageController($scope,PageService,$rootScope) {
-        $scope.alertMessage = null;
+    function PageController(PageService,$rootScope) {
+        var vm = this;
+        vm.alertMessage = null;
         var pageIndexSelected;
         var currentUserPages = [];
-        var currentUser;
+
+        vm.addPage = addPage;
+        vm.updatePage=updatePage;
+        vm.deletePage=deletePage;
+        vm.selectPage=selectPage;
+
+        var currentUser = $rootScope.currentUser;
 
 
-        currentUser = $rootScope.currentUser;
-        PageService.findAllPages(renderPages);
+        function init()
+        {
+            PageService.findPagesById(currentUser._id)
+                .then(function(response)
+                {
+                    vm.pages = response.data;
+                    currentUserPages = response.data;
+                    vm.pageName = null;
+                });
+        }init();
 
-
-        $scope.addPage = addPage;
-        $scope.updatePage=updatePage;
-        $scope.deletePage=deletePage;
-        $scope.selectPage=selectPage;
-
-        function renderPages(userPages){
-            $scope.pages = userPages;
-            currentUserPages = userPages;
-        }
 
         function addPage(pageName) {
             if (pageName != null) {
                 var newPage = {
-                    "_id": null,
                     "title": pageName,
-                    "userId": null
+                    "userId": currentUser._id
                 };
-                PageService.createPageForUser(newPage);
-                $scope.pageName = null;
+                PageService.createPageForUser(newPage)
+                    .then(init());
             }else{
-                $scope.alertMessage = "Please enter a name for the page";
+                vm.alertMessage = "Please enter a name for the page";
             }
         }
 
@@ -43,25 +47,22 @@
             if (pageName != null) {
                 var pageSelected = currentUserPages[pageIndexSelected];
                 pageSelected.title = pageName;
-                PageService.updatePageById(pageSelected._id, pageSelected, renderPagesAfterAction);
-                $scope.pageName = null;
+                PageService.updatePageById(pageSelected._id, pageSelected)
+                              .then(init());
             }else {
-                $scope.alertMessage = "Please Select a page to update";
+                vm.alertMessage = "Please Select a page to update";
             }
         }
 
         function deletePage(index){
             pageIndexSelected = index;
-            PageService.deletePageById(currentUserPages[index]._id,renderPagesAfterAction);
+            PageService.deletePageById(currentUserPages[index]._id)
+                .then(init());
         }
 
-        function renderPagesAfterAction(userpages){
-            PageService.findAllPages(renderPages);
-        }
         function selectPage(index){
             pageIndexSelected = index;
-            $scope.pageName = currentUserPages[index].title;
+            vm.pageName = currentUserPages[index].title;
         }
     }
-
 })();
