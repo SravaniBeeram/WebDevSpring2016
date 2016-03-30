@@ -14,7 +14,8 @@ module.exports = function(uuid,pageModel){
         field._id = uuid.v1();
         var page = pageModel.findPageById(pageId);
         page.fields.push(field);
-    }
+        console.log("server" +page.fields);
+;    }
 
     function  deleteField(pageId,fieldId){
         var page = pageModel.findPageById(pageId);

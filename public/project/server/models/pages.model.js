@@ -50,7 +50,7 @@ module.exports = function (uuid) {
     function deletePageById(pageId) {
         for (var u in mock)
         {
-            if (mock[u]._id === pageId)
+            if (mock[u]._id == pageId)
             {
                 mock.splice(u, 1);
                 break;
@@ -62,10 +62,9 @@ module.exports = function (uuid) {
     function updatePageById(pageId, newPage) {
         for (var u in mock)
         {
-            if (mock[u]._id === pageId)
+            if (mock[u]._id == pageId)
             {
-                mock[u].title = newPage.title;
-                mock[u].userId = newPage.userId;
+                mock[u]= newPage;
                 break;
             }
         }

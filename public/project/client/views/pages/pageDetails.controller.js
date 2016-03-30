@@ -4,7 +4,7 @@
     angular.module("PageEditorApp")
         .controller("PageDetailsController",PageDetailsController);
 
-    function PageDetailsController(FieldService,PageService,$routeParams,$rootScope) {
+    function PageDetailsController(FieldService,PageService,$routeParams,$rootScope,$scope) {
         var vm = this;
 
         var pageId;
@@ -15,6 +15,8 @@
         vm.deleteField = deleteField;
         vm.addField=addField;
         vm.repeatField = repeatField;
+        $scope.updatePage = updatePage;
+
 
         var currentUser =$rootScope.currentUser;
 
@@ -23,11 +25,33 @@
             pageId = $routeParams.pageId;
         }
 
+        function updatePage(start,end){
+            var newFields = [];
+
+            for(var i in vm.fields){
+                newFields[i] = vm.fields[i];
+            }
+
+            var temp = newFields[start];
+            newFields[start] = newFields[end];
+            newFields[end] = temp;
+
+            PageService.findPageByPageId(pageId)
+                .then(function(response){
+                    var page = response.data;
+                    page.fields = newFields;
+                    console.log("after drag" +page.fields);
+                    PageService.updatePageById(page._id,page);
+                });
+        }
+
+
         function init(){
 
             FieldService.findFieldByPage(pageId)
                 .then(function(response){
                     vm.fields = response.data;
+                    console.log("init fields" +vm.fields);
                 });
 
             PageService.findPageByPageId(pageId)

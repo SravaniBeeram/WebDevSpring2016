@@ -4,6 +4,8 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var cookieParser  = require('cookie-parser');
 var multer = require('multer');
+var passport = require('passport');
+
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 var uuid = require('node-uuid');
