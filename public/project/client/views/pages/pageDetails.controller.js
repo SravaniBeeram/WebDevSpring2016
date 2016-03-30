@@ -40,7 +40,7 @@
                 .then(function(response){
                     var page = response.data;
                     page.fields = newFields;
-                    console.log("after drag" +page.fields);
+                    console.log("after drag:" +page.fields);
                     PageService.updatePageById(page._id,page);
                 });
         }
