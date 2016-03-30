@@ -37,7 +37,8 @@ module.exports = function (uuid) {
         var newPage = {
             _id:uuid.v1(),
             title: page.title,
-            userId:page.userId
+            userId:page.userId,
+            fields:[{"_id": "123", "label": "Create your new page", "type": "HEADER"}]
         };
         mock.push(newPage);
     }

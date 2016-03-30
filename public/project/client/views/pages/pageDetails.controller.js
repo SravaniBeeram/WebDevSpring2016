@@ -90,15 +90,44 @@
         function addField(fieldType){
             var field;
             switch(fieldType) {
+                case "LABEL":
+                    field = {"_id": null, "label": "New Label", "type": "LABEL"};
+                    break;
+
+                case "HEADER":
+                    field = {"_id": null, "label": "New Header", "type": "HEADER"};
+                    break;
+
+                case "BUTTON":
+                    field = {"_id": null, "label": "New Button", "type": "BUTTON"};
+                    break;
+
+                case "PARAGRAPH":
+                    field = {"_id": null, "label": "New Header", "type": "PARAGRAPH","placeholder":"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum"};
+                    break;
+
                 case "TEXT":
                     field = {"_id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
                     break;
+
                 case "TEXTAREA":
                     field = {"_id": null, "label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"};
                     break;
+
                 case "DATE":
                     field = {"_id": null, "label": "New Date Field", "type": "DATE"};
                     break;
+
+                case "LIST":
+                    field = {
+                        "_id": null, "label": "New List", "type": "LIST", "options": [
+                            {"label": "Item 1", "value": "Item_1"},
+                            {"label": "Item 2", "value": "Item_2"},
+                            {"label": "Item 3", "value": "Item_3"}
+                        ]
+                    };
+                    break;
+
                 case "OPTIONS":
                     field = {
                         "_id": null, "label": "New Dropdown", "type": "OPTIONS", "options": [
@@ -118,6 +147,7 @@
                         ]
                     };
                     break;
+
                 case "RADIOS":
                     field = {
                         "_id": null, "label": "New Radio Buttons", "type": "RADIOS", "options": [
@@ -128,6 +158,7 @@
                     };
                     break;
             }
+            console.log("type" +fieldType);
             console.log(field);
             FieldService.createField(pageId,field)
                 .then(init());

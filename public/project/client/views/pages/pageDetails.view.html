@@ -1,16 +1,21 @@
 <div ng-controller="PageDetailsController">
-
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar" ng-include="'views/sidebar/sidebar.view.html'"></div>
-
             <div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
-                <h1>{{model.page.title}}</h1>
+                <h1 align="center">{{model.page.title}}</h1>
 
-                <form class="form-horizontal">
-
+                <div class="form-horizontal">
                     <div ng-repeat="field in model.fields">
-                        <label>{{field.label}}</label>
+                        <div class="input-group">
+                            <h1 ng-if="field.type == 'HEADER'">{{field.label}}</h1>
+                            <ul ng-if="field.type == 'LIST'"><li ng-repeat="item in field.options">{{item.label}}</li></ul>
+                            <p  ng-if= "field.type == 'PARAGRAPH'" align="justify" >{{field.placeholder}}</p>
+                            <label ng-if ="field.type == 'LABEL'">{{field.label}}</label>
+                            <button ng-if = "field.type == 'BUTTON'" class="btn btn-primary">{{field.label}}</button>
+                        </div>
+                        <label ng-hide = "field.type == 'HEADER' || field.type == 'LIST' || field.type == 'LABEL' || field.type =='PARAGRAPH'|| field.type =='BUTTON'">
+                            {{field.label}}
+                        </label>
                         <div class="input-group">
                             <div ng-switch on="field.type" >
                                 <input ng-switch-when="TEXT" type="text" class="form-control" placeholder="{{field.placeholder}}">
@@ -40,9 +45,73 @@
                         </div>
                         <br>
                     </div>
-                </form>
-            </div>
 
+                    <div class="col-sm-3 col-md-2 sidebar">
+                            <ul class="nav nav-sidebar">
+                                <li><p align="center"><strong>Elements</strong></p></li>
+
+                                <div data-ng-init="date='DATE';">
+                                    <button data-ng-attr-id="date" class="btn btn-block" data-ng-click="model.addField(date)">Date</button>
+                                </div>
+
+                                <div data-ng-init="list='LIST';">
+                                    <button data-ng-attr-id="list" class="btn btn-block" data-ng-click="model.addField(list)">List</button>
+                                </div>
+
+                                <div data-ng-init="text='TEXT';">
+                                    <button data-ng-attr-id="text" class="btn btn-block" data-ng-click="model.addField(text)">Text</button>
+                                </div>
+
+                                <div data-ng-init="image='IMAGE';">
+                                    <button data-ng-attr-id="image" class="btn btn-block" data-ng-click="model.addField(image)">Image</button>
+                                </div>
+
+                                <div data-ng-init="label='LABEL';">
+                                    <button data-ng-attr-id="label" class="btn btn-block" data-ng-click="model.addField(label)">Label</button>
+                                </div>
+
+                                <div data-ng-init="video='VIDEO';">
+                                    <button data-ng-attr-id="video" class="btn btn-block" data-ng-click="model.addField(video)">Video</button>
+                                </div>
+
+                                <div data-ng-init="button='BUTTON';">
+                                    <button data-ng-attr-id="button" class="btn btn-block" data-ng-click="model.addField(button)">Button</button>
+                                </div>
+
+                                <div data-ng-init="header='HEADER';">
+                                    <button data-ng-attr-id="header" class="btn btn-block" data-ng-click="model.addField(header)">Header</button>
+                                </div>
+
+
+                                <div data-ng-init="textArea='TEXTAREA';">
+                                    <button data-ng-attr-id="textArea" class="btn btn-block" data-ng-click="model.addField(textArea)">Text Area</button>
+                                </div>
+
+                                <div data-ng-init="paragraph='PARAGRAPH';">
+                                    <button data-ng-attr-id="paragraph" class="btn btn-block" data-ng-click="model.addField(paragraph)">Paragraph</button>
+                                </div>
+
+                                <div data-ng-init="options='OPTIONS';">
+                                    <button data-ng-attr-id="options" class="btn btn-block" data-ng-click="model.addField(options)">Drop Down</button>
+                                </div>
+
+                                <div data-ng-init="code='HTML';">
+                                    <button data-ng-attr-id="code" class="btn btn-block" data-ng-click="model.addField(code)">HTML Code</button>
+                                </div>
+
+                                <div data-ng-init="checkbox='CHECKBOXES';">
+                                    <button data-ng-attr-id="checkbox" class="btn btn-block" data-ng-click="model.addField(checkbox)">Checkboxes</button>
+                                </div>
+
+                                <div data-ng-init="radio='RADIOS';">
+                                    <button data-ng-attr-id="radio" class="btn btn-block" data-ng-click="model.addField(radio)">Radio Buttons</button>
+                                </div>
+
+
+                            </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -55,7 +124,8 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="form-group">
+
+                        <div class="form-group" ng-hide = "model.fieldEdit.type == 'PARAGRAPH' || model.fieldEdit.type == 'LIST'">
                             <label>Label</label>
                             <input ng-model = "model.label" class="form-control" type="text" placeholder="Edit Label">
                         </div>
@@ -79,11 +149,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
 
 </div>
 

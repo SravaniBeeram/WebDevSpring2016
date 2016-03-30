@@ -26,6 +26,8 @@ module.exports = function(app,pageModel,fieldModel) {
     function createField(req,res){
         var pageId = req.params.pageId;
         var field= req.body;
+        console.log("server:PageId" +pageId);
+        console.log("server:field" +field);
         res.json(fieldModel.createField(pageId,field));
     }
 
