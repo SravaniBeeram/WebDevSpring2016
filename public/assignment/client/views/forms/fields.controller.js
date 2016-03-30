@@ -18,7 +18,6 @@
 
         var currentUser =$rootScope.currentUser;
 
-
         if($routeParams.formId){
             formId = $routeParams.formId;
         }
@@ -128,6 +127,7 @@
                     };
                     break;
             }
+            console.log("type:" +fieldType);
             console.log(field);
             FieldService.createField(formId,field)
                 .then(init());
@@ -137,6 +137,6 @@
             FieldService.createField(formId,field)
                 .then(init());
         }
-    }
 
+    }
 })();
