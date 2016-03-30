@@ -17,10 +17,10 @@
                 },
                 stop: function(event, ui) {
                     end = ui.item.index();
-                    var temp = scope.fields[start];
-                    scope.fields[start] = scope.fields[end];
-                    scope.fields[end] = temp;
-                    scope.$apply();
+
+                    scope.$apply(function(){
+                        scope.updateForm(start,end);
+                    })
                 }
             });
         }

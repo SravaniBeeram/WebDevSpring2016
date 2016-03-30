@@ -7,7 +7,7 @@
             </ul>
             <br>
                 <div class="form-horizontal">
-                    <div ng-model="model.fields" jga-sortable jga-axis="y">
+                    <div ng-show="model.fields" jga-sortable jga-axis="y">
                             <div ng-repeat="field in model.fields">
                                  <label>{{field.label}}</label>
                                  <div class="input-group">
@@ -34,12 +34,12 @@
                                      <button ng-click ="model.editField(field)"      class="btn btn-warning" data-toggle="modal" data-target="#editField"><span class="glyphicon glyphicon-pencil"></span></button>
                                      <button ng-click ="model.repeatField(field)"    class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
                                      <button ng-click ="model.deleteField(field._id)"class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
-                                     <button class="btn btn-info"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+                                     <a class="btn btn-info"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
                                  </div>
                              </div>
                                 <br>
                         </div>
-
+                    </div>
                         <label>Add NewField</label>
                         <div class="input-group">
                             <select ng-model = "model.fieldType" class="form-control">
@@ -55,7 +55,6 @@
                                     <span class="glyphicon glyphicon-plus"></span></button>
                             </div>
                         </div>
-                    </div>
                 </div>
 
 

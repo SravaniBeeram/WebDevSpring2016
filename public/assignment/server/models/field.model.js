@@ -5,7 +5,7 @@ module.exports = function(uuid,formModel){
         deleteField:deleteField,
         updateField:updateField,
         findField:findField,
-        findFieldByFormId:findFieldByFormId,
+        findFieldByFormId:findFieldByFormId
     };
 
     return api;
