@@ -13,6 +13,7 @@ module.exports = function(form){
     return api;
 
     function createField(formId,newField){
+        console.log("create - server");
         var deferred = q.defer();
         form.findById(formId,
             function (err, doc) {
