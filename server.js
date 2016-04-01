@@ -7,8 +7,6 @@ var cookieParser  = require('cookie-parser');
 var session = require('express-session');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/form-maker');
-
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 var uuid = require('node-uuid');
@@ -21,6 +19,8 @@ app.use(session({
     resave:true,
     saveUninitialized:true
 }));
+
+var connectionString = 'mongodb://127.0.0.1:27017/form-maker';
 
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
     connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
