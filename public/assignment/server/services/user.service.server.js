@@ -79,8 +79,6 @@ module.exports = function(app,userModel){
         var newUser = req.body;
         if(newUser.roles != null){
             newUser.roles = newUser.roles.split(",");
-        }else{
-            newUser.roles = "student";
         }
         userModel.updateUser(userId,newUser)
             .then(function (stats) {
