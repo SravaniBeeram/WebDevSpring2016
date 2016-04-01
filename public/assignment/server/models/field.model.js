@@ -23,7 +23,7 @@ module.exports = function(form){
                     var newForm = doc;
                     newForm.fields.push(newField);
                     form.update(
-                        { _id : formId},
+                        {_id : formId},
                         { $set: newForm},
                         function (err, doc) {
                             if (err) {
