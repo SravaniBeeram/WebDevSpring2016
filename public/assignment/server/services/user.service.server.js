@@ -77,7 +77,11 @@ module.exports = function(app,userModel){
     function updateUser(req,res){
         var userId =req.params.userId;
         var newUser = req.body;
-        newUser.roles = newUser.roles.split(",");
+        if(newUser.roles != null){
+            newUser.roles = newUser.roles.split(",");
+        }else{
+            newUser.roles = "student";
+        }
         userModel.updateUser(userId,newUser)
             .then(function (stats) {
                 res.send(200);
