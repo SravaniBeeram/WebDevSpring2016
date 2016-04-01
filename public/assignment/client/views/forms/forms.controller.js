@@ -5,7 +5,6 @@
         .controller("FormController",FormController);
 
     function FormController(FormService,$rootScope){
-        console.log("entered controller");
 
         var vm = this;
         vm.addForm = addForm;
