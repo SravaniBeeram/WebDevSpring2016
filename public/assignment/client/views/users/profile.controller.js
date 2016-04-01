@@ -21,7 +21,6 @@
             vm.message = null;
             var id = currentUser._id;
             var userDetails={
-                "_id":id,
                 "username":username,
                 "password":password,
                 "firstName":firstName,
