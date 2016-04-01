@@ -14,11 +14,6 @@ var uuid = require('node-uuid');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
-app.use(session({
-    secret:'this is secret',
-    resave:true,
-    saveUninitialized:true
-}));
 
 var connectionString = 'mongodb://127.0.0.1:27017/form-maker';
 
@@ -33,8 +28,6 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 var db = mongoose.connect(connectionString);
 
 app.use(cookieParser());
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
 require("./public/assignment/server/app.js")(app,uuid,db);
