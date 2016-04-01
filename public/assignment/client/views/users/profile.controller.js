@@ -11,14 +11,14 @@
          vm.password= currentUser.password;
          vm.firstName = currentUser.firstName;
          vm.lastName = currentUser.lastName;
-         vm.email = currentUser.email;
+         vm.emails = currentUser.emails;
 
         function init(){
 
         }init();
 
-        function update(username,password,firstName,lastName,email) {
-            $vm.message = null;
+        function update(username,password,firstName,lastName,emails) {
+            vm.message = null;
             var id = currentUser._id;
             var userDetails={
                 "_id":id,
@@ -26,18 +26,17 @@
                 "password":password,
                 "firstName":firstName,
                 "lastName":lastName,
-                "email":email
+                "emails":emails
             };
             UserService.updateUser(id,userDetails)
-                .then(function(response){
-                    if(response.data)
-                    {
-                        UserService.setCurrentUser(response.data);
+                .then(function(user){
+                        UserService.setCurrentUser(user.data);
                         vm.message = "Your Profile has been updated!!!";
-                    }else{
+                    },
+                    function(err){
                         vm.message = "Sorry! Please enter your details again!!!";
                     }
-                });
+                );
         }
     }
 })();

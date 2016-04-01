@@ -21,16 +21,16 @@
 
         function init(){
             UserService.findAllUsers()
-                .then(function(response){
-                    vm.users = response.data;
-                    currentUsers = response.data;
+                .then(function(users){
+                    vm.users = users.data;
+                    currentUsers = users.data;
                     vm.username = null;
                     vm.firstName = null;
                     vm.lastName = null;
                     vm.roles = null;
-
-
-                });
+                },function(err){
+                    console.log(err);
+            });
         }init();
 
         function addUser(username,firstName,lastName,roles) {

@@ -19,14 +19,14 @@
             UserService.findUserByCredentials
                  ({username:user.username,
                    password:user.password})
-                .then(function(response){
-                    if(response.data){
-                        UserService.setCurrentUser(response.data);
+                .then(function(user){
+                        UserService.setCurrentUser(user.data);
                         $location.url("/profile");
-                    }else{
+                    },
+                    function(err){
                         vm.message = "Username or password doesnot match";
                     }
-                });
+                );
         }
     }
 })();

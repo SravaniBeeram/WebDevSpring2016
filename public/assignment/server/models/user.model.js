@@ -1,6 +1,9 @@
-var mock = require("./user.mock.json");
+var mongoose = require("mongoose");
+var q = require("q");
 
-module.exports = function (uuid) {
+module.exports = function (uuid,db) {
+    var UserSchema = require("./user.schema.server.js")();
+    var user = mongoose.model("user", UserSchema);
 
     var api = {
         createUser: createUser,
@@ -14,73 +17,85 @@ module.exports = function (uuid) {
 
     return api;
 
-    function createUser(user) {
-        var user = {
-            _id: uuid.v1(),
-            username: user.username,
-            password: user.password,
-            firstName:user.firstName,
-            lastName:user.lastName,
-            roles:user.roles,
-            email:user.email
-        };
-        mock.push(user);
-        return (user);
+    function createUser(newUser) {
+        var deferred = q.defer();
+        user.create(newUser,function(err,doc) {
+           if(err){
+               deferred.reject(err);
+           } else{
+               deferred.resolve(doc);
+           }
+        });
+        return deferred.promise;
     }
 
     function findAllUsers() {
-        return (mock);
+       var deferred = q.defer();
+        user.find(function(err,users){
+            if(err){
+                deferred.reject(err);
+            }
+            else{
+                deferred.resolve(users);
+            }
+        });
+        return deferred.promise;
     }
 
     function findById(userid) {
-        for (var u in mock) {
-            if (mock[u]._id == userid) {
-                return mock[u];
-            }
-            else {
-                return null;
-            }
-        }
+        return user.findById(userid);
     }
 
     function findUserByUsername(username) {
-        for (var u in mock) {
-            if (mock[u].username == username) {
-
-                return mock[u];
-            }
-        }
-        return null;
+        var deferred = q.defer();
+        user.findOne({username:username},
+            function (err,user) {
+                if(!err){
+                    deferred.resolve(user);
+                }else{
+                    deferred.reject(err);
+                }
+            });
+        return deferred.promise;
     }
 
-    function updateUser(userId, user) {
-        for (var u in mock) {
-            if (mock[u]._id == userId) {
-                flag = "true";
-                mock[u] = user;
-                return (mock[u]);
+    function updateUser(userId,newuser) {
+        var deferred = q.defer();
+        user.update({_id:userId},
+                    {$set:newuser},
+        function(err,stats){
+            if(!err){
+                deferred.resolve(stats);
+            }else{
+                deferred.reject(err);
             }
-        }
-        return (null);
+        });
+        return deferred.promise;
     }
 
     function deleteUserById(userId) {
-        for (var u in mock) {
-            if (mock[u]._id == userId) {
-                mock.splice(u, 1);
+        var deferred = q.defer();
+        user.remove({_id:userId},
+        function(err,stats){
+            if(!err){
+                deferred.resolve(stats);
             }
-        }
-        return (mock);
+        });
+        return deferred.promise;
     }
 
-
     function findUserByCredentials(credentials) {
-        for (var u in mock) {
-            if (mock[u].username == credentials.username &&
-                mock[u].password == credentials.password) {
-                return mock[u];
-            }
-        }
-            return null;
+        var deferred = q.defer();
+        user.findOne({
+            username: credentials.username,
+            password: credentials.password},
+            function (err,user) {
+                if(!err){
+                    deferred.resolve(user);
+                }else{
+                    deferred.reject(err);
+                }
+            });
+        return deferred.promise;
     }
 };

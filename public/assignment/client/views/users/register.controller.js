@@ -15,53 +15,43 @@
 
         function register(user) {
 
-              $scope.message = null;
+            $scope.message = null;
 
-              if(user == null) {
-                  $scope.message = "Please fill in the required details";
-                  return;
-              }
+            if (user == null) {
+                vm.message = "Please fill in the required details";
+                return;
+            }
 
-              if(!user.username) {
-                  $scope.message = "Please provide a username";
-                  return;
-              }
+            if (!user.username) {
+                vm.message = "Please provide a username";
+                return;
+            }
 
-              if (!user.password || !user.password2) {
-                  $scope.message = "Please provide a password";
-                  return;
-              }
+            if (!user.password || !user.password2) {
+                vm.message = "Please provide a password";
+                return;
+            }
 
-              if (user.password !== user.password2) {
-                  $scope.message = "Passwords must match";
-                  return;
-              }
+            if (user.password !== user.password2) {
+                vm.message = "Passwords must match";
+                return;
+            }
 
-              if(!user.email) {
-                  $scope.message = "Please provide an email";
-                  return;
-              }
+            if (!user.emails) {
+                vm.message = "Please provide an email";
+                return;
+            }
 
-            UserService.findUserByUsername(user.username)
-                .then(function(response){
-                    if(response.data){
-                        vm.message = "Username already taken!!!";
-                    }else{
-                        registerUser();
-                    }
-                });
 
-            function registerUser() {
-                UserService.createUser(user)
-                    .then(function (response) {
-                        if (response.data) {
-                            UserService.setCurrentUser(response.data);
-                            $location.url("/profile");
-                        } else {
+             UserService.createUser(user)
+                    .then(function (user) {
+                        UserService.setCurrentUser(user.data);
+                        $location.url("/profile");
+                    },
+                        function(err){
                             vm.message = "Please try again"
                         }
-                    });
-            }
+                    );
         }
     }
 })();

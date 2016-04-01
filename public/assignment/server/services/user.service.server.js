@@ -1,5 +1,6 @@
 module.exports = function(app,userModel){
-    app.post("/api/assignment/user", createUser);
+
+    app.post("/api/assignment/user",createUser);
     app.get("/api/assignment/user",allUsers);
     app.get("/api/assignment/user/:userId",findById);
     app.get("/api/assignment/username/:username",findUserByUsername);
@@ -7,43 +8,94 @@ module.exports = function(app,userModel){
     app.put("/api/assignment/user/:userId",updateUser);
     app.delete("/api/assignment/user/:userId",deleteUserById);
 
-
     function createUser(req,res){
-        var user=req.body;
-        res.json(userModel.createUser(user));
+        var newUser=req.body;
+        newUser.roles = "student";
+        userModel.createUser(newUser)
+            .then(function (user) {
+                res.json(user)
+            },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function allUsers(req,res){
-        res.json(userModel.findAllUsers());
+        userModel.findAllUsers()
+            .then(function(users) {
+                res.json(users);
+            },
+            function(err){
+                res.status(400).send(err);
+            });
     }
 
     function findById(req,res){
         var userId =req.params.userId;
-        res.json(userModel.findById(userId));
+        userModel.findById(userId)
+            .then(function(user){
+                res.json(err);
+            },
+                function (err) {
+                    res.status(400).send(err);
+                });
     }
 
     function findUserByUsername(req,res){
         var username = req.params.username;
-        res.json(userModel.findUserByUsername(username));
+        userModel.findUserByUsername(username)
+            .then(function(user) {
+                console.log("server" +user);
+                delete user.password;
+                res.json(user);
+            },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function findUserByCredentials(req,res){
+        var username = req.params.username;
+        var password = req.params.password;
+
         var credentials = {
-            username:req.params.username,
-            password:req.params.password
-        };
-        res.json(userModel.findUserByCredentials(credentials));
+            "username":username,
+            "password":password};
+
+        userModel.findUserByCredentials(credentials)
+            .then(function(user){
+                res.json(user);
+            },
+            function(err){
+                res.status(400).send(err);
+            });
+
     }
 
     function updateUser(req,res){
         var userId =req.params.userId;
-        var user = req.body;
-        res.json(userModel.updateUser(userId,user));
+        var newUser = req.body;
+        newUser.roles = newUser.roles.split(",");
+        userModel.updateUser(userId,newUser)
+            .then(function (stats) {
+                res.send(200);
+            },
+            function(err){
+                res.status(400).send(err);
+            });
     }
 
     function deleteUserById(req,res){
         var userId =req.params.userId;
-        res.json(userModel.deleteUserById(userId));
+        userModel.deleteUserById(userId)
+            .then(function(stats){
+                res.send(200);
+            },
+            function(err){
+                res.status(400).send(err);
+            });
     }
 
 };
