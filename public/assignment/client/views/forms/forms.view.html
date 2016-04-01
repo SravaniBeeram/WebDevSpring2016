@@ -1,4 +1,4 @@
-<div ng-controller = "FormController">
+<div ng-controller="FormController">
      <h1>Forms</h1>
 
      <div ng-show="model.alertMessage" class="alert alert-danger" role="alert">{{model.alertMessage}}</div>
@@ -19,7 +19,7 @@
                     </tr>
 
                     <tr>
-                        <td><input type="text" ng-model="model.form.title" placeholder="Form Name"></td>
+                        <td><input type="text" ng-model="model.form.formName" placeholder="Form Name"></td>
                         <td class="text-nowrap"><button ng-click="model.addForm(model.form)" type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
                             <button ng-click="model.updateForm(model.form)" type="button" class="btn btn-info"><span class="glyphicon glyphicon-ok"></span></button>
                         </td>
@@ -27,7 +27,7 @@
 
                     <tr ng-repeat="form in model.forms">
                         <td><a href="#/form/{{form._id}}/field">{{form.title}}</a></td>
-                        <td class="text-nowrap"><button ng-click="model.deleteForm(form)" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                        <td class="text-nowrap"><button ng-click="model.deleteForm($index)" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
                             <button ng-click="model.selectForm($index)" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></button>
                         </td>
                     </tr>

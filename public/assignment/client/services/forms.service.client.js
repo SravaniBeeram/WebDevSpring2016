@@ -2,7 +2,7 @@
     "use strict";
 
     angular.module("FormBuilderApp")
-           .factory("FormService", FormService);
+           .factory("FormService",FormService);
 
     function FormService($http) {
         var api = {
@@ -15,8 +15,8 @@
 
         return api;
 
-        function createFormForUser(userId, form) {
-            return $http.post("/api/assignment/user/" +userId+ "/form", form);
+        function createFormForUser(userId,newForm) {
+            return $http.post("/api/assignment/user/" +userId+ "/form",newForm);
         }
 
         function findAllFormsForUser (userId) {
