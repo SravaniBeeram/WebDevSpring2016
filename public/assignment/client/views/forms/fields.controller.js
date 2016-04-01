@@ -169,6 +169,7 @@
         }
 
         function repeatField(field){
+            delete field._id;
             console.log(field);
             FieldService.createField(formId,field)
                 .then(init(),function(err){
