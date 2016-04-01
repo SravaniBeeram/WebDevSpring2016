@@ -80,6 +80,7 @@ module.exports = function(app,userModel){
         if(newUser.roles != null){
             newUser.roles = newUser.roles.split(",");
         }
+        console.log("update - server" +newUser);
         userModel.updateUser(userId,newUser)
             .then(function (stats) {
                 res.send(200);
