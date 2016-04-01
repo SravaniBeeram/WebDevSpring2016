@@ -29,7 +29,9 @@
         }
 
         function setCurrentUser(user) {
+            console.log(user);
             $rootScope.currentUser = user;
+            console.log($rootScope.currentUser.username);
         }
 
         function deleteUserById(userId) {

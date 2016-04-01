@@ -6,12 +6,12 @@
     function ProfileController(UserService,$rootScope) {
          var vm = this;
          vm.update = update;
-         var currentUser = $rootScope.currentUser;
-         vm.username= currentUser.username;
-         vm.password= currentUser.password;
-         vm.firstName = currentUser.firstName;
-         vm.lastName = currentUser.lastName;
-         vm.emails = currentUser.emails;
+         var loggedUser = $rootScope.currentUser;
+         vm.username= loggedUser.username;
+         vm.password= loggedUser.password;
+         vm.firstName = loggedUser.firstName;
+         vm.lastName = loggedUser.lastName;
+         vm.emails = loggedUser.emails;
 
         function init(){
 
@@ -19,7 +19,7 @@
 
         function update(username,password,firstName,lastName,emails) {
             vm.message = null;
-            var id = currentUser._id;
+            var id = loggedUser._id;
             var userDetails={
                 "username":username,
                 "password":password,

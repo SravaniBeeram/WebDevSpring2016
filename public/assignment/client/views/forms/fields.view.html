@@ -78,7 +78,7 @@
                                     <input ng-model = "model.placeholder" class="form-control" type="text" placeholder="Edit Placeholder">
                                 </div>
 
-                                <div class="form-group" ng-show="model.fieldEdit.options">
+                                <div class="form-group" ng-show= "model.fieldEdit.type == 'RADIOS' || model.fieldEdit.type == 'CHECKBOXES' || model.fieldEdit.type == 'OPTIONS'">
                                     <label>Options</label>
                                     <textarea ng-model="model.options" class="form-control" placeholder="Edit Options"></textarea>
                                 </div>

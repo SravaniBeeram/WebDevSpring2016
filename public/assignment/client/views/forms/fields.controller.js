@@ -21,6 +21,7 @@
 
         if($routeParams.formId){
             formId = $routeParams.formId;
+            console.log(formId);
         }
 
         function updateForm(start,end){
@@ -39,6 +40,8 @@
                     var form = response.data;
                     form.fields = newFields;
                     FormService.updateFormById(form._id,form);
+                },function(err){
+                    console.log(err);
                 });
         }
 
@@ -47,11 +50,17 @@
             FieldService.findFieldByForm(formId)
                 .then(function(response){
                     vm.fields = response.data;
+                },
+                    function(err){
+                    console.log(err);
                 });
 
             FormService.findFormById(formId)
                 .then(function(response){
                     vm.form = response.data;
+                },
+                function(err){
+                    console.log(err);
                 })
 
         }init();
@@ -76,7 +85,7 @@
 
         function commitEdit(){
             console.log("commit edit");
-            if(vm.fieldEdit.options){
+            if(vm.options != null){
                 var opt = vm.options.split("\n");
                 var optionList =[];
 
@@ -95,7 +104,9 @@
             vm.fieldEdit.label = vm.label;
 
             FieldService.updateField(formId,vm.fieldEdit._id,vm.fieldEdit)
-                    .then(init());
+                    .then(init(),function(err){
+                        console.log(err);
+                    });
             vm.label = null;
             vm.placeholder = null;
             vm.options = null;
@@ -103,24 +114,26 @@
 
         function deleteField(fieldId){
             FieldService.deleteField(formId,fieldId)
-                .then(init());
+                .then(init(),function(err){
+                    console.log(err);
+                });
         }
 
         function addField(fieldType){
             var field;
             switch(fieldType) {
                 case "TEXT":
-                    field = {"_id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
+                    field = {"label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
                     break;
                 case "TEXTAREA":
-                    field = {"_id": null, "label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"};
+                    field = {"label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"};
                     break;
                 case "DATE":
-                    field = {"_id": null, "label": "New Date Field", "type": "DATE"};
+                    field = {"label": "New Date Field", "type": "DATE"};
                     break;
                 case "OPTIONS":
                     field = {
-                        "_id": null, "label": "New Dropdown", "type": "OPTIONS", "options": [
+                        "label": "New Dropdown", "type": "OPTIONS", "options": [
                             {"label": "Option 1", "value": "OPTION_1"},
                             {"label": "Option 2", "value": "OPTION_2"},
                             {"label": "Option 3", "value": "OPTION_3"}
@@ -130,7 +143,7 @@
 
                 case "CHECKBOXES":
                     field = {
-                        "_id": null, "label": "New Checkboxes", "type": "CHECKBOXES", "options": [
+                        "label": "New Checkboxes", "type": "CHECKBOXES", "options": [
                             {"label": "Option A", "value": "OPTION_A"},
                             {"label": "Option B", "value": "OPTION_B"},
                             {"label": "Option C", "value": "OPTION_C"}
@@ -139,7 +152,7 @@
                     break;
                 case "RADIOS":
                     field = {
-                        "_id": null, "label": "New Radio Buttons", "type": "RADIOS", "options": [
+                        "label": "New Radio Buttons", "type": "RADIOS", "options": [
                             {"label": "Option X", "value": "OPTION_X"},
                             {"label": "Option Y", "value": "OPTION_Y"},
                             {"label": "Option Z", "value": "OPTION_Z"}
@@ -150,12 +163,18 @@
             console.log("type:" +fieldType);
             console.log(field);
             FieldService.createField(formId,field)
-                .then(init());
+                .then(init(),function(err){
+                    console.log(err);
+                });
         }
 
         function repeatField(field){
+            delete field._id;
+            console.log(field);
             FieldService.createField(formId,field)
-                .then(init());
+                .then(init(),function(err){
+                console.log(err);
+            });
         }
 
     }

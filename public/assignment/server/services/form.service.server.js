@@ -7,18 +7,16 @@ module.exports = function(app,formModel){
     app.get("/api/assignment/userForms/:userId/form",findFormsByUserId);
 
     function findFormsByUserId(req,res){
-        console.log("user forms - server");
         var userId = req.params.userId;
         formModel.findFormsByUserId(userId)
             .then(function(forms){
                 res.json(forms);
-            }, function (err) {
+            }, function(err) {
                 res.status(400).send(err);
             });
     }
 
     function findFormById(req,res){
-        console.log("form by id -server");
         var fid = req.params.formId;
         formModel.findFormById(fid)
             .then(function(form){
@@ -30,7 +28,6 @@ module.exports = function(app,formModel){
     }
 
     function deleteFormById(req,res){
-        console.log("delete form -server");
         var fid = req.params.formId;
         formModel.deleteFormById(fid)
             .then(function(stats){
@@ -41,7 +38,6 @@ module.exports = function(app,formModel){
     }
 
     function createFormForUser(req,res){
-        console.log("create form -server");
         var userId = req.params.userId;
         var newForm = req.body;
         formModel.createForm(userId,newForm)
@@ -53,7 +49,6 @@ module.exports = function(app,formModel){
     }
 
     function updateFormById(req,res){
-        console.log("update form -server");
         var formId = req.params.formId;
         var newForm = req.body;
         formModel.updateFormById(formId,newForm)
