@@ -13,21 +13,24 @@ module.exports = function(form){
     return api;
 
     function createField(formId,newField){
-        console.log("create - server");
+        console.log("create - model");
         var deferred = q.defer();
         form.findById(formId,
             function (err, doc) {
                 if (err) {
                     deferred.reject(err);
                 } else {
-                    var newForm = doc;
-                    newForm.fields.push(newField);
-                    form.update({_id:formId},{$set:newForm},
-                        function (err,updatedForm) {
+                    doc.fields.push(newField);
+                    form.update({_id:formId},
+                        {$set:{
+                            fields: doc.fields,
+                            updated:new Date()
+                    }},
+                        function (err,userForm) {
                             if (err) {
                                 deferred.reject(err);
                             } else {
-                                deferred.resolve(updatedForm);
+                                deferred.resolve(doc);
                             }
                         });
 
@@ -48,13 +51,17 @@ module.exports = function(form){
                         for(var i in newForm.fields){
                             if(newForm.fields[i]._id == fieldId){
                                 newForm.fields.splice(i,1);
-                                form.update({_id : formId},{$set: newForm},
-                                    function (err, response) {
-                                        if (err) {
-                                            deferred.reject(err);
-                                        } else {
-                                            deferred.resolve(response);
-                                        }
+                                form.update({_id : formId},
+                                            {$set:{
+                                                fields:newForm.fields,
+                                                updated:new Date()
+                                            }},
+                                           function (err, response) {
+                                             if (err) {
+                                                deferred.reject(err);
+                                             } else {
+                                                deferred.resolve(response);
+                                            }
                                     });
                             }
                         }
@@ -74,14 +81,14 @@ module.exports = function(form){
                     for(var i in newForm.fields){
                         if(newForm.fields[i]._id == fieldId){
                             newForm.fields[i] = field;
-                            form.update(
-                                {_id : formId},
-                                {$set: newForm},
+                            form.update({_id : formId},
+                                        {$set: {fields: newForm.fields,
+                                                updated:new Date()}},
                                 function (err, doc) {
                                     if (err) {
                                         deferred.reject(err);
                                     } else {
-                                        deferred.resolve(doc);
+                                        deferred.resolve(field);
                                     }
                                 });
                         }

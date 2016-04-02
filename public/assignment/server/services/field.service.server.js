@@ -42,7 +42,6 @@ module.exports = function(app,fieldModel) {
     }
 
     function createField(req,res){
-        console.log("create - server");
         var formId = req.params.formId;
         var field= req.body;
         fieldModel.createField(formId,field)
