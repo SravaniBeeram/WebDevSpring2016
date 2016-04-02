@@ -11,7 +11,8 @@
          vm.password= loggedUser.password;
          vm.firstName = loggedUser.firstName;
          vm.lastName = loggedUser.lastName;
-         vm.emails = loggedUser.emails;
+         vm.emails = loggedUser.emails.join(",");
+
 
         function init(){
 
@@ -20,12 +21,13 @@
         function update(username,password,firstName,lastName,emails) {
             vm.message = null;
             var id = loggedUser._id;
+            console.log(emails);
             var userDetails={
                 "username":username,
                 "password":password,
                 "firstName":firstName,
                 "lastName":lastName,
-                "emails":emails
+                "emails":emails.split(",")
             };
             UserService.updateUser(id,userDetails)
                 .then(function(user){

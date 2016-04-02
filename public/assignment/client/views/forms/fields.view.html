@@ -7,15 +7,15 @@
             </ul>
             <br>
                 <div class="form-horizontal">
-                    <div ng-show="model.fields" jga-sortable jga-axis="y">
+                    <div ng-show="model.fields" jga-sortable>
                             <div ng-repeat="field in model.fields">
                                  <label>{{field.label}}</label>
                                  <div class="input-group">
                                    <div ng-switch on="field.type" >
-                                         <input ng-switch-when="TEXT" type="text" class="form-control" placeholder="{{field.placeholder}}">
-                                         <textarea ng-switch-when="TEXTAREA" class="form-control" placeholder="{{field.placeholder}}"></textarea>
-                                         <input ng-switch-when="EMAIL" type="email" class="form-control" placeholder="{{field.placeholder}}">
-                                         <input ng-switch-when="DATE" type="date" class="form-control">
+                                         <input ng-switch-when="TEXT" type="text" placeholder={{field.placeholder}}>
+                                         <textarea ng-switch-when="TEXTAREA" placeholder={{field.placeholder}}></textarea>
+                                         <input ng-switch-when="EMAIL" type="email" placeholder={{field.placeholder}}>
+                                         <input ng-switch-when="DATE" type="date">
                                          <select ng-switch-when="OPTIONS">
                                              <option ng-repeat="option in field.options track by $index">{{option.label}}</option>
                                          </select>
@@ -33,7 +33,7 @@
                                  <div class="input-group-btn">
                                      <button ng-click ="model.editField(field)"      class="btn btn-warning" data-toggle="modal" data-target="#editField"><span class="glyphicon glyphicon-pencil"></span></button>
                                      <button ng-click ="model.repeatField(field)"    class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
-                                     <button ng-click ="model.deleteField(field._id)"class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                                     <button ng-click ="model.deleteField(field._id)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
                                      <a class="btn btn-info"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
                                  </div>
                              </div>

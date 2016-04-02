@@ -42,8 +42,13 @@
                 return;
             }
 
+             var newUser ={
+                 "username":user.username,
+                 "password":user.password,
+                 "emails":user.emails.split(",")
+             };
 
-             UserService.createUser(user)
+             UserService.createUser(newUser)
                     .then(function (user) {
                         UserService.setCurrentUser(user.data);
                         $location.url("/profile");

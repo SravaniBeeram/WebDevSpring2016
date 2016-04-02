@@ -26,7 +26,7 @@ module.exports = function(form){
                             fields: doc.fields,
                             updated:new Date()
                     }},
-                        function (err,userForm) {
+                        function (err,doc) {
                             if (err) {
                                 deferred.reject(err);
                             } else {

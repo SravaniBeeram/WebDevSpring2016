@@ -8,6 +8,7 @@ module.exports = function(app,userModel){
     app.put("/api/assignment/user/:userId",updateUser);
     app.delete("/api/assignment/user/:userId",deleteUserById);
 
+
     function createUser(req,res){
         var newUser=req.body;
         newUser.roles = "student";
@@ -77,9 +78,7 @@ module.exports = function(app,userModel){
     function updateUser(req,res){
         var userId =req.params.userId;
         var newUser = req.body;
-        if(newUser.roles != null){
-            newUser.roles = newUser.roles.split(",");
-        }
+
         console.log("update - server" +newUser);
         userModel.updateUser(userId,newUser)
             .then(function (stats) {
