@@ -68,15 +68,18 @@
         function editField(field){
             vm.fieldEdit = field;
             vm.label = field.label;
-
+            var optionsString = "";
             var op =field.options;
 
             if(op){
                 var optionList = [];
                 for(var u in op){
                     optionList.push(op[u].label+ ":" +op[u].value+ "\n")
+                    optionsString = optionsString + (op[u].label + ":" + op[u].value + "\n");
                 }
                 vm.fieldEdit.options = optionList;
+                optionsString = optionsString.substring(0, optionsString.length - 1);
+                vm.options = optionsString;
             }
             if(field.placeholder){
                 vm.placeholder = field.placeholder;
