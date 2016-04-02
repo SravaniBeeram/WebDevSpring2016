@@ -20,11 +20,15 @@
                  ({username:user.username,
                    password:user.password})
                 .then(function(user){
+                    if(user.data){
                         UserService.setCurrentUser(user.data);
                         $location.url("/profile");
+                    }else{
+                        vm.message = "username and/or password doesn't match";
+                    }
                     },
                     function(err){
-                        vm.message = "Username or password doesnot match";
+                     console.log(err);
                     }
                 );
         }
