@@ -22,14 +22,12 @@ module.exports = function(form){
                 } else {
                     var newForm = doc;
                     newForm.fields.push(newField);
-                    form.update(
-                        {_id : formId},
-                        { $set: newForm},
-                        function (err, doc) {
+                    form.update({_id:formId},{$set:newForm},
+                        function (err,updatedForm) {
                             if (err) {
                                 deferred.reject(err);
                             } else {
-                                deferred.resolve(newForm);
+                                deferred.resolve(updatedForm);
                             }
                         });
 
@@ -50,9 +48,7 @@ module.exports = function(form){
                         for(var i in newForm.fields){
                             if(newForm.fields[i]._id == fieldId){
                                 newForm.fields.splice(i,1);
-                                form.update(
-                                    { _id : formId},
-                                    { $set: newForm},
+                                form.update({_id : formId},{$set: newForm},
                                     function (err, response) {
                                         if (err) {
                                             deferred.reject(err);
@@ -79,8 +75,8 @@ module.exports = function(form){
                         if(newForm.fields[i]._id == fieldId){
                             newForm.fields[i] = field;
                             form.update(
-                                { _id : formId},
-                                { $set: newForm},
+                                {_id : formId},
+                                {$set: newForm},
                                 function (err, doc) {
                                     if (err) {
                                         deferred.reject(err);
