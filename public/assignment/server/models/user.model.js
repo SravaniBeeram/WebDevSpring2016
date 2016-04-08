@@ -60,13 +60,12 @@ module.exports = function (uuid,db) {
     }
 
     function updateUser(userId,newuser) {
-        console.log("update user - model");
         var deferred = q.defer();
         user.update({_id:userId},
                     {$set:newuser},
         function(err,stats){
             if(!err){
-                deferred.resolve(stats);
+                deferred.resolve(newuser);
             }else{
                 deferred.reject(err);
             }

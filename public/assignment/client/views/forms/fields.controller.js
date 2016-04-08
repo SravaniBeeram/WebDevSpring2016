@@ -4,7 +4,7 @@
     angular.module("FormBuilderApp")
         .controller("FieldController",FieldController);
 
-    function FieldController(FieldService,FormService,$routeParams,$rootScope,$scope) {
+    function FieldController(FieldService,FormService,$routeParams,$rootScope) {
         var vm = this;
 
         var formId;
@@ -15,9 +15,10 @@
         vm.deleteField = deleteField;
         vm.addField=addField;
         vm.repeatField = repeatField;
-        $scope.updateForm = updateForm;
+        vm.sortField = sortField;
 
         var currentUser =$rootScope.currentUser;
+
 
         if($routeParams.formId){
             formId = $routeParams.formId;
@@ -178,6 +179,17 @@
                 .then(init(),function(err){
                 console.log(err);
             });
+        }
+
+        function sortField(start,end){
+            FieldService
+                .sortField(formId,start,end)
+                .then(function(response){
+                    vm.fields= response.data;
+                },
+                function(err){
+                    console.log(err);
+                });
         }
 
     }

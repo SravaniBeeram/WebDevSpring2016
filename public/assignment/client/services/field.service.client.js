@@ -10,14 +10,17 @@
             findField:findField,
             findFieldByForm:findFieldByForm,
             deleteField:deleteField,
-            updateField:updateField
+            updateField:updateField,
+            sortField:sortField
         };
 
         return api;
 
+        function sortField(formId,startIndex,endIndex){
+            return $http.put("/api/assignment/"+formId+"/field?startIndex="+startIndex+"&endIndex="+endIndex);
+        }
+
         function createField (formId, field) {
-            console.log("client" +formId);
-            console.log(field);
             return $http.post("/api/assignment/form/" +formId+ "/field", field);
         }
 

@@ -27,11 +27,13 @@
                 "password":password,
                 "firstName":firstName,
                 "lastName":lastName,
+                "roles":loggedUser.roles,
                 "emails":emails.split(",")
             };
             UserService.updateUser(id,userDetails)
                 .then(function(user){
                         UserService.setCurrentUser(user.data);
+                        console.log(user);
                         vm.message = "Your Profile has been updated!!!";
                     },
                     function(err){

@@ -7,7 +7,8 @@ module.exports = function(form){
         deleteField:deleteField,
         updateField:updateField,
         findField:findField,
-        findAllFieldsForForm:findAllFieldsForForm
+        findAllFieldsForForm:findAllFieldsForForm,
+        sortField:sortField
     };
 
     return api;
@@ -132,4 +133,28 @@ module.exports = function(form){
         return deferred.promise;
     }
 
+    function sortField(formId,startIndex,endIndex){
+        var deferred = q.defer();
+
+        form.findById(formId,
+        function(err,doc){
+            if(err){
+                deferred.reject(err);
+            }else{
+                var userForm = doc;
+                userForm.fields.splice(endIndex,0,userForm.fields.splice(startIndex,1)[0]);
+                form.update(
+                {"_id":formId},
+                {$set:{"fields":userForm.fields}},
+                    function(err,doc){
+                      if(err){
+                          deferred.reject(err);
+                      } else{
+                          deferred.resolve(doc);
+                      }
+                });
+            }
+        });
+        return deferred.promise;
+    }
 };

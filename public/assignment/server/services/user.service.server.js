@@ -79,10 +79,9 @@ module.exports = function(app,userModel){
         var userId =req.params.userId;
         var newUser = req.body;
 
-        console.log("update - server" +newUser);
         userModel.updateUser(userId,newUser)
-            .then(function (stats) {
-                res.send(200);
+            .then(function (user) {
+                res.json(user);
             },
             function(err){
                 res.status(400).send(err);
