@@ -11,14 +11,16 @@
          vm.password= loggedUser.password;
          vm.firstName = loggedUser.firstName;
          vm.lastName = loggedUser.lastName;
+         vm.phones = loggedUser.phones.join(",");
          vm.emails = loggedUser.emails.join(",");
+
 
 
         function init(){
 
         }init();
 
-        function update(username,password,firstName,lastName,emails) {
+        function update(username,password,firstName,lastName,phones,emails) {
             vm.message = null;
             var id = loggedUser._id;
             console.log(emails);
@@ -28,12 +30,12 @@
                 "firstName":firstName,
                 "lastName":lastName,
                 "roles":loggedUser.roles,
+                "phones":phones.split(","),
                 "emails":emails.split(",")
             };
             UserService.updateUser(id,userDetails)
                 .then(function(user){
-                        UserService.setCurrentUser(user.data);
-                        console.log(user);
+                    $rootScope.currentUser = user.data;
                         vm.message = "Your Profile has been updated!!!";
                     },
                     function(err){

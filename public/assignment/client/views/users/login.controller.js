@@ -16,19 +16,13 @@
                 vm.message = "Please enter login details";
                 return;
             }
-            UserService.findUserByCredentials
-                 ({username:user.username,
-                   password:user.password})
-                .then(function(user){
-                    if(user.data){
-                        UserService.setCurrentUser(user.data);
+            UserService.login(user)
+                .then(function(response){
+                        $rootScope.currentUser = response.data;
                         $location.url("/profile");
-                    }else{
-                        vm.message = "username and/or password doesn't match";
-                    }
                     },
                     function(err){
-                     console.log(err);
+                        vm.message = "username or password not found";
                     }
                 );
         }

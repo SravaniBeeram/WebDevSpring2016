@@ -2,22 +2,32 @@
     angular.module("FormBuilderApp")
         .factory("UserService", UserService);
 
-    function UserService($http,$rootScope) {
+    function UserService($http) {
         var model = {
-            findUserByCredentials: findUserByCredentials,
+            login:login,
+            logout:logout,
+            register:register,
             findAllUsers: findAllUsers,
             createUser: createUser,
-            setCurrentUser: setCurrentUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser,
-            findUserByUsername:findUserByUsername,
             findById:findById
         };
 
         return model;
 
-        function findUserByCredentials(credentials) {
-            return $http.get("/api/assignment/user/" +credentials.username+ "/" +credentials.password);
+        function login(user) {
+            return $http.post("/api/assignment/login",user);
+        }
+
+        function logout() {
+            console.log("entered logout controller");
+            return $http.post("/api/assignment/logout");
+        }
+
+        function register(user) {
+            console.log("register - controller");
+            return $http.post("/api/assignment/register",user);
         }
 
         function findAllUsers() {
@@ -28,20 +38,12 @@
             return $http.post("/api/assignment/user", user);
         }
 
-        function setCurrentUser(user) {
-            $rootScope.currentUser = user;
-        }
-
         function deleteUserById(userId) {
             return $http.delete("/api/assignment/user/" +userId);
         }
 
         function updateUser(userId,user) {
             return $http.put("/api/assignment/user/" +userId ,user);
-        }
-
-        function findUserByUsername(username){
-            return $http.get("/api/assignment/username/" +username);
         }
 
         function findById(userId){

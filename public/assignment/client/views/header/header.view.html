@@ -2,7 +2,7 @@
 <html lang="en">
 
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController">
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController as model">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -45,7 +45,7 @@
                     <a href="#/profile"><span class="glyphicon glyphicon-user"></span>{{currentUser.username}}</a></li>
 
                 <li ng-show="currentUser" data-toggle="collapse" data-target=".navbar-collapse.in">
-                   <a href="#/home" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                   <a href="#/home" ng-click="model.logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul>
         </div>
     </div>

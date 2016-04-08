@@ -3,7 +3,7 @@
      angular.module("FormBuilderApp")
             .controller("RegisterController", RegisterController);
 
-    function RegisterController($scope,$location,UserService,$rootScope) {
+    function RegisterController($location,UserService,$rootScope) {
 
         var vm = this;
         vm.register = register;
@@ -15,7 +15,7 @@
 
         function register(user) {
 
-            $scope.message = null;
+            vm.message = null;
 
             if (user == null) {
                 vm.message = "Please fill in the required details";
@@ -48,13 +48,17 @@
                  "emails":user.emails.split(",")
              };
 
-             UserService.createUser(newUser)
-                    .then(function (user) {
-                        UserService.setCurrentUser(user.data);
-                        $location.url("/profile");
+             UserService.register(newUser)
+                    .then(function(response) {
+                        if(response.data != null){
+                            $rootScope.currentUser = user;
+                            $location.url("/profile");
+                        }else{
+                            vm.message = "username already exists"
+                        }
                     },
                         function(err){
-                            vm.message = "Please try again"
+                            console.log(err);
                         }
                     );
         }

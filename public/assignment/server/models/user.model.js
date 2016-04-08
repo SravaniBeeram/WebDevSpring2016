@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var q = require("q");
 
-module.exports = function (uuid,db) {
+module.exports = function (db) {
     var UserSchema = require("./user.schema.server.js")();
     var user = mongoose.model("user", UserSchema);
 
@@ -18,6 +18,7 @@ module.exports = function (uuid,db) {
     return api;
 
     function createUser(newUser) {
+        console.log("create model");
         var deferred = q.defer();
         user.create(newUser,function(err,doc) {
            if(err){
