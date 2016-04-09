@@ -22,9 +22,11 @@
         function init(){
             UserService.findAllUsers()
                 .then(function(users){
-                    vm.users = users.data;
                     currentUsers = users.data;
+                    vm.users = users.data;
+                    console.log(vm.users);
                     vm.username = null;
+                    vm.password = null;
                     vm.firstName = null;
                     vm.lastName = null;
                     vm.roles = null;
@@ -33,10 +35,11 @@
             });
         }init();
 
-        function addUser(username,firstName,lastName,roles) {
+        function addUser(username,password,firstName,lastName,roles) {
             if (username != null && firstName!= null && lastName != null && roles != null) {
                 var newUser = {
                     "username": username,
+                    "password":password,
                     "firstName":firstName,
                     "lastName":lastName,
                     "roles":roles
@@ -48,10 +51,11 @@
             }
         }
 
-        function updateUser(username,firstName,lastName,roles) {
+        function updateUser(username,password,firstName,lastName,roles) {
             if (username != null) {
                 var userSelected = currentUsers[userIndexSelected];
                 userSelected.username = username;
+                userSelected.password = password;
                 userSelected.firstName=firstName;
                 userSelected.lastName=lastName;
                 userSelected.roles=roles;
@@ -73,6 +77,7 @@
         function selectUser(index){
             userIndexSelected = index;
             vm.username = currentUsers[index].username;
+            vm.password = currentUsers[index].password;
             vm.firstName= currentUsers[index].firstName;
             vm.lastName = currentUsers[index].lastName;
             vm.roles = currentUsers[index].roles;

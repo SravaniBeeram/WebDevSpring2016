@@ -31,23 +31,24 @@
         }
 
         function findAllUsers() {
-            return $http.get("/api/assignment/user");
+            console.log("client - allusers");
+            return $http.get("/api/assignment/admin/user");
         }
 
         function createUser(user) {
-            return $http.post("/api/assignment/user", user);
+            return $http.post("/api/assignment/admin/user", user);
         }
 
         function deleteUserById(userId) {
-            return $http.delete("/api/assignment/user/" +userId);
+            return $http.delete("/api/assignment/admin/user/" +userId);
         }
 
         function updateUser(userId,user) {
-            return $http.put("/api/assignment/user/" +userId ,user);
+            return $http.put("/api/assignment/admin/user/" +userId ,user);
         }
 
         function findById(userId){
-            return $http.get("/api/assignment/user/" +userId);
+            return $http.get("/api/assignment/admin/user/" +userId);
         }
     }
 })();

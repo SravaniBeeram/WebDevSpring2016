@@ -38,19 +38,28 @@
             .when("/form", {
                 templateUrl: "views/forms/forms.view.html",
                 controller:"FormController",
-                controllerAs:"model"
+                controllerAs:"model",
+                resolve:{
+                    loggedin:checkLoggedin
+                }
             })
 
             .when("/field", {
                 templateUrl: "views/forms/fields.view.html",
                 controller:"FieldController",
-                controllerAs:"model"
+                controllerAs:"model",
+                resolve:{
+                    loggedin:checkLoggedin
+                }
             })
 
             .when("/form/:formId/field",{
                 templateUrl: "views/forms/fields.view.html",
                 controller: "FieldController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    loggedin:checkLoggedin
+                }
             })
 
             .when("/register", {

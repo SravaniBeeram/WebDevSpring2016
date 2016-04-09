@@ -7,13 +7,13 @@ module.exports = function(app,userModel){
     app.post('/api/assignment/login', passport.authenticate('local'), login);
     app.post('/api/assignment/logout',logout);
     app.get('/api/assignment/loggedin',loggedin);
-    app.post("/api/assignment/user",auth,createUser);
     app.post('/api/assignment/register',register);
-    app.get("/api/assignment/user",auth,allUsers);
-    app.get("/api/assignment/user/:userId",findById);
     app.get("/api/assignment/username/:username",findUserByUsername);
-    app.put("/api/assignment/user/:userId",auth,updateUser);
-    app.delete("/api/assignment/user/:userId",auth,deleteUserById);
+    app.post("/api/assignment/admin/user",auth,createUser);
+    app.get("/api/assignment/admin/user",auth,allUsers);
+    app.get("/api/assignment/admin/user/:userId",findById);
+    app.put("/api/assignment/admin/user/:userId",auth,updateUser);
+    app.delete("/api/assignment/admin/user/:userId",auth,deleteUserById);
 
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
@@ -65,7 +65,7 @@ module.exports = function(app,userModel){
     }
 
     function isAdmin(user) {
-        if(user.roles.indexOf("admin") > 0) {
+        if(user.roles.indexOf("admin") >= 0) {
             return true
         }
         return false;
@@ -147,8 +147,6 @@ module.exports = function(app,userModel){
         var username = req.params.username;
         userModel.findUserByUsername(username)
             .then(function(user) {
-                console.log("server" +user);
-                delete user.password;
                 res.json(user);
             },
                 function (err) {
@@ -176,7 +174,6 @@ module.exports = function(app,userModel){
     }
 
     function register(req, res) {
-        console.log("register - server");
         var newUser = req.body;
         newUser.roles = ['student'];
 

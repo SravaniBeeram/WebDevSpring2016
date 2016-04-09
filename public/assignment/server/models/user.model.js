@@ -18,7 +18,6 @@ module.exports = function (db) {
     return api;
 
     function createUser(newUser) {
-        console.log("create model");
         var deferred = q.defer();
         user.create(newUser,function(err,doc) {
            if(err){
