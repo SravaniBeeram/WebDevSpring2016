@@ -16,7 +16,6 @@
         vm.deleteUser=deleteUser;
         vm.selectUser=selectUser;
 
-
         currentUser = $rootScope.currentUser;
 
         function init(){
