@@ -107,15 +107,10 @@ module.exports = function(app,userModel){
                 .then(
                     function (user) {
                         if (user) {
-                            req.login(user, function (err) {
-                                if (err) {
-                                    res.status(400).send(err);
-                                } else {
-                                    res.json(user);
-                                }
-                            });
-                        }
-                    },
+                            res.json(user);
+                        }else{
+                            res.json(null);
+                        }},
                     function (err) {
                         res.status(400).send(err);
                     }
