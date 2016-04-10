@@ -61,6 +61,7 @@ module.exports = function (db) {
 
     function updateUser(userId,newuser) {
         var deferred = q.defer();
+        delete newuser._id;
         user.update({_id:userId},
                     {$set:newuser},
         function(err,stats){
