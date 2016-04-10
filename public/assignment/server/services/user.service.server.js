@@ -25,7 +25,10 @@ module.exports = function(app,userModel){
             .findUserByCredentials({username: username, password: password})
             .then(
                 function(user) {
-                    if (!user) { return done(null, false); }
+                    if (!user)
+                    {
+                        return done(null, false);
+                    }
                     return done(null, user);
                 },
                 function(err) {
@@ -81,42 +84,43 @@ module.exports = function(app,userModel){
 
     function createUser(req,res){
         var newUser=req.body;
+
         if(newUser.roles && newUser.roles.length > 1) {
             newUser.roles = newUser.roles.split(",");
         } else {
-            newUser.roles = ["student"];
+            newUser.roles = ['student'];
         }
-        userModel
-            .findUserByUsername(newUser.username)
-            .then(function(user){
-                    if(user) {
-                        res.json(null);
-                    } else {
-                        return userModel.createUser(newUser);
-                    }
-                },
-                function(err){
-                    res.status(400).send(err);
-                }
-            )
-            .then(
-                function(user){
-                    if(user){
-                        req.login(user, function(err) {
-                            if(err) {
-                                res.status(400).send(err);
-                            } else {
-                                res.json(user);
-                            }
-                        });
-                    }
-                },
-                function(err){
-                    res.status(400).send(err);
-                }
-            );
 
-    }
+            userModel
+                .findUserByUsername(newUser.username)
+                .then(function (user) {
+                        if (user) {
+                            res.json(null);
+                        } else {
+                            return userModel.createUser(newUser);
+                        }
+                    },
+                    function (err) {
+                        res.status(400).send(err);
+                    }
+                )
+                .then(
+                    function (user) {
+                        if (user) {
+                            req.login(user, function (err) {
+                                if (err) {
+                                    res.status(400).send(err);
+                                } else {
+                                    res.json(user);
+                                }
+                            });
+                        }
+                    },
+                    function (err) {
+                        res.status(400).send(err);
+                    }
+                );
+        }
 
     function allUsers(req,res){
         if(isAdmin(req.user)){
@@ -175,7 +179,12 @@ module.exports = function(app,userModel){
 
     function register(req, res) {
         var newUser = req.body;
-        newUser.roles = ['student'];
+        if (newUser.username == "admin") {
+            newUser.roles = ['admin'];
+        }
+        else {
+            newUser.roles = ['student'];
+        }
 
         userModel
             .findUserByUsername(newUser.username)
@@ -248,4 +257,4 @@ module.exports = function(app,userModel){
 
     }
 
-};
+}
