@@ -11,13 +11,7 @@
             <div class="table-responsive">
                 <table class="table table-striped table-bordered">
                         <thead>
-                            <td><a href="" ng-click="sortType='formName'; sortReverse = !sortReverse">
-                                   <span ng-show = "sortType == 'formName' && !sortReverse" class="glyphicon glyphicon-triangle-top"></span>
-                                   <span ng-show = "sortType == 'formName' &&  sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
-                                   Form Name
-                               </a>
-                            </td>
-
+                            <td><a>Form Name</a></td>
                             <td><a>Action</a></td>
                         </thead>
 
@@ -28,7 +22,7 @@
                         </td>
                     </tr>
 
-                    <tr ng-repeat="form in model.forms | orderBy:sortType:sortReverse">
+                    <tr ng-repeat="form in model.forms">
                         <td><a href="#/form/{{form._id}}/field">{{form.title}}</a></td>
                         <td class="text-nowrap"><button ng-click="model.deleteForm($index)" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
                             <button ng-click="model.selectForm($index)" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-cog"></span></button>
