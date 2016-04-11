@@ -365,7 +365,7 @@ a.fa.fa-angle-down:hover{
 
 }
 
-.start-left{
+.check-pull{
     float: left;
 }
 
@@ -392,13 +392,10 @@ a.fa.fa-angle-down:hover{
         padding-bottom: 20px;
     }
 
-    .start-left{
+    .check-pull{
         float: none;
     }
 
-    .display-mobile {
-        display: block;
-    }
 }
 
 /* ==================================================
