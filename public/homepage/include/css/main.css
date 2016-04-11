@@ -395,6 +395,10 @@ a.fa.fa-angle-down:hover{
     .start-left{
         float: none;
     }
+
+    .display-mobile {
+        display: block;
+    }
 }
 
 /* ==================================================
