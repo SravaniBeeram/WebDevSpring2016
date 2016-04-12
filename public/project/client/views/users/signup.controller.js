@@ -3,7 +3,7 @@
      angular.module("PageEditorApp")
             .controller("SignUpController", SignUpController);
 
-    function SignUpController($location,UserService) {
+    function SignUpController($location,UserService,$rootScope) {
         var vm = this;
         vm.signUp = signUp;
 
@@ -35,31 +35,31 @@
                   return;
               }
 
-              if(!user.email) {
+              if(!user.emails) {
                   vm.message = "Please provide an email";
                   return;
               }
 
-            UserService.findUserByUsername(user.username)
-                .then(function(response){
-                    if(response.data){
-                        vm.message = "Username already taken!!!";
-                    }else{
-                        registerUser();
-                    }
-                });
+            var newUser ={
+                "username":user.username,
+                "password":user.password,
+                "emails":user.emails.split(",")
+            };
 
-            function registerUser() {
-                UserService.createUser(user)
-                    .then(function (response) {
-                        if (response.data) {
-                            UserService.setCurrentUser(response.data);
+            UserService.register(newUser)
+                .then(function(response) {
+                        if(response.data != null){
+                            $rootScope.currentUser = user;
+                            console.log(user);
                             $location.url("/profile");
-                        } else {
-                            vm.message = "Please try again"
+                        }else{
+                            vm.message = "username already exists"
                         }
-                    });
-            }
+                    },
+                    function(err){
+                        console.log(err);
+                    }
+                );
           }
     }
 })();

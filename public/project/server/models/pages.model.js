@@ -1,6 +1,12 @@
-var mock = require("./pages.mock.json");
+var mongoose = require("mongoose");
+var q =require("q");
 
-module.exports = function (uuid) {
+module.exports = function (app,db) {
+    var PageSchema = require("./page.schema.server.js")();
+    var page = mongoose.model("page",PageSchema);
+    var fieldModel = require("./fields.model.js")(page);
+    var fieldService = require("../services/fields.service.server.js")(app,fieldModel);
+
     var api = {
         findPagesForUser: findPagesForUser,
         createPageForUser: createPageForUser,
@@ -14,60 +20,67 @@ module.exports = function (uuid) {
 
 
     function findPageById(pageId){
-        for(var u in mock){
-            if(mock[u]._id == pageId){
-                return mock[u];
-            }
-        }
-        return null;
+        return page.findById(pageId);
     }
 
-    function findPagesForUser(userId)
-    {
-        var userPages = [];
-        for (var u in mock) {
-            if (mock[u].userId == userId) {
-                userPages.push(mock[u]);
+    function findPagesForUser(userId){
+    var deferred = q.defer();
+    page.find({userId:userId},
+        function(err,pages){
+            if(!err){
+                deferred.resolve(pages);
+            }else{
+                deferred.reject(err);
             }
-        }
-        return userPages;
-    }
+        });
+    return deferred.promise;
+}
 
-    function createPageForUser(page) {
-        var newPage = {
-            _id:uuid.v1(),
-            title: page.title,
-            userId:page.userId,
-            fields:[{"_id": "123", "label": "Create your new page", "type": "HEADER"}]
+    function createPageForUser(newPage) {
+        var deferred = q.defer();
+        var pageObj = {
+            "userId": newPage.userId,
+            "title": newPage.title,
+            "fields": [],
+            "created": new Date(),
+            "updated": new Date()
         };
-        mock.push(newPage);
+        page.create(pageObj,function(err,doc){
+            if(err){
+                deferred.reject(err);
+            }else{
+                deferred.resolve(doc);
+            }
+        });
+        return deferred.promise;
     }
 
     function findAllPages() {
-        return (mock);
+        return page.find();
     }
 
     function deletePageById(pageId) {
-        for (var u in mock)
-        {
-            if (mock[u]._id == pageId)
-            {
-                mock.splice(u, 1);
-                break;
-            }
-        }
-        return (mock);
+        var deferred = q.defer();
+        page.remove({_id:pageId},
+            function(err,stats){
+                if(!err){
+                    deferred.resolve(stats);
+                }
+            });
+        return deferred.promise;
     }
 
+
     function updatePageById(pageId, newPage) {
-        for (var u in mock)
-        {
-            if (mock[u]._id == pageId)
-            {
-                mock[u]= newPage;
-                break;
-            }
-        }
-        return (mock[u]);
+        var deferred = q.defer();
+        page.update({_id:pageId},{$set:newPage},
+            function(err,stats){
+                if(!err){
+                    deferred.resolve(stats);
+                }else{
+                    deferred.reject(err);
+                }
+            });
+        return deferred.promise;
     }
 };

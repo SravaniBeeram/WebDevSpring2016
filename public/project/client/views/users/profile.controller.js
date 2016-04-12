@@ -6,35 +6,40 @@
     function ProfileController(UserService,$rootScope) {
         var vm = this;
         vm.update = update;
-        var currentUser = $rootScope.currentUser;
-        vm.username= currentUser.username;
-        vm.password= currentUser.password;
-        vm.firstName = currentUser.firstName;
-        vm.lastName = currentUser.lastName;
-        vm.email = currentUser.email;
+        var loggedUser = $rootScope.currentUser;
+        vm.username= loggedUser.username;
+        vm.password= loggedUser.password;
+        vm.firstName = loggedUser.firstName;
+        vm.lastName = loggedUser.lastName;
+        vm.phones = loggedUser.phones.join(",");
+        vm.emails = loggedUser.emails.join(",");
 
-        function update(username,password,firstName,lastName,email) {
+        function init(){
+
+        }init();
+
+        function update(username,password,firstName,lastName,phones,emails) {
             vm.message = null;
-            var id = currentUser._id;
+            var id = loggedUser._id;
             var userDetails ={
-                "_id":id,
                 "username":username,
                 "password":password,
                 "firstName":firstName,
                 "lastName":lastName,
-                "email":email
+                "role":loggedUser.role,
+                "phones":phones.split(","),
+                "emails":emails.split(",")
             };
 
             UserService.updateUser(id,userDetails)
-                .then(function(response){
-                    if(response.data)
-                    {
-                        UserService.setCurrentUser(response.data);
+                .then(function(user){
+                        $rootScope.currentUser = user.data;
                         vm.message = "Your Profile has been updated!!!";
-                    }else{
+                    },
+                    function(err){
                         vm.message = "Sorry! Please enter your details again!!!";
                     }
-                });
+                );
         }
     }
 })();

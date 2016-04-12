@@ -3,13 +3,25 @@
     angular.module("PageEditorApp")
         .controller("HeaderController",HeaderController);
 
-    function HeaderController($scope,UserService,$location) {
-        $scope.$location = $location;
-        $scope.logout=logout;
+    function HeaderController(UserService,$rootScope,$location) {
+        var vm = this;
+        vm.logout = logout;
 
-        function logout(){
-            UserService.setCurrentUser(null);
+        function init() {
 
-        };
+        }
+
+        init();
+
+        function logout() {
+            UserService.logout()
+                .then(function () {
+                    $rootScope.currentUser = null;
+                    $location.url('/home');
+                }, function (err) {
+                    console.log(err);
+                });
+
+        }
     }
 })();

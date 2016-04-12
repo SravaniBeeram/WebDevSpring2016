@@ -7,14 +7,14 @@
     function PageController(PageService,$rootScope) {
         var vm = this;
         vm.alertMessage = null;
-        var pageIndexSelected;
-        var currentUserPages = [];
 
         vm.addPage = addPage;
         vm.updatePage=updatePage;
         vm.deletePage=deletePage;
         vm.selectPage=selectPage;
 
+        vm.pages = [];
+        vm.page = null;
         var currentUser = $rootScope.currentUser;
 
 
@@ -24,45 +24,54 @@
                 .then(function(response)
                 {
                     vm.pages = response.data;
-                    currentUserPages = response.data;
-                    vm.pageName = null;
+                    vm.page.pageName = null;
+                },function(err){
+                    console.log(err);
                 });
         }init();
 
 
-        function addPage(pageName) {
-            if (pageName != null) {
+        function addPage(page) {
+            if (page.pageName != null) {
                 var newPage = {
-                    "title": pageName,
+                    "title": page.pageName,
                     "userId": currentUser._id
                 };
                 PageService.createPageForUser(newPage)
-                    .then(init());
+                    .then(init(),function(err){
+                        console.log(err);
+                    });
             }else{
                 vm.alertMessage = "Please enter a name for the page";
             }
         }
 
-        function updatePage(pageName) {
-            if (pageName != null) {
-                var pageSelected = currentUserPages[pageIndexSelected];
-                pageSelected.title = pageName;
-                PageService.updatePageById(pageSelected._id, pageSelected)
-                              .then(init());
-            }else {
-                vm.alertMessage = "Please Select a page to update";
+        function updatePage(page) {
+            if (page.pageName != null) {
+                var updatedPage = {
+                    "title":page.pageName,
+                    "updated":new Date()
+                };
+                PageService.updatePageById(vm.page._id,updatedPage)
+                    .then(init(),function(err){
+                        console.log(err);
+                    });
+                vm.page.pageName = null;
+            }else{
+                vm.alertMessage = "Please select a page to update";
             }
         }
 
         function deletePage(index){
-            pageIndexSelected = index;
-            PageService.deletePageById(currentUserPages[index]._id)
-                .then(init());
+            PageService.deletePageById(vm.pages[index]._id)
+                .then(init(),function(err){
+                    console.log(err);
+                });
         }
 
         function selectPage(index){
-            pageIndexSelected = index;
-            vm.pageName = currentUserPages[index].title;
+            vm.page = vm.pages[index];
+            vm.page.pageName = vm.pages[index].title;
         }
     }
 })();

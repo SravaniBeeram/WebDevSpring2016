@@ -14,8 +14,8 @@
         vm.editField = editField;
         vm.deleteField = deleteField;
         vm.addField=addField;
-        vm.repeatField = repeatField;
-        $scope.updatePage = updatePage;
+        vm.cloneField = cloneField;
+        vm.sortField = sortField;
 
 
         var currentUser =$rootScope.currentUser;
@@ -42,21 +42,26 @@
                     page.fields = newFields;
                     console.log("after drag:" +page.fields);
                     PageService.updatePageById(page._id,page);
+                },function(err){
+                    console.log(err);
                 });
         }
 
 
         function init(){
 
-            FieldService.findFieldByPage(pageId)
+            FieldService.findPageFields(pageId)
                 .then(function(response){
                     vm.fields = response.data;
-                    console.log("init fields" +vm.fields);
+                },function(err){
+                    console.log(err);
                 });
 
             PageService.findPageByPageId(pageId)
                 .then(function(response){
                     vm.page = response.data;
+                },function(err){
+                    console.log(err);
                 })
 
         }init();
@@ -64,15 +69,18 @@
         function editField(field){
             vm.fieldEdit = field;
             vm.label = field.label;
-
+            var optionsString = "";
             var op =field.options;
 
             if(op){
                 var optionList = [];
                 for(var u in op){
                     optionList.push(op[u].label+ ":" +op[u].value+ "\n")
+                    optionsString = optionsString + (op[u].label + ":" + op[u].value + "\n");
                 }
                 vm.fieldEdit.options = optionList;
+                optionsString = optionsString.substring(0, optionsString.length - 1);
+                vm.options = optionsString;
             }
             if(field.placeholder){
                 vm.placeholder = field.placeholder;
@@ -80,8 +88,7 @@
         }
 
         function commitEdit(){
-            console.log("commit edit");
-            if(vm.fieldEdit.options){
+            if(vm.options != null){
                 var opt = vm.options.split("\n");
                 var optionList =[];
 
@@ -90,7 +97,6 @@
                     optionList.push({"label":val[0],"value":val[1]});
                 }
                 vm.fieldEdit.options = optionList;
-                console.log(vm.options);
             }
 
             if(vm.fieldEdit.placeholder){
@@ -115,36 +121,36 @@
             var field;
             switch(fieldType) {
                 case "LABEL":
-                    field = {"_id": null, "label": "New Label", "type": "LABEL"};
+                    field = {"label": "New Label", "type": "LABEL"};
                     break;
 
                 case "HEADER":
-                    field = {"_id": null, "label": "New Header", "type": "HEADER"};
+                    field = {"label": "New Header", "type": "HEADER"};
                     break;
 
                 case "BUTTON":
-                    field = {"_id": null, "label": "New Button", "type": "BUTTON"};
+                    field = {"label": "New Button", "type": "BUTTON"};
                     break;
 
                 case "PARAGRAPH":
-                    field = {"_id": null, "label": "New Header", "type": "PARAGRAPH","placeholder":"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum"};
+                    field = {"label": "New Header", "type": "PARAGRAPH","placeholder":"Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum"};
                     break;
 
                 case "TEXT":
-                    field = {"_id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
+                    field = {"label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
                     break;
 
                 case "TEXTAREA":
-                    field = {"_id": null, "label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"};
+                    field = {"label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"};
                     break;
 
                 case "DATE":
-                    field = {"_id": null, "label": "New Date Field", "type": "DATE"};
+                    field = {"label": "New Date Field", "type": "DATE"};
                     break;
 
                 case "LIST":
                     field = {
-                        "_id": null, "label": "New List", "type": "LIST", "options": [
+                        "label": "New List", "type": "LIST", "options": [
                             {"label": "Item 1", "value": "Item_1"},
                             {"label": "Item 2", "value": "Item_2"},
                             {"label": "Item 3", "value": "Item_3"}
@@ -154,7 +160,7 @@
 
                 case "OPTIONS":
                     field = {
-                        "_id": null, "label": "New Dropdown", "type": "OPTIONS", "options": [
+                        "label": "New Dropdown", "type": "OPTIONS", "options": [
                             {"label": "Option 1", "value": "OPTION_1"},
                             {"label": "Option 2", "value": "OPTION_2"},
                             {"label": "Option 3", "value": "OPTION_3"}
@@ -164,7 +170,7 @@
 
                 case "CHECKBOXES":
                     field = {
-                        "_id": null, "label": "New Checkboxes", "type": "CHECKBOXES", "options": [
+                        "label": "New Checkboxes", "type": "CHECKBOXES", "options": [
                             {"label": "Option A", "value": "OPTION_A"},
                             {"label": "Option B", "value": "OPTION_B"},
                             {"label": "Option C", "value": "OPTION_C"}
@@ -174,7 +180,7 @@
 
                 case "RADIOS":
                     field = {
-                        "_id": null, "label": "New Radio Buttons", "type": "RADIOS", "options": [
+                        "label": "New Radio Buttons", "type": "RADIOS", "options": [
                             {"label": "Option X", "value": "OPTION_X"},
                             {"label": "Option Y", "value": "OPTION_Y"},
                             {"label": "Option Z", "value": "OPTION_Z"}
@@ -182,13 +188,23 @@
                     };
                     break;
             }
-            console.log("type" +fieldType);
             console.log(field);
             FieldService.createField(pageId,field)
                 .then(init());
         }
 
-        function repeatField(field){
+        function sortField(start,end){
+            FieldService
+                .sortField(pageId,start,end)
+                .then(function(response){
+                        vm.fields= response.data;
+                    },
+                    function(err){
+                        console.log(err);
+                    });
+        }
+
+        function cloneField(field){
             FieldService.createField(pageId,field)
                 .then(init());
         }

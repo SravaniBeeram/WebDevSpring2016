@@ -8,12 +8,17 @@
         var api = {
             createField:createField,
             findField:findField,
-            findFieldByPage:findFieldByPage,
+            findPageFields:findPageFields,
             deleteField:deleteField,
-            updateField:updateField
+            updateField:updateField,
+            sortField:sortField
         };
 
         return api;
+
+        function sortField(pageId,startIndex,endIndex){
+            return $http.put("/api/project/"+pageId+"/field?startIndex="+startIndex+"&endIndex="+endIndex);
+        }
 
         function createField (pageId, field) {
             return $http.post("/api/project/page/" +pageId+ "/field", field);
@@ -23,7 +28,7 @@
             return $http.get("/api/project/page/" +pageId+ "/field/" + fieldId);
         }
 
-        function findFieldByPage (pageId) {
+        function findPageFields (pageId) {
             return $http.get("/api/project/page/" +pageId+ "/field")
         }
 

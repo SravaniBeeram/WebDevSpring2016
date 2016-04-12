@@ -5,7 +5,7 @@
                 <h1 align="center">{{model.page.title}}</h1>
 
                 <div class="form-horizontal">
-                    <div jga-sortable jga-axis = 'y'>
+                    <div ng-model="model.fields" jga-sortable jga-sortable-callback = "model.sortField(start,end)">
                         <div ng-repeat="field in model.fields track by $index">
                             <div class="input-group">
                                 <h1 ng-if="field.type == 'HEADER'">{{field.label}}</h1>
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="input-group-btn">
                                     <button ng-click ="model.editField(field)"       class="btn btn-warning" data-toggle="modal" data-target="#editField"><span class="glyphicon glyphicon-pencil"></span></button>
-                                    <button ng-click ="model.repeatField(field)"     class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
+                                    <button ng-click ="model.cloneField(field)"     class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
                                     <button ng-click ="model.deleteField(field._id)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
                                     <a class="btn btn-info"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
                                 </div>
@@ -50,66 +50,65 @@
 
                     <div class="col-sm-3 col-md-2 sidebar">
                             <ul class="nav nav-sidebar">
-                                <li><p align="center"><strong>Elements</strong></p></li>
+                                <li><p align="center"><strong>Widgets</strong></p></li>
 
-                                <div data-ng-init="date='DATE';">
-                                    <button data-ng-attr-id="date" class="btn btn-block" data-ng-click="model.addField(date)">Date</button>
-                                </div>
-
-                                <div data-ng-init="list='LIST';">
-                                    <button data-ng-attr-id="list" class="btn btn-block" data-ng-click="model.addField(list)">List</button>
-                                </div>
-
-                                <div data-ng-init="text='TEXT';">
-                                    <button data-ng-attr-id="text" class="btn btn-block" data-ng-click="model.addField(text)">Text</button>
-                                </div>
-
-                                <div data-ng-init="image='IMAGE';">
-                                    <button data-ng-attr-id="image" class="btn btn-block" data-ng-click="model.addField(image)">Image</button>
+                                <div data-ng-init="header='HEADER';">
+                                    <p align="center"><a href="" data-ng-attr-id="header" data-ng-click="model.addField(header)">Header</a></p>
                                 </div>
 
                                 <div data-ng-init="label='LABEL';">
-                                    <button data-ng-attr-id="label" class="btn btn-block" data-ng-click="model.addField(label)">Label</button>
+                                    <p align="center"><a href="" data-ng-attr-id="label"  data-ng-click="model.addField(label)">Label</a></p>
                                 </div>
 
+                                <div data-ng-init="date='DATE';">
+                                   <p align="center"><a href="" data-ng-attr-id="date" data-ng-click="model.addField(date)">Date</a></p>
+                                </div>
+
+                                <div data-ng-init="list='LIST';">
+                                    <p align="center"><a href="" data-ng-attr-id="list" data-ng-click="model.addField(list)">List</a></p>
+                                </div>
+
+                                <div data-ng-init="text='TEXT';">
+                                    <p align="center"><a href="" data-ng-attr-id="text" data-ng-click="model.addField(text)">Text</a></p>
+                                </div>
+
+                                <div data-ng-init="image='IMAGE';">
+                                    <p align="center"><a href="" data-ng-attr-id="image" data-ng-click="model.addField(image)">Image</a></p>
+                                </div>
+
+
                                 <div data-ng-init="video='VIDEO';">
-                                    <button data-ng-attr-id="video" class="btn btn-block" data-ng-click="model.addField(video)">Video</button>
+                                    <p align="center"><a href="" data-ng-attr-id="video" data-ng-click="model.addField(video)">Video</a></p>
                                 </div>
 
                                 <div data-ng-init="button='BUTTON';">
-                                    <button data-ng-attr-id="button" class="btn btn-block" data-ng-click="model.addField(button)">Button</button>
-                                </div>
-
-                                <div data-ng-init="header='HEADER';">
-                                    <button data-ng-attr-id="header" class="btn btn-block" data-ng-click="model.addField(header)">Header</button>
+                                    <p align="center"><a href="" data-ng-attr-id="button" data-ng-click="model.addField(button)">Button</a></p>
                                 </div>
 
 
                                 <div data-ng-init="textArea='TEXTAREA';">
-                                    <button data-ng-attr-id="textArea" class="btn btn-block" data-ng-click="model.addField(textArea)">Text Area</button>
+                                    <p align="center"><a href="" data-ng-attr-id="textArea" data-ng-click="model.addField(textArea)">Text Area</a></p>
                                 </div>
 
                                 <div data-ng-init="paragraph='PARAGRAPH';">
-                                    <button data-ng-attr-id="paragraph" class="btn btn-block" data-ng-click="model.addField(paragraph)">Paragraph</button>
+                                    <p align="center"><a href="" data-ng-attr-id="paragraph" data-ng-click="model.addField(paragraph)">Paragraph</a></p>
                                 </div>
 
                                 <div data-ng-init="options='OPTIONS';">
-                                    <button data-ng-attr-id="options" class="btn btn-block" data-ng-click="model.addField(options)">Drop Down</button>
+                                    <p align="center"><a href="" data-ng-attr-id="options" data-ng-click="model.addField(options)">Drop Down</a></p>
                                 </div>
 
                                 <div data-ng-init="code='HTML';">
-                                    <button data-ng-attr-id="code" class="btn btn-block" data-ng-click="model.addField(code)">HTML Code</button>
+                                    <p align="center"><a href="" data-ng-attr-id="code"  data-ng-click="model.addField(code)">HTML Code</a></p>
                                 </div>
 
                                 <div data-ng-init="checkbox='CHECKBOXES';">
-                                    <button data-ng-attr-id="checkbox" class="btn btn-block" data-ng-click="model.addField(checkbox)">Checkboxes</button>
+                                    <p align="center"><a href="" data-ng-attr-id="checkbox" data-ng-click="model.addField(checkbox)">Checkboxes</a></p>
                                 </div>
 
                                 <div data-ng-init="radio='RADIOS';">
-                                    <button data-ng-attr-id="radio" class="btn btn-block" data-ng-click="model.addField(radio)">Radio Buttons</button>
+                                    <p align="center"><a href="" data-ng-attr-id="radio" data-ng-click="model.addField(radio)">Radio Buttons</a></p>
                                 </div>
-
-
                             </ul>
                     </div>
                 </div>
@@ -137,7 +136,7 @@
                             <input ng-model = "model.placeholder" class="form-control" type="text" placeholder="Edit Placeholder">
                         </div>
 
-                        <div class="form-group" ng-show="model.fieldEdit.options">
+                        <div class="form-group" ng-show= "model.fieldEdit.type == 'RADIOS' || model.fieldEdit.type == 'CHECKBOXES' || model.fieldEdit.type == 'OPTIONS'|| model.fieldEdit.type == 'LIST'">
                             <label>Options</label>
                             <textarea ng-model="model.options" class="form-control" placeholder="Edit Options"></textarea>
                         </div>

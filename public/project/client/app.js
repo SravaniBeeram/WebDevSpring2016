@@ -1,5 +1,5 @@
 (function() {
     "use strict";
     angular
-        .module("PageEditorApp", ["ngRoute","jgaSortable","ui.bootstrap"]);
+        .module("PageEditorApp", ["ngRoute","jgaDirectives","ui.bootstrap"]);
 })();
