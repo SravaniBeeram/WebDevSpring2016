@@ -24,7 +24,7 @@
                 .then(function(response)
                 {
                     vm.pages = response.data;
-                    vm.page.pageName = null;
+                    vm.alertMessage = null;
                 },function(err){
                     console.log(err);
                 });
@@ -41,6 +41,7 @@
                     .then(init(),function(err){
                         console.log(err);
                     });
+                vm.page.pageName = null;
             }else{
                 vm.alertMessage = "Please enter a name for the page";
             }

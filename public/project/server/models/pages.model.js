@@ -4,7 +4,7 @@ var q =require("q");
 module.exports = function (app,db) {
     var PageSchema = require("./page.schema.server.js")();
     var page = mongoose.model("page",PageSchema);
-    var fieldModel = require("./fields.model.js")(page);
+    var fieldModel = require("./widget/fields.model.js")(page);
     var fieldService = require("../services/fields.service.server.js")(app,fieldModel);
 
     var api = {

@@ -1,5 +1,5 @@
 (function() {
     "use strict";
     angular
-        .module("PageEditorApp", ["ngRoute","jgaDirectives","ui.bootstrap"]);
+        .module("PageEditorApp", ["ngRoute","jgaDirectives","textAngular","angucomplete-alt","ui.bootstrap"]);
 })();

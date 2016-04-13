@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var FieldSchema = require("./field.schema.server.js")();
+var FieldSchema = require("./widget/field.schema.server.js")();
 
 module.exports = function () {
     var PageSchema = mongoose.Schema({

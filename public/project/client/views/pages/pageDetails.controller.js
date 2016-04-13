@@ -4,7 +4,7 @@
     angular.module("PageEditorApp")
         .controller("PageDetailsController",PageDetailsController);
 
-    function PageDetailsController(FieldService,PageService,$routeParams,$rootScope,$scope) {
+    function PageDetailsController(FieldService,PageService,$routeParams,$rootScope,$sce) {
         var vm = this;
 
         var pageId;
@@ -16,13 +16,27 @@
         vm.addField=addField;
         vm.cloneField = cloneField;
         vm.sortField = sortField;
-
+        vm.trustAsHtml= trustAsHtml;
+        vm.safeYouTubeUrl = safeYouTubeUrl;
 
         var currentUser =$rootScope.currentUser;
 
 
         if($routeParams.pageId){
             pageId = $routeParams.pageId;
+        }
+
+        function trustAsHtml(html) {
+            return $sce.trustAsHtml(html);
+        }
+
+        function safeYouTubeUrl(field) {
+            if(field && field.youTube) {
+                var urlParts = field.youTube.url.split("/");
+                var youTubeId = urlParts[urlParts.length-1];
+                return $sce.trustAsResourceUrl("https://www.youtube.com/embed/"+youTubeId);
+            }
+            return "";
         }
 
         function updatePage(start,end){
@@ -99,17 +113,41 @@
                 vm.fieldEdit.options = optionList;
             }
 
-            if(vm.fieldEdit.placeholder){
-                vm.fieldEdit.placeholder  = vm.placeholder
+            if(vm.placeholder)
+            {
+                vm.fieldEdit.placeholder  = vm.placeholder;
             }
 
             vm.fieldEdit.label = vm.label;
+
+            if(vm.textArea != null){
+                vm.fieldEdit.textArea = vm.textArea;
+            }
+
+
+            if(vm.html != null){
+                vm.fieldEdit.html.text = vm.html.text;
+            }
+
+            if(vm.image != null){
+                vm.fieldEdit.image= vm.image;
+            }
+
+            console.log(vm.youTube);
+
+            if(vm.youTube != null){
+                vm.fieldEdit.youTube= vm.youTube;
+            }
 
             FieldService.updateField(pageId,vm.fieldEdit._id,vm.fieldEdit)
                 .then(init());
             vm.label = null;
             vm.placeholder = null;
             vm.options = null;
+            vm.textArea = null;
+            vm.html = null;
+            vm.image = null;
+            vm.youTube = null;
         }
 
         function deleteField(fieldId){
@@ -125,7 +163,7 @@
                     break;
 
                 case "HEADER":
-                    field = {"label": "New Header", "type": "HEADER"};
+                    field = {"label": "New Header", "type": "HEADER","header":null};
                     break;
 
                 case "BUTTON":
@@ -140,8 +178,24 @@
                     field = {"label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
                     break;
 
+                case "LINK":
+                    field = {"label": "New Link Field", "type": "LINK", "link": null};
+                    break;
+
+                case "HTML":
+                    field = {"label": "New HTML Field", "type": "HTML", "html": null};
+                    break;
+
+                case "IMAGE":
+                    field = {"label": "New Image", "type": "IMAGE", "image": null};
+                    break;
+
+                case "YOUTUBE":
+                    field = {"label": "New Youtube Video" , "type":"YOUTUBE","youTube": null};
+                    break;
+
                 case "TEXTAREA":
-                    field = {"label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"};
+                    field = {"label": "New Text Field", "type": "TEXTAREA", "textArea":{"rows": 2,"placeholder":"New Text Area"}};
                     break;
 
                 case "DATE":
@@ -150,7 +204,7 @@
 
                 case "LIST":
                     field = {
-                        "label": "New List", "type": "LIST", "options": [
+                        "label": "New List", "type": "LIST", "options":[
                             {"label": "Item 1", "value": "Item_1"},
                             {"label": "Item 2", "value": "Item_2"},
                             {"label": "Item 3", "value": "Item_3"}

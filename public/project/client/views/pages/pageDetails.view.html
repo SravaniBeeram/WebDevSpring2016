@@ -7,35 +7,107 @@
                 <div class="form-horizontal">
                     <div ng-model="model.fields" jga-sortable jga-sortable-callback = "model.sortField(start,end)">
                         <div ng-repeat="field in model.fields track by $index">
-                            <div class="input-group">
-                                <h1 ng-if="field.type == 'HEADER'">{{field.label}}</h1>
-                                <ul ng-if="field.type == 'LIST'"><li ng-repeat="item in field.options">{{item.label}}</li></ul>
-                                <p  ng-if= "field.type == 'PARAGRAPH'" align="justify" >{{field.placeholder}}</p>
-                                <label ng-if ="field.type == 'LABEL'">{{field.label}}</label>
-                                <button ng-if = "field.type == 'BUTTON'" class="btn btn-primary">{{field.label}}</button>
-                            </div>
-                            <label ng-hide = "field.type == 'HEADER' || field.type == 'LIST' || field.type == 'LABEL' || field.type =='PARAGRAPH'|| field.type =='BUTTON'">
-                                {{field.label}}
-                            </label>
+
                             <div class="input-group">
                                 <div ng-switch on="field.type" >
-                                    <input ng-switch-when="TEXT" type="text" class="form-control" placeholder="{{field.placeholder}}">
-                                    <textarea ng-switch-when="TEXTAREA" class="form-control" placeholder="{{field.placeholder}}"></textarea>
-                                    <input ng-switch-when="EMAIL" type="email" class="form-control" placeholder="{{field.placeholder}}">
-                                    <input ng-switch-when="DATE" type="date" class="form-control">
-                                    <select ng-switch-when="OPTIONS">
-                                        <option ng-repeat="option in field.options track by $index">{{option.label}}</option>
-                                    </select>
+
+                                    <div ng-switch-when = "HEADER">
+                                        <h1 ng-if="field.header.size===1">
+                                            {{field.label}}
+                                        </h1>
+                                        <h2 ng-if="!field.header.size || widget.header.size===2">
+                                            {{field.label}}
+                                        </h2>
+                                        <h3 ng-if="field.header.size===3">
+                                            {{field.label}}
+                                        </h3>
+                                        <h4 ng-if="field.header.size===4">
+                                            {{field.label}}
+                                        </h4>
+                                        <h5 ng-if="field.header.size===5">
+                                            {{field.label}}
+                                        </h5>
+                                        <h6 ng-if="field.header.size===6">
+                                            {{field.label}}
+                                        </h6>
+                                    </div>
+
+                                    <div ng-switch-when = "LIST">
+                                        <ul><li ng-repeat="item in field.options">{{item.label}}</li></ul>
+                                    </div>
+
+                                    <div ng-switch-when = "PARAGRAPH">
+                                        <p align="justify">{{field.placeholder}}</p>
+                                    </div>
+
+                                    <div ng-switch-when = "LABEL">
+                                        <label>{{field.label}}</label>
+                                    </div>
+
+                                    <div ng-switch-when="IMAGE">
+                                        <label>{{field.label}}</label><br>
+                                        <img ng-src="{{field.image.url}}" width="{{field.image.width}}"/>
+                                    </div>
+
+                                    <div ng-switch-when="YOUTUBE">
+                                        <label>{{field.label}}</label>
+                                        <br>
+                                        <iframe ng-src="{{model.safeYouTubeUrl(field)}}"
+                                                width="{{field.youTube.width}}"
+                                                frameborder="0"
+                                                allowfullscreen>
+                                        </iframe>
+                                    </div>
+
+                                    <div ng-switch-when="BUTTON">
+                                        <button class="btn btn-primary">{{field.label}}</button>
+                                    </div>
+
+                                    <div ng-switch-when="LINK">
+                                        <a href="{{field.link.url}}" target="_blank">{{field.label}}</a>
+                                    </div>
+
+                                    <div ng-switch-when="HTML">
+                                        <label>{{field.label}}</label>
+                                        <div ng-bind-html="model.trustAsHtml(field.html.text)"></div>
+                                    </div>
+
+                                    <div ng-switch-when="TEXT">
+                                        <label>{{field.label}}</label>
+                                        <input type="text" class="form-control" placeholder="{{field.placeholder}}">
+                                    </div>
+
+                                    <div ng-switch-when="TEXTAREA">
+                                        <label>{{field.label}}</label>
+                                        <textarea class="form-control" rows={{field.textArea.rows}} placeholder="{{field.textArea.placeholder}}"></textarea>
+                                    </div>
+
+                                    <div ng-switch-when="DATE">
+                                        <label>{{field.label}}</label>
+                                        <input type="date" class="form-control">
+                                    </div>
+
+                                    <div ng-switch-when="OPTIONS">
+                                        <label>{{field.label}}</label>
+                                        <select>
+                                            <option ng-repeat="option in field.options track by $index">{{option.label}}</option>
+                                        </select>
+                                    </div>
+
                                     <div ng-switch-when="CHECKBOXES">
+                                        <label>{{field.label}}</label>
                                         <div ng-repeat="option in field.options track by $index">
                                             <input type="checkbox" value="{{option.value}}">{{option.label}}
                                         </div>
                                     </div>
+
                                     <div ng-switch-when="RADIOS">
+                                        <label>{{field.label}}</label>
                                         <div ng-repeat="option in field.options track by $index">
                                             <input type="radio" value="{{option.value}}">{{option.label}}
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="input-group-btn">
                                     <button ng-click ="model.editField(field)"       class="btn btn-warning" data-toggle="modal" data-target="#editField"><span class="glyphicon glyphicon-pencil"></span></button>
@@ -72,19 +144,22 @@
                                     <p align="center"><a href="" data-ng-attr-id="text" data-ng-click="model.addField(text)">Text</a></p>
                                 </div>
 
+                                <div data-ng-init="link='LINK';">
+                                    <p align="center"><a href="" data-ng-attr-id="link" data-ng-click="model.addField(link)">Link</a></p>
+                                </div>
+
                                 <div data-ng-init="image='IMAGE';">
                                     <p align="center"><a href="" data-ng-attr-id="image" data-ng-click="model.addField(image)">Image</a></p>
                                 </div>
 
 
-                                <div data-ng-init="video='VIDEO';">
-                                    <p align="center"><a href="" data-ng-attr-id="video" data-ng-click="model.addField(video)">Video</a></p>
+                                <div data-ng-init="youtube='YOUTUBE';">
+                                    <p align="center"><a href="" data-ng-attr-id="youtube" data-ng-click="model.addField(youtube)">Youtube Video</a></p>
                                 </div>
 
                                 <div data-ng-init="button='BUTTON';">
                                     <p align="center"><a href="" data-ng-attr-id="button" data-ng-click="model.addField(button)">Button</a></p>
                                 </div>
-
 
                                 <div data-ng-init="textArea='TEXTAREA';">
                                     <p align="center"><a href="" data-ng-attr-id="textArea" data-ng-click="model.addField(textArea)">Text Area</a></p>
@@ -125,21 +200,140 @@
                 </div>
                 <div class="modal-body">
                     <form>
+                       <div ng-switch="model.fieldEdit.type">
 
-                        <div class="form-group" ng-hide = "model.fieldEdit.type == 'PARAGRAPH' || model.fieldEdit.type == 'LIST'">
+                           <div ng-switch-when="HEADER" class="form-group">
+                               <label>Label</label>
+                               <input ng-model = "model.label" class="form-control" type="text" placeholder="Edit Label">
+                               <label>Size</label>
+                               <select ng-model="model.fieldEdit.header.size" class="form-control">
+                                   <option>1</option>
+                                   <option>2</option>
+                                   <option>3</option>
+                                   <option>4</option>
+                                   <option>5</option>
+                                   <option>6</option>
+                               </select>
+                           </div>
+
+                        <div ng-switch-when="LABEL" class="form-group">
                             <label>Label</label>
                             <input ng-model = "model.label" class="form-control" type="text" placeholder="Edit Label">
                         </div>
 
-                        <div class="form-group" ng-show = "model.fieldEdit.placeholder">
+                        <div ng-switch-when="LIST" class="form-group">
+                            <label>List Items</label>
+                            <textarea ng-model="model.options" class="form-control" placeholder="Edit Options"></textarea>
+                        </div>
+
+                        <div ng-switch-when="DATE" class="form-group">
+                            <label>Label</label>
+                            <input ng-model = "model.label" class="form-control" type="text" placeholder="Edit Label">
+                        </div>
+
+                        <div ng-switch-when="IMAGE" class="form-group">
+                            <label>Label</label>
+                            <input ng-model = "model.label" class="form-control" type="text" placeholder="Edit Label">
+                            <br>
+                            <label>URL</label>
+                            <input ng-model="model.image.url" class="form-control"/>
+                            <br>
+                            <label>Width</label>
+                            <input ng-model="model.image.width" class="form-control"/>
+                            <br>
+                            <label>Upload</label>
+                            <form action="/api/upload"
+                                  method="post"
+                                  enctype="multipart/form-data">
+                                <input name="pageId" value="{{model.page._id}}" style="display: none"/>
+                                <input name="widgetId" value="{{model.fieldEdit._id}}" style="display: none"/>
+                                <input name="width" value="{{model.fieldEdit.image.width}}" style="display: none"/>
+                                <input  type="file" name="myFile" class="form-control"/>
+                                <button type="submit" class="btn btn-block btn-primary">
+                                    Upload Image
+                                </button>
+                            </form>
+                        </div>
+
+                        <div ng-switch-when="RADIOS" class="form-group">
+                            <label>Label</label>
+                            <input ng-model = "model.label" class="form-control" type="text" placeholder="Edit Label">
+                            <br>
+                            <label>Radio Options</label>
+                            <textarea ng-model="model.options" class="form-control" placeholder="Edit Options"></textarea>
+                        </div>
+
+                        <div ng-switch-when="CHECKBOXES" class="form-group">
+                           <label>Label</label>
+                           <input ng-model = "model.label" class="form-control" type="text" placeholder="Edit Label">
+                            <br>
+                           <label>Checkbox Options</label>
+                           <textarea ng-model="model.options" class="form-control" placeholder="Edit Options"></textarea>
+                        </div>
+
+                        <div ng-switch-when="TEXTAREA" class="form-group">
+                            <label>Label</label>
+                            <input ng-model = "model.label" class="form-control" type="text" placeholder="Edit Label">
+                            <br>
+                            <label>Rows</label>
+                            <input ng-model="model.textArea.rows" class="form-control"/>
+                            <br>
+                            <label>Placeholder</label>
+                            <input ng-model="model.textArea.placeholder" class="form-control"/>
+                        </div>
+
+                        <div ng-switch-when="TEXT" class="form-group">
+                            <label>Label</label>
+                            <input ng-model = "model.label" class="form-control" type="text" placeholder="Edit Label">
+                            <br>
                             <label>Placeholder</label>
                             <input ng-model = "model.placeholder" class="form-control" type="text" placeholder="Edit Placeholder">
                         </div>
 
-                        <div class="form-group" ng-show= "model.fieldEdit.type == 'RADIOS' || model.fieldEdit.type == 'CHECKBOXES' || model.fieldEdit.type == 'OPTIONS'|| model.fieldEdit.type == 'LIST'">
-                            <label>Options</label>
-                            <textarea ng-model="model.options" class="form-control" placeholder="Edit Options"></textarea>
+                        <div ng-switch-when="PARAGRAPH" class="form-group">
+                            <label>Paragraph Text</label>
+                            <textarea ng-model = "model.placeholder" class="form-control" rows = 5 placeholder="Edit Placeholder"></textarea>
                         </div>
+
+                        <div ng-switch-when="HTML">
+                            <label>Label</label>
+                            <input ng-model = "model.label" class="form-control" type="text" placeholder="Edit Label">
+                            <br>
+                            <label>HTML Code</label>
+                            <div text-angular ng-model="model.html.text"></div>
+                        </div>
+
+                        <div ng-switch-when="OPTIONS" class="form-group">
+                           <label>Label</label>
+                           <input ng-model = "model.label" class="form-control" type="text" placeholder="Edit Label">
+                           <br>
+                           <label>Dropdown Options</label>
+                           <textarea ng-model="model.options" class="form-control" placeholder="Edit Options"></textarea>
+                        </div>
+
+                        <div ng-switch-when="YOUTUBE" class="form-group">
+                            <label>Label</label>
+                            <input ng-model = "model.label" class="form-control" type="text" placeholder="Edit Label">
+                            <br>
+                            <label>URL</label>
+                            <input ng-model="model.youTube.url" class="form-control"/>
+                            <br>
+                            <label>Width</label>
+                            <input ng-model="model.youTube.width" class="form-control"/>
+                        </div>
+
+
+                           <div ng-switch-when="LINK" class="form-group">
+                               <label>Label</label>
+                               <input ng-model = "model.label" class="form-control" type="text" placeholder="Edit Label">
+                               <br>
+                               <label>URL</label>
+                               <input ng-model = "model.fieldEdit.link.url" class="form-control" type="text" placeholder="Enter Url">
+                           </div>
+
+
+
+                       </div>
                     </form>
                 </div>
 
