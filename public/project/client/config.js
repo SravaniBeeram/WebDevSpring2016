@@ -74,6 +74,19 @@
                 }
             })
 
+            .when ("/user/:username/page/:pageId/preview", {
+                 templateUrl: "views/pages/page-preview.view.html",
+                 controller: "PageDetailsController",
+                 controllerAs: "model",
+                 resolve: { loggedin: checkLoggedin }
+            })
+
+            .when ("/user/:username/page/:pageId/share", {
+                templateUrl: "views/pages/page-share.view.html",
+                controller: "PageDetailsController",
+                controllerAs: "model"
+            })
+
             .otherwise({
                 redirectTo: "home"
             })

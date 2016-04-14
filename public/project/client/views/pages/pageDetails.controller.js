@@ -18,6 +18,8 @@
         vm.sortField = sortField;
         vm.trustAsHtml= trustAsHtml;
         vm.safeYouTubeUrl = safeYouTubeUrl;
+        vm.ShowHide = ShowHide;
+        vm.IsHidden = true;
 
         var currentUser =$rootScope.currentUser;
 
@@ -37,6 +39,12 @@
                 return $sce.trustAsResourceUrl("https://www.youtube.com/embed/"+youTubeId);
             }
             return "";
+        }
+
+        function ShowHide(){
+            console.log(vm.IsHidden);
+            vm.IsHidden = vm.IsHidden? false : true;
+            console.log(vm.IsHidden);
         }
 
         function updatePage(start,end){

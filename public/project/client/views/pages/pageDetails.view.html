@@ -5,13 +5,25 @@
             <div ng-include="'views/pages/sidebar.html'"></div>
 
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <h1 align="center">{{model.page.title}}</h1>
+                    <h1 align="center">{{model.page.title}}</h1>
 
-                <div class="form-horizontal">
+                <div class="text-nowrap">
+
+                <a type="button" ng-click="model.ShowHide()" class="btn btn-primary pull-right">Share</a>
+                <a href="#/user/{{currentUser.username}}/page/{{model.page._id}}/preview"
+                    class="btn btn-primary pull-right">Preview
+                </a>
+                <br>
+                <br>
+                <div ng-hide="model.IsHidden" class="pull-right">http://webdev2016-beeramsravani.rhcloud.com/project/client/index.html#/user/{{currentUser.username}}/page/{{model.page._id}}/share</div>
+
+                </div>
+
+                <div class="form-horizontal ">
                     <div ng-model="model.fields" jga-sortable jga-sortable-callback = "model.sortField(start,end)">
-                        <div ng-repeat="field in model.fields track by $index">
-
-                            <div class="input-group">
+                        <div class="row form-group" ng-repeat="field in model.fields track by $index">
+                            <br>
+                            <div class="col-sm-8">
                                 <div ng-switch on="field.type" >
 
                                     <div ng-switch-when = "HEADER">
@@ -110,19 +122,17 @@
                                             <input type="radio" value="{{option.value}}">{{option.label}}
                                         </div>
                                     </div>
-
                                 </div>
-                                <div class="input-group-btn">
+                            </div>
+                                <div class="col-sm-4  text-nowrap">
+                                    <br>
                                     <button ng-click ="model.editField(field)"       class="btn btn-warning" data-toggle="modal" data-target="#editField"><span class="glyphicon glyphicon-pencil"></span></button>
                                     <button ng-click ="model.cloneField(field)"     class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
                                     <button ng-click ="model.deleteField(field._id)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
                                     <a class="btn btn-info"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
                                 </div>
-                            </div>
-                            <br>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

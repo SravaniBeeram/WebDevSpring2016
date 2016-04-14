@@ -1,5 +1,5 @@
 .text-nowrap{
-   white-space: nowrap;
+   white-space: nowrap; !important;
 }
 
 select {
@@ -30,6 +30,12 @@ font-size: 20px;
 
 .font-color{
     color: #CCC;
+}
+
+@media(min-width:768px) {
+    .mobile-check{
+        padding-top:40px;
+    }
 }
 
 
