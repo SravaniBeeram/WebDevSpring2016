@@ -10,73 +10,74 @@
 
             .when("/home", {
                 templateUrl: "views/home/home.view.html",
-                controller:"HomeController",
-                controllerAs:"model",
-                resolve:{
-                    loggedin:checkCurrentUser
+                controller: "HomeController",
+                controllerAs: "model",
+                resolve: {
+                    loggedin: checkCurrentUser
                 }
             })
 
             .when("/signup", {
                 templateUrl: "views/users/signup.view.html",
-                controller:"SignUpController",
+                controller: "SignUpController",
                 controllerAs: "model"
             })
 
             .when("/profile", {
                 templateUrl: "views/users/profile.view.html",
-                controller:"ProfileController",
+                controller: "ProfileController",
                 controllerAs: "model",
-                resolve:{
-                    loggedin:checkLoggedin
+                resolve: {
+                    loggedin: checkLoggedin
                 }
             })
 
             .when("/login", {
                 templateUrl: "views/users/login.view.html",
-                controller:"LoginController",
+                controller: "LoginController",
                 controllerAs: "model"
             })
 
-            .when("/pages" , {
-                templateUrl:"views/pages/pages.view.html",
-                controller:"PageController",
+            .when("/pages", {
+                templateUrl: "views/pages/pages.view.html",
+                controller: "PageController",
                 controllerAs: "model",
-                resolve:{
-                    loggedin:checkLoggedin
+                resolve: {
+                    loggedin: checkLoggedin
                 }
             })
 
-            .when("/admin" , {
-                templateUrl:"views/admin/admin.view.html",
-                controller:"adminController",
+            .when("/admin", {
+                templateUrl: "views/admin/admin.view.html",
+                controller: "adminController",
                 controllerAs: "model",
-                resolve:{
-                    loggedin:checkAdmin
+                resolve: {
+                    loggedin: checkAdmin
                 }
             })
 
-            .when("/PageDetails" , {
-                templateUrl:"views/pages/pageDetails.view.html",
-                controller:"PageDetailsController",
-                controllerAs: "model",
-                resolve:{
-                    loggedin:checkLoggedin
-                }
-            })
-
-            .when("/page/:pageId/field",{
+            .when("/PageDetails", {
                 templateUrl: "views/pages/pageDetails.view.html",
                 controller: "PageDetailsController",
                 controllerAs: "model",
-                resolve:{
-                    loggedin:checkLoggedin
+                resolve: {
+                    loggedin: checkLoggedin
+                }
+            })
+
+            .when("/page/:pageId/field", {
+                templateUrl: "views/pages/pageDetails.view.html",
+                controller: "PageDetailsController",
+                controllerAs: "model",
+                resolve: {
+                    loggedin: checkLoggedin
                 }
             })
 
             .otherwise({
-                redirectTo:"home"
+                redirectTo: "home"
             })
+
     }
 
     var checkAdmin = function($q, $timeout, $http, $location, $rootScope)

@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var multer = require('multer');
 var passport = require('passport');
 var cookieParser  = require('cookie-parser');
 var session = require('express-session');
@@ -11,10 +10,8 @@ var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 app.use(express.static(__dirname + '/public'));
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(multer());
 
 var connectionString = 'mongodb://127.0.0.1:27017/webdev2016';
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {

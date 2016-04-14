@@ -1,0 +1,107 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">Webpage Editor</a>
+    </div>
+
+    <ul class="nav navbar-right top-nav" ng-controller="HeaderController as model">
+
+        <li ng-class="{'active': $location.url() == '/home'}">
+            <a href="#/home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+
+        <li ng-show= "currentUser.role == 'admin'"
+            ng-class="{'active': $location.url() == '/admin'}">
+            <a href="#/admin"><span class="glyphicon glyphicon-king"></span> Admin</a>
+        </li>
+
+        <li ng-show= "currentUser" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {{currentUser.username}}<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+
+                <li ng-class="{'active': $location.url() == '/profile'}">
+                    <a href="#/profile"><span class="glyphicon glyphicon-list-alt"></span> Profile</a></li>
+
+                <li ng-class="{'active': $location.url() == '/pages'}">
+                    <a href="#/pages"><span class="glyphicon glyphicon-file"></span> My Pages</a></li>
+
+                <li class="divider"></li>
+
+                <li ng-show= "currentUser">
+                    <a href="#/home" ng-click="model.logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="collapse navbar-collapse navbar-ex1-collapse col-sm-3 col-md-2">
+        <ul class="nav navbar-nav side-nav">
+
+            <li data-ng-init="list='LIST';" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <a href="" data-ng-attr-id="list" data-ng-click="model.addField(list)">List</a>
+            </li>
+
+            <li data-ng-init="link='LINK';" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <a href="" data-ng-attr-id="link" data-ng-click="model.addField(link)">Link</a>
+            </li>
+
+            <li data-ng-init="header='HEADER';" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <a href="" data-ng-attr-id="header" data-ng-click="model.addField(header)">Header</a>
+            </li>
+
+            <li data-ng-init="label='LABEL';" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <a href="" data-ng-attr-id="label"  data-ng-click="model.addField(label)">Label</a>
+            </li>
+
+            <li data-ng-init="date='DATE';" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <a href="" data-ng-attr-id="date" data-ng-click="model.addField(date)">Date</a>
+            </li>
+
+
+           <!-- <li data-ng-init="text='TEXT';" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <a href="" data-ng-attr-id="text" data-ng-click="model.addField(text)">Text</a>
+            </li>-->
+
+            <li data-ng-init="image='IMAGE';" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <a href="" data-ng-attr-id="image" data-ng-click="model.addField(image)">Image</a>
+            </li>
+
+
+            <li data-ng-init="button='BUTTON';" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <a href="" data-ng-attr-id="button" data-ng-click="model.addField(button)">Button</a>
+            </li>
+
+            <li data-ng-init="textArea='TEXTAREA';" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <a href="" data-ng-attr-id="textArea" data-ng-click="model.addField(textArea)">Text Area</a>
+            </li>
+
+            <li data-ng-init="paragraph='PARAGRAPH';" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <a href="" data-ng-attr-id="paragraph" data-ng-click="model.addField(paragraph)">Paragraph</a>
+            </li>
+
+            <li data-ng-init="options='OPTIONS';" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <a href="" data-ng-attr-id="options" data-ng-click="model.addField(options)">Drop Down</a>
+            </li>
+
+            <li data-ng-init="code='HTML';" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <a href="" data-ng-attr-id="code"  data-ng-click="model.addField(code)">HTML Code</a>
+            </li>
+
+            <li data-ng-init="youtube='YOUTUBE';" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <a href="" data-ng-attr-id="youtube" data-ng-click="model.addField(youtube)">Youtube Video</a>
+            </li>
+
+            <li data-ng-init="checkbox='CHECKBOXES';" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <a href="" data-ng-attr-id="checkbox" data-ng-click="model.addField(checkbox)">Checkboxes</a>
+            </li>
+
+            <li data-ng-init="radio='RADIOS';" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <a href="" data-ng-attr-id="radio" data-ng-click="model.addField(radio)">Radio Buttons</a>
+            </li>
+        </ul>
+    </div>
+</nav>

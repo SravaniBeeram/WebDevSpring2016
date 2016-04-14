@@ -1,7 +1,10 @@
 <div ng-controller="PageDetailsController">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1 main">
+
+            <div ng-include="'views/pages/sidebar.html'"></div>
+
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h1 align="center">{{model.page.title}}</h1>
 
                 <div class="form-horizontal">
@@ -120,72 +123,6 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-3 col-md-2 sidebar">
-                            <ul class="nav nav-sidebar">
-                                <li><p align="center"><strong>Widgets</strong></p></li>
-
-                                <div data-ng-init="header='HEADER';">
-                                    <p align="center"><a href="" data-ng-attr-id="header" data-ng-click="model.addField(header)">Header</a></p>
-                                </div>
-
-                                <div data-ng-init="label='LABEL';">
-                                    <p align="center"><a href="" data-ng-attr-id="label"  data-ng-click="model.addField(label)">Label</a></p>
-                                </div>
-
-                                <div data-ng-init="date='DATE';">
-                                   <p align="center"><a href="" data-ng-attr-id="date" data-ng-click="model.addField(date)">Date</a></p>
-                                </div>
-
-                                <div data-ng-init="list='LIST';">
-                                    <p align="center"><a href="" data-ng-attr-id="list" data-ng-click="model.addField(list)">List</a></p>
-                                </div>
-
-                                <div data-ng-init="text='TEXT';">
-                                    <p align="center"><a href="" data-ng-attr-id="text" data-ng-click="model.addField(text)">Text</a></p>
-                                </div>
-
-                                <div data-ng-init="link='LINK';">
-                                    <p align="center"><a href="" data-ng-attr-id="link" data-ng-click="model.addField(link)">Link</a></p>
-                                </div>
-
-                                <div data-ng-init="image='IMAGE';">
-                                    <p align="center"><a href="" data-ng-attr-id="image" data-ng-click="model.addField(image)">Image</a></p>
-                                </div>
-
-
-                                <div data-ng-init="youtube='YOUTUBE';">
-                                    <p align="center"><a href="" data-ng-attr-id="youtube" data-ng-click="model.addField(youtube)">Youtube Video</a></p>
-                                </div>
-
-                                <div data-ng-init="button='BUTTON';">
-                                    <p align="center"><a href="" data-ng-attr-id="button" data-ng-click="model.addField(button)">Button</a></p>
-                                </div>
-
-                                <div data-ng-init="textArea='TEXTAREA';">
-                                    <p align="center"><a href="" data-ng-attr-id="textArea" data-ng-click="model.addField(textArea)">Text Area</a></p>
-                                </div>
-
-                                <div data-ng-init="paragraph='PARAGRAPH';">
-                                    <p align="center"><a href="" data-ng-attr-id="paragraph" data-ng-click="model.addField(paragraph)">Paragraph</a></p>
-                                </div>
-
-                                <div data-ng-init="options='OPTIONS';">
-                                    <p align="center"><a href="" data-ng-attr-id="options" data-ng-click="model.addField(options)">Drop Down</a></p>
-                                </div>
-
-                                <div data-ng-init="code='HTML';">
-                                    <p align="center"><a href="" data-ng-attr-id="code"  data-ng-click="model.addField(code)">HTML Code</a></p>
-                                </div>
-
-                                <div data-ng-init="checkbox='CHECKBOXES';">
-                                    <p align="center"><a href="" data-ng-attr-id="checkbox" data-ng-click="model.addField(checkbox)">Checkboxes</a></p>
-                                </div>
-
-                                <div data-ng-init="radio='RADIOS';">
-                                    <p align="center"><a href="" data-ng-attr-id="radio" data-ng-click="model.addField(radio)">Radio Buttons</a></p>
-                                </div>
-                            </ul>
-                    </div>
                 </div>
             </div>
         </div>
@@ -322,7 +259,6 @@
                             <input ng-model="model.youTube.width" class="form-control"/>
                         </div>
 
-
                            <div ng-switch-when="LINK" class="form-group">
                                <label>Label</label>
                                <input ng-model = "model.label" class="form-control" type="text" placeholder="Edit Label">
@@ -330,8 +266,6 @@
                                <label>URL</label>
                                <input ng-model = "model.fieldEdit.link.url" class="form-control" type="text" placeholder="Enter Url">
                            </div>
-
-
 
                        </div>
                     </form>

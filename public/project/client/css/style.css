@@ -2,18 +2,6 @@
    white-space: nowrap;
 }
 
-.check-sidebar
-{
-   display: none;
-}
-
-@media (max-width: 768px)
-{
-   .check-sidebar {
-      display: block;
-   }
-}
-
 select {
     width: 100%;
     padding: 8px 18px;
@@ -22,4 +10,26 @@ select {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+body {
+    background: rgb(240,240,240)  url('../img/background.jpg');
+    color: #CCC;
+}
+
+.table-head{
+font-size: 20px;
+}
+
+.table-row{
+    font-size: 17px;
+}
+
+.table-entry{
+    color: black;  !important;
+}
+
+.font-color{
+    color: #CCC;
+}
+
 

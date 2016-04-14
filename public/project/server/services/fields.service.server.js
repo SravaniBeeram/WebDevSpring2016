@@ -1,10 +1,17 @@
-module.exports = function(app,fieldModel) {
+module.exports = function(app,fieldModel,pageModel) {
+
+
+    var multer  = require('multer');
+    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+
     app.get("/api/project/page/:pageId/field", findPageFields);
     app.get("/api/project/page/:pageId/field/:fieldId", findFieldsById);
     app.delete("/api/project/page/:pageId/field/:fieldId", deleteFieldById);
     app.post("/api/project/page/:pageId/field", createField);
     app.put("/api/project/page/:pageId/field/:fieldId", updateFieldById);
     app.put("/api/project/:pageId/field",sortField);
+    app.post ("/api/upload", upload.single('myFile'), uploadImage);
+
 
 
     function findPageFields(req,res){
@@ -79,5 +86,45 @@ module.exports = function(app,fieldModel) {
             });
         }
     }
+
+
+    function uploadImage(req, res) {
+
+        var username      = req.user.username;
+        var pageId        = req.body.pageId;
+        var fieldId      = req.body.fieldId;
+        var width         = req.body.width;
+        var myFile        = req.file;
+
+        var destination   = myFile.destination;
+        var path          = myFile.path;
+        var originalname  = myFile.originalname;
+        var size          = myFile.size;
+        var mimetype      = myFile.mimetype;
+        var filename      = myFile.filename;
+
+        pageModel.getMongooseModel()
+            .findById(pageId)
+            .then(
+                function(page) {
+                    var widget = page._id(pageId).field._id(fieldId);
+                    widget.image.url = "/uploads/"+filename;//originalname;
+                    widget.image.width = width;
+                    return application.save();
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            )
+            .then(
+                function(){
+                    res.redirect("/#/user/"+currentUser.username+"/page/"+pageId+"/field");
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
 
 };
