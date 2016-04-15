@@ -8,6 +8,8 @@ module.exports = function () {
     var LinkSchema= require("./link.schema.server.js")();
     var HtmlSchema= require("./html.schema.server.js")();
     var YouTubeSchema   = require("./youtube.schema.server.js")();
+    var ButtonSchema   = require("./button.schema.server.js")();
+
 
 
     var FieldSchema = mongoose.Schema({
@@ -22,7 +24,8 @@ module.exports = function () {
         textArea:   TextAreaSchema,
         html    :   HtmlSchema,
         link    :   LinkSchema,
-        youTube :   YouTubeSchema
+        youTube :   YouTubeSchema,
+        Button  :   ButtonSchema
     });
     return FieldSchema;
 };

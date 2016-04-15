@@ -17,8 +17,6 @@
                 <br>
                 <div ng-hide="model.IsHidden" class="pull-right">http://webdev2016-beeramsravani.rhcloud.com/project/client/index.html#/user/{{currentUser.username}}/page/{{model.page._id}}/share</div>
 
-                </div>
-
                 <div class="form-horizontal ">
                     <div ng-model="model.fields" jga-sortable jga-sortable-callback = "model.sortField(start,end)">
                         <div class="row form-group" ng-repeat="field in model.fields track by $index">
@@ -75,7 +73,7 @@
                                     </div>
 
                                     <div ng-switch-when="BUTTON">
-                                        <button class="btn btn-primary">{{field.label}}</button>
+                                        <a href="#/user/{{currentUser.username}}/page/{{field.Button.link}}/share" class="btn btn-block" ng-class="model.getButtonClass(field.Button.style)" target="_blank">{{field.label}}</a>
                                     </div>
 
                                     <div ng-switch-when="LINK">
@@ -139,7 +137,7 @@
     </div>
 
     <div id="editField" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-color">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss ="modal">&times;</button>
@@ -256,6 +254,26 @@
                            <br>
                            <label>Dropdown Options</label>
                            <textarea ng-model="model.options" class="form-control" placeholder="Edit Options"></textarea>
+                        </div>
+
+                        <div ng-switch-when="BUTTON">
+                            <label>Label</label>
+                            <input ng-model = "model.label" class="form-control" type="text" placeholder="Edit Label">
+                            <br>
+                            <label>Style</label>
+                            <select ng-model="model.Button.style" class="form-control">
+                                <option>Default</option>
+                                <option>Primary</option>
+                                <option>Success</option>
+                                <option>Info</option>
+                                <option>Warning</option>
+                                <option>Danger</option>
+                            </select>
+                            <br>
+                            <label>Navigation Page</label>
+                            <select ng-options="page as page.title for page in model.pages track by page._id"
+                                    ng-model="model.Button.link" class="form-control">
+                            </select>
                         </div>
 
                         <div ng-switch-when="YOUTUBE" class="form-group">

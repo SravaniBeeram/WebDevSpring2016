@@ -7,6 +7,8 @@
     function PageDetailsController(FieldService,PageService,$routeParams,$rootScope,$sce) {
         var vm = this;
 
+        vm.$sce = $sce;
+
         var pageId;
         vm.currentField = null;
         vm.fieldEdit=null;
@@ -19,6 +21,7 @@
         vm.trustAsHtml= trustAsHtml;
         vm.safeYouTubeUrl = safeYouTubeUrl;
         vm.ShowHide = ShowHide;
+        vm.getButtonClass=getButtonClass;
         vm.IsHidden = true;
 
         var currentUser =$rootScope.currentUser;
@@ -45,6 +48,14 @@
             console.log(vm.IsHidden);
             vm.IsHidden = vm.IsHidden? false : true;
             console.log(vm.IsHidden);
+        }
+
+        function getButtonClass(style){
+            console.log("button class");
+            if(!style){
+                style = "default";
+            }
+            return "btn-"+style.toLowerCase();
         }
 
         function updatePage(start,end){
@@ -84,7 +95,15 @@
                     vm.page = response.data;
                 },function(err){
                     console.log(err);
-                })
+                });
+
+            PageService.findPageById($rootScope.currentUser._id)
+                .then(function(response)
+                {
+                    vm.pages = response.data;
+                },function(err){
+                    console.log(err);
+                });
 
         }init();
 
@@ -147,6 +166,10 @@
                 vm.fieldEdit.youTube= vm.youTube;
             }
 
+            if(vm.Button != null){
+                vm.fieldEdit.Button = vm.Button;
+            }
+
             FieldService.updateField(pageId,vm.fieldEdit._id,vm.fieldEdit)
                 .then(init());
             vm.label = null;
@@ -156,6 +179,7 @@
             vm.html = null;
             vm.image = null;
             vm.youTube = null;
+            vm.Button = null;
         }
 
         function deleteField(fieldId){
@@ -172,10 +196,6 @@
 
                 case "HEADER":
                     field = {"label": "New Header", "type": "HEADER","header":null};
-                    break;
-
-                case "BUTTON":
-                    field = {"label": "New Button", "type": "BUTTON"};
                     break;
 
                 case "PARAGRAPH":
@@ -208,6 +228,10 @@
 
                 case "DATE":
                     field = {"label": "New Date Field", "type": "DATE"};
+                    break;
+
+                case "BUTTON":
+                    field = {"label": "New Button Field" , "type":"BUTTON","Button": null};
                     break;
 
                 case "LIST":

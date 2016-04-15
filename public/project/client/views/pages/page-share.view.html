@@ -1,14 +1,18 @@
 <style>
     body {
         padding-top: 10px;
-        padding-bottom: 20px;
+        padding-bottom:20px;
         padding-left:50px;
         padding-right:50px;
     }
 
 </style>
 
-<div ng-repeat="field in model.fields track by $index">
+<div>
+    <a>hello</a>
+</div>
+
+<div ng-repeat="field in model.fields">
     <br>
     <div ng-switch on="field.type" >
 
@@ -61,8 +65,9 @@
         </div>
 
         <div ng-switch-when="BUTTON">
-            <button class="btn btn-primary">{{field.label}}</button>
+            <a href="#/user/{{currentUser.username}}/page/{{field.Button.link}}/share" class="btn btn-block" ng-class="model.getButtonClass(field.Button.style)" target="_blank">{{field.label}}</a>
         </div>
+
 
         <div ng-switch-when="LINK">
             <a href="{{field.link.url}}" target="_blank">{{field.label}}</a>
