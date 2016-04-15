@@ -83,7 +83,7 @@
 
             .when ("/user/:username/page/:pageId/share", {
                 templateUrl: "views/pages/page-share.view.html",
-                controller: "PageDetailsController",
+                controller: "PageShareController",
                 controllerAs: "model"
             })
 

@@ -8,11 +8,7 @@
 
 </style>
 
-<div>
-    <a>hello</a>
-</div>
-
-<div ng-repeat="field in model.fields">
+<div ng-repeat="field in model.fields track by $index" ng-controller="PageShareController as model">
     <br>
     <div ng-switch on="field.type" >
 
