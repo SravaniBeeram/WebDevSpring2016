@@ -51,7 +51,6 @@
         }
 
         function getButtonClass(style){
-            console.log("button class");
             if(!style){
                 style = "default";
             }
@@ -107,11 +106,16 @@
 
         }init();
 
-        function editField(field){
-            vm.fieldEdit = field;
-            vm.label = field.label;
+        function editField(newField){
+            vm.fieldEdit = newField;
+            vm.label = newField.label;
             var optionsString = "";
-            var op =field.options;
+            var op =newField.options;
+            vm.image= {};
+            vm.textArea={};
+            vm.html={};
+            vm.youTube={};
+            vm.Button={};
 
             if(op){
                 var optionList = [];
@@ -123,8 +127,34 @@
                 optionsString = optionsString.substring(0, optionsString.length - 1);
                 vm.options = optionsString;
             }
-            if(field.placeholder){
-                vm.placeholder = field.placeholder;
+
+            if(newField.image){
+                vm.image.url = newField.image.url;
+                vm.image.width = newField.image.width;
+            }
+
+            if(newField.placeholder){
+                vm.fieldEdit.placeholder = newField.placeholder;
+            }
+
+            if(newField.textArea){
+                vm.textArea.rows = newField.textArea.rows ;
+                vm.textArea.placeholder = newField.textArea.placeholder ;
+            }
+
+            if(newField.html){
+                vm.html.text = newField.html.text;
+            }
+
+            if(newField.youTube){
+                vm.youTube.url = newField.youTube.url;
+                vm.youTube.width=newField.youTube.width;
+            }
+
+            if(newField.Button){
+                vm.Button.style = newField.Button.style ;
+                vm.Button.link = newField.Button.link ;
+
             }
         }
 
@@ -151,16 +181,13 @@
                 vm.fieldEdit.textArea = vm.textArea;
             }
 
-
             if(vm.html != null){
-                vm.fieldEdit.html.text = vm.html.text;
+                vm.fieldEdit.html = vm.html;
             }
 
             if(vm.image != null){
                 vm.fieldEdit.image= vm.image;
             }
-
-            console.log(vm.youTube);
 
             if(vm.youTube != null){
                 vm.fieldEdit.youTube= vm.youTube;

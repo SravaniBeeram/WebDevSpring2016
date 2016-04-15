@@ -102,6 +102,7 @@
 
                                     <div ng-switch-when="OPTIONS">
                                         <label>{{field.label}}</label>
+                                        <br>
                                         <select>
                                             <option ng-repeat="option in field.options track by $index">{{option.label}}</option>
                                         </select>
@@ -187,11 +188,11 @@
                             <input ng-model="model.image.width" class="form-control"/>
                             <br>
                             <label>Upload</label>
-                            <form action="/api/upload"
+                            <form action="/api/user/upload"
                                   method="post"
                                   enctype="multipart/form-data">
                                 <input name="pageId" value="{{model.page._id}}" style="display: none"/>
-                                <input name="widgetId" value="{{model.fieldEdit._id}}" style="display: none"/>
+                                <input name="fieldId" value="{{model.fieldEdit._id}}" style="display: none"/>
                                 <input name="width" value="{{model.fieldEdit.image.width}}" style="display: none"/>
                                 <input  type="file" name="myFile" class="form-control"/>
                                 <button type="submit" class="btn btn-block btn-primary">

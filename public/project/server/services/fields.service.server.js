@@ -2,7 +2,7 @@ module.exports = function(app,fieldModel,pageModel) {
 
 
     var multer  = require('multer');
-    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+    var upload = multer({ dest: __dirname+'/../../../../public/uploads' });
 
     app.get("/api/project/page/:pageId/field", findPageFields);
     app.get("/api/project/page/:pageId/field/:fieldId", findFieldsById);
@@ -10,8 +10,7 @@ module.exports = function(app,fieldModel,pageModel) {
     app.post("/api/project/page/:pageId/field", createField);
     app.put("/api/project/page/:pageId/field/:fieldId", updateFieldById);
     app.put("/api/project/:pageId/field",sortField);
-    app.post ("/api/upload", upload.single('myFile'), uploadImage);
-
+    app.post ("/api/user/upload", upload.single('myFile'), uploadImage);
 
 
     function findPageFields(req,res){
@@ -89,6 +88,13 @@ module.exports = function(app,fieldModel,pageModel) {
 
 
     function uploadImage(req, res) {
+
+
+        console.log("image user-server" +req.user.username);
+        console.log("image page-server" +req.body.pageId);
+        console.log("image field-server" +req.body.fieldId);
+        console.log("image width-server" +req.body.width);
+
 
         var username      = req.user.username;
         var pageId        = req.body.pageId;
