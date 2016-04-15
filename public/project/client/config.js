@@ -87,6 +87,12 @@
                 controllerAs: "model"
             })
 
+            .when ("/page/:pageId/share", {
+                templateUrl: "views/pages/page-share.view.html",
+                controller: "PageShareController",
+                controllerAs: "model"
+            })
+
             .otherwise({
                 redirectTo: "home"
             })
