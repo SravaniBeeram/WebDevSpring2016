@@ -1,120 +1,107 @@
-<style>
-    body {
-        padding-top: 10px;
-        padding-bottom: 20px;
-        padding-left:50px;
-        padding-right:50px;
-    }
-    .jga-close {
-        float: right;
-        text-align: center;
-    }
-</style>
+<div class="preview-style">
+    <a href="#/page/{{model.page._id}}/field" class="button-close btn btn-success">close</a>
+    <br><br><br>
 
+    <div ng-repeat="field in model.fields track by $index">
+        <br>
+            <div ng-switch on="field.type" >
 
-<a href="#/page/{{model.page._id}}/field" class="jga-close btn btn-primary">close</a>
-<br>
-<br>
-
-<div ng-repeat="field in model.fields track by $index">
-    <br>
-        <div ng-switch on="field.type" >
-
-            <div ng-switch-when = "HEADER">
-                <h1 ng-if="field.header.size===1">
-                    {{field.label}}
-                </h1>
-                <h2 ng-if="!field.header.size || widget.header.size===2">
-                    {{field.label}}
-                </h2>
-                <h3 ng-if="field.header.size===3">
-                    {{field.label}}
-                </h3>
-                <h4 ng-if="field.header.size===4">
-                    {{field.label}}
-                </h4>
-                <h5 ng-if="field.header.size===5">
-                    {{field.label}}
-                </h5>
-                <h6 ng-if="field.header.size===6">
-                    {{field.label}}
-                </h6>
-            </div>
-
-            <div ng-switch-when = "LIST">
-                <ul><li ng-repeat="item in field.options">{{item.label}}</li></ul>
-            </div>
-
-            <div ng-switch-when = "PARAGRAPH">
-                <p align="justify">{{field.placeholder}}</p>
-            </div>
-
-            <div ng-switch-when = "LABEL">
-                <label>{{field.label}}</label>
-            </div>
-
-            <div ng-switch-when="IMAGE">
-                <label>{{field.label}}</label><br>
-                <img ng-src="{{field.image.url}}" width="{{field.image.width}}"/>
-            </div>
-
-            <div ng-switch-when="YOUTUBE">
-                <label>{{field.label}}</label>
-                <br>
-                <iframe ng-src="{{model.safeYouTubeUrl(field)}}"
-                        width="{{field.youTube.width}}"
-                        frameborder="0"
-                        allowfullscreen>
-                </iframe>
-            </div>
-
-            <div ng-switch-when="BUTTON">
-                <a href="#/user/{{currentUser.username}}/page/{{field.Button.link}}/share" class="btn btn-block" ng-class="model.getButtonClass(field.Button.style)" target="_blank">{{field.label}}</a>
-            </div>
-
-            <div ng-switch-when="LINK">
-                <a href="{{field.link.url}}" target="_blank">{{field.label}}</a>
-            </div>
-
-            <div ng-switch-when="HTML">
-                <label>{{field.label}}</label>
-                <div ng-bind-html="model.trustAsHtml(field.html.text)"></div>
-            </div>
-
-            <div ng-switch-when="TEXT">
-                <label>{{field.label}}</label>
-                <input type="text" class="form-control" placeholder="{{field.placeholder}}">
-            </div>
-
-            <div ng-switch-when="TEXTAREA">
-                <label>{{field.label}}</label>
-                <textarea class="form-control" rows={{field.textArea.rows}} placeholder="{{field.textArea.placeholder}}"></textarea>
-            </div>
-
-            <div ng-switch-when="DATE">
-                <label>{{field.label}}</label>
-                <input type="date" class="form-control">
-            </div>
-
-            <div ng-switch-when="OPTIONS">
-                <label>{{field.label}}</label>
-                <select>
-                    <option ng-repeat="option in field.options track by $index">{{option.label}}</option>
-                </select>
-            </div>
-
-            <div ng-switch-when="CHECKBOXES">
-                <label>{{field.label}}</label>
-                <div ng-repeat="option in field.options track by $index">
-                    <input type="checkbox" value="{{option.value}}">{{option.label}}
+                <div ng-switch-when = "HEADER">
+                    <h1 ng-if="field.header.size===1">
+                        {{field.label}}
+                    </h1>
+                    <h2 ng-if="!field.header.size || widget.header.size===2">
+                        {{field.label}}
+                    </h2>
+                    <h3 ng-if="field.header.size===3">
+                        {{field.label}}
+                    </h3>
+                    <h4 ng-if="field.header.size===4">
+                        {{field.label}}
+                    </h4>
+                    <h5 ng-if="field.header.size===5">
+                        {{field.label}}
+                    </h5>
+                    <h6 ng-if="field.header.size===6">
+                        {{field.label}}
+                    </h6>
                 </div>
-            </div>
 
-            <div ng-switch-when="RADIOS">
-                <label>{{field.label}}</label>
-                <div ng-repeat="option in field.options track by $index">
-                    <input type="radio" value="{{option.value}}">{{option.label}}
+                <div ng-switch-when = "LIST">
+                    <ul><li ng-repeat="item in field.options">{{item.label}}</li></ul>
                 </div>
-            </div>
+
+                <div ng-switch-when = "PARAGRAPH">
+                    <p align="justify">{{field.placeholder}}</p>
+                </div>
+
+                <div ng-switch-when = "LABEL">
+                    <label>{{field.label}}</label>
+                </div>
+
+                <div ng-switch-when="IMAGE">
+                    <label>{{field.label}}</label><br>
+                    <img ng-src="{{field.image.url}}" width="{{field.image.width}}"/>
+                </div>
+
+                <div ng-switch-when="YOUTUBE">
+                    <label>{{field.label}}</label>
+                    <br>
+                    <iframe ng-src="{{model.safeYouTubeUrl(field)}}"
+                            width="{{field.youTube.width}}"
+                            frameborder="0"
+                            allowfullscreen>
+                    </iframe>
+                </div>
+
+                <div ng-switch-when="BUTTON">
+                    <a href="#/user/{{currentUser.username}}/page/{{field.Button.link}}/share" class="btn btn-block" ng-class="model.getButtonClass(field.Button.style)" target="_blank">{{field.label}}</a>
+                </div>
+
+                <div ng-switch-when="LINK">
+                    <a href="{{field.link.url}}" target="_blank">{{field.label}}</a>
+                </div>
+
+                <div ng-switch-when="HTML">
+                    <label>{{field.label}}</label>
+                    <div ng-bind-html="model.trustAsHtml(field.html.text)"></div>
+                </div>
+
+                <div ng-switch-when="TEXT">
+                    <label>{{field.label}}</label>
+                    <input type="text" class="form-control" placeholder="{{field.placeholder}}">
+                </div>
+
+                <div ng-switch-when="TEXTAREA">
+                    <label>{{field.label}}</label>
+                    <textarea class="form-control" rows={{field.textArea.rows}} placeholder="{{field.textArea.placeholder}}"></textarea>
+                </div>
+
+                <div ng-switch-when="DATE">
+                    <label>{{field.label}}</label>
+                    <input type="date" class="form-control">
+                </div>
+
+                <div ng-switch-when="OPTIONS">
+                    <label>{{field.label}}</label>
+                    <select class="table-entry">
+                        <option ng-repeat="option in field.options track by $index">{{option.label}}</option>
+                    </select>
+                </div>
+
+                <div ng-switch-when="CHECKBOXES">
+                    <label>{{field.label}}</label>
+                    <div ng-repeat="option in field.options track by $index">
+                        <input type="checkbox" value="{{option.value}}">{{option.label}}
+                    </div>
+                </div>
+
+                <div ng-switch-when="RADIOS">
+                    <label>{{field.label}}</label>
+                    <div ng-repeat="option in field.options track by $index">
+                        <input type="radio" value="{{option.value}}">{{option.label}}
+                    </div>
+                </div>
+        </div>
     </div>
 </div>

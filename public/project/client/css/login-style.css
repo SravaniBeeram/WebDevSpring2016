@@ -11,6 +11,10 @@
   box-sizing: border-box;
 }
 
+.login-style{
+    padding-top: 100px;!important;
+}
+
 .wrapper {
   display: flex;
   align-items: center;
@@ -19,6 +23,25 @@
   width: 100%;
   min-height: 100%;
   padding: 150px;
+}
+
+.login-style{
+    padding-top: 0;
+}
+
+@media(max-width:768px) {
+    .login-style{
+        padding-top: 170px;
+    }
+}
+
+@media(max-width:767px) {
+.wrapper{
+    padding:0;     !important;
+    padding-left: 10px; !important;
+    padding-right: 10px;!important;
+
+}
 }
 
 .login {

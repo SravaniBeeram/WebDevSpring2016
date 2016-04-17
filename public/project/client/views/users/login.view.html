@@ -1,13 +1,17 @@
-<div class="wrapper">
-    <form class="login">
-        <p class="title">Log in</p>
-        <input  type="text" ng-model="model.user.username"  placeholder="Username" autofocus/>
-        <i class="fa fa-user"></i>
-        <input  type="password" placeholder="Password" ng-model="model.user.password" autofocus/>
-        <i class="fa fa-key"></i>
-       <!-- <a href="#">Forgot your password?</a>-->
-        <button ng-click="model.login(model.user)">
-            <span class="state">Let me in</span>
-        </button>
-    </form>
+<div class="login-style">
+    <div class="wrapper">
+        <form class="login">
+            <p class="title">Log in</p>
+            <input  type="text" ng-model="model.user.username"  placeholder="Username" autofocus/>
+            <i class="fa fa-user"></i>
+            <input  type="password" placeholder="Password" ng-model="model.user.password" autofocus/>
+            <i class="fa fa-key"></i>
+           <!-- <a href="#">Forgot your password?</a>-->
+            <button ng-click="model.login(model.user)">
+                <span class="state">Let me in</span>
+            </button>
+        </form>
+    </div>
 </div>
+
+

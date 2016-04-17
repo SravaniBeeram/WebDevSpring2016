@@ -25,15 +25,20 @@ body {
 
 /* Home Page Carousel */
 
-.home-padding
+.home-styling
 {
-    padding-top: 300px; !important;
+    padding-top: 200px; !important;
 }
+
+@media(max-width:768px) {
+    .home-styling{
+        padding-top: 350px;
+    }
+}
+
 header.carousel {
     height: 50%;  !important;
 }
-
-
 
 header.carousel .item,
 header.carousel .item.active,
@@ -51,6 +56,10 @@ header.carousel .fill {
 
 .panel-default > .panel-heading {
     background-color: #40A46F;  !important;
+}
+
+.panel.body{
+    color: black; !important;
 }
 
 
