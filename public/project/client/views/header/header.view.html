@@ -19,9 +19,11 @@
 
                 <li ng-class="{'active': $location.url() == '/profile'}">
                     <a href="#/profile"><span class="glyphicon glyphicon-list-alt"></span> Profile</a></li>
+                <br>
 
                 <li ng-class="{'active': $location.url() == '/pages'}">
                     <a href="#/pages"><span class="glyphicon glyphicon-file"></span> My Pages</a></li>
+                <br>
 
                 <li ng-show= "currentUser">
                     <a href="#/home" ng-click="model.logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
