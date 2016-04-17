@@ -136,3 +136,10 @@ ul.alert-dropdown {
 .side-nav>li>ul>li>a:hover {
     color: #fff;
 }
+
+.dropdown-menu>.active>a,
+.dropdown-menu>.active>a:focus,
+.dropdown-menu>.active>a:hover{
+    background-color: #40A46F; !important;
+}
+

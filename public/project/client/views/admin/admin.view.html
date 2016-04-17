@@ -1,4 +1,4 @@
-<div ng-controller = "adminController">
+<div ng-controller = "adminController" class="admin-style">
     <h1 align="center">Registered Users</h1>
     <br>
 
@@ -7,32 +7,32 @@
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead class="table-head">
-                <td><a href="" ng-click="sortType='username'; sortReverse = !sortReverse">
+                <td><a class="anchor-color" href="" ng-click="sortType='username'; sortReverse = !sortReverse">
                     <span ng-show = "sortType == 'username' &&  !sortReverse" class="glyphicon glyphicon-triangle-top"></span>
                     <span ng-show = "sortType == 'username' &&   sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
                     Username
                 </a>
                 </td>
 
-                <td><a>Password</a></td>
+                <td><a class="anchor-color">Password</a></td>
 
-                <td><a href="" ng-click="sortType='firstName'; sortReverse = !sortReverse">
+                <td><a class="anchor-color" href="" ng-click="sortType='firstName'; sortReverse = !sortReverse">
                     <span ng-show = "sortType == 'firstName' &&  !sortReverse" class="glyphicon glyphicon-triangle-top"></span>
                     <span ng-show = "sortType == 'firstName' &&   sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
                     First Name
                 </a>
                 </td>
 
-                <td><a href="" ng-click="sortType='lastName'; sortReverse = !sortReverse">
+                <td><a class="anchor-color" href="" ng-click="sortType='lastName'; sortReverse = !sortReverse">
                     <span ng-show = "sortType == 'lastName' && !sortReverse" class="glyphicon glyphicon-triangle-top"></span>
                     <span ng-show = "sortType == 'lastName' &&  sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
                     Last Name
                 </a>
                 </td>
 
-                <td><a>Role</a></td>
+                <td><a class="anchor-color">Role</a></td>
 
-                <td><a>Action</a></td>
+                <td><a class="anchor-color">Action</a></td>
             </thead>
 
             <tr class="table-entry">

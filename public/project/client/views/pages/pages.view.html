@@ -1,4 +1,4 @@
-<div ng-controller = "PageController" class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-1">
+<div ng-controller = "PageController" class="pages-style">
     <h1 align="center"> My Pages</h1>
     <br>
 
@@ -19,7 +19,7 @@
             </tr>
 
             <tr ng-repeat="page in model.pages" class="table-row">
-                <td><a href="#/page/{{page._id}}/field">{{page.title}}</a></td>
+                <td><a class="anchor-color" href="#/page/{{page._id}}/field">{{page.title}}</a></td>
                 <td class="text-nowrap"><a ng-click="model.deletePage($index)"><span class="glyphicon glyphicon-remove btn btn-danger"></span></a>
                                         <a ng-click="model.selectPage($index)"><span class="glyphicon glyphicon-cog btn btn-warning"></span></a>
                 </td>

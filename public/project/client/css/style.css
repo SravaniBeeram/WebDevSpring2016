@@ -36,10 +36,45 @@ font-size: 20px;
     .mobile-check{
         padding-top:40px;
     }
+    .mobile-width{
+        width: 50%; !important;
+    }
+
 }
 
 .modal-color{
     color: black;
 }
+
+.field-style{
+    padding-right: 50px;
+}
+
+.pages-style{
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+@media(max-width:768px) {
+    .pages-style{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+}
+
+.anchor-color{
+    color:#40A46F;
+}
+
+.admin-style{
+    padding-left: 40px;
+    padding-right:40px;
+}
+
+.no-style{
+    
+}
+
 
 
