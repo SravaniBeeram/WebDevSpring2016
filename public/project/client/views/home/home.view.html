@@ -1,46 +1,41 @@
+
 <body>
+
+<!-- Navigation -->
+
 <div class="home-styling">
+    <div id = "myCarousel" class = "carousel slide">
 
-<!-- Header Carousel -->
-<header id="myCarousel" class="carousel slide">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
+        <!-- Carousel indicators
+        <ol class = "carousel-indicators">
+            <li data-target = "#myCarousel" data-slide-to = "0" class = "active"></li>
+            <li data-target = "#myCarousel" data-slide-to = "1"></li>
+            <li data-target = "#myCarousel" data-slide-to = "2"></li>
+        </ol>-->
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-        <div class="item active">
-            <div class="fill" style="background-image:url('http://www.gettyimages.pt/gi-resources/images/Homepage/Hero/PT/PT_hero_42_153645159.jpg')"></div>
-            <div class="carousel-caption">
-                <h2>Caption 1</h2>
+        <!-- Carousel items -->
+        <div class = "carousel-inner">
+            <div class = "item active image-styling">
+                <img src = "img/2.jpg" alt = "First slide">
             </div>
-        </div>
-        <div class="item">
-            <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Two');"></div>
-            <div class="carousel-caption">
-                <h2>Caption 2</h2>
+
+            <div class = "item image-styling">
+                <img src = "img/1.jpg" alt = "Second slide">
             </div>
-        </div>
-        <div class="item">
-            <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div>
-            <div class="carousel-caption">
-                <h2>Caption 3</h2>
+
+            <div class = "item image-styling">
+                <img src = "img/5.jpg" alt = "Third slide">
             </div>
         </div>
     </div>
-
-
-</header>
+</div>
 
 <!-- Page Content -->
 <div class="container">
 
     <!-- Marketing Icons Section -->
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 ">
             <h1 class="page-header">
                 Welcome to Webpage Editor
             </h1>
@@ -52,7 +47,7 @@
                 </div>
                 <div class="panel-body">
                     <p class="table-entry">Create Mockups,Web pages and Web apps easily.You can create multiple web pages and also navigate between different pages.Upload images and youtube videos.
-                       Editor to upload HTML code on your pages.And it's Mobile Friendly!!!!</p>
+                        Editor to upload HTML code on your pages.And it's Mobile Friendly!!!!</p>
                 </div>
             </div>
         </div>
@@ -63,8 +58,8 @@
                     <h4><i class="fa fa-fw fa-compass"></i>Easy to Use</h4>
                 </div>
                 <div class="panel-body">
-                    <p class="table-entry">Very easy to create and edit your webpages.Click on the widget you would like to embed in your webpage.Doesn't like it? No problem!! you can delete it.You can also change
-                    the order of your widgets by just dragging them.</p>
+                    <p class="table-entry">Very easy to create and edit your webpages.Click on the widget you would like to embed in your webpage and edit it accordingly.Doesn't like it? No problem!!
+                        you can delete it.You can also change the order of your widgets by just dragging them.</p>
                 </div>
             </div>
         </div>
@@ -76,22 +71,22 @@
                 </div>
                 <div class="panel-body">
                     <p class="table-entry">As soon as you add or edit a widget, see result instantly.You can preview your web page to check the outcome of your webpage.
-                       You can also share your webpage.Clicking on share generates a URL which allows anyone to see your webpage.</p>
+                        You can also share your webpage.Clicking on share generates a URL which allows anyone to see your webpage.</p>
                 </div>
             </div>
         </div>
 
     </div>
     <!-- /.row -->
-
 </div>
+
+<!-- /.container -->
 
 <!-- Script to Activate the Carousel -->
 <script>
     $('.carousel').carousel({
-        interval: 5000 //changes the speed
+        interval: 3000 //changes the speed
     })
 </script>
-</div>
 </body>
 

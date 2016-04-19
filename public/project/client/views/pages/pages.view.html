@@ -6,7 +6,7 @@
 
     <div class="table-responsive">
         <table class="table table-bordered">
-            <tr class="table-head">
+            <tr class="table-head anchor-color">
                 <th>Page Name</th>
                 <th>Action</th>
             </tr>
@@ -19,7 +19,7 @@
             </tr>
 
             <tr ng-repeat="page in model.pages" class="table-row">
-                <td><a class="anchor-color" href="#/page/{{page._id}}/field">{{page.title}}</a></td>
+                <td><a href="#/page/{{page._id}}/field">{{page.title}}</a></td>
                 <td class="text-nowrap"><a ng-click="model.deletePage($index)"><span class="glyphicon glyphicon-remove btn btn-danger"></span></a>
                                         <a ng-click="model.selectPage($index)"><span class="glyphicon glyphicon-cog btn btn-warning"></span></a>
                 </td>

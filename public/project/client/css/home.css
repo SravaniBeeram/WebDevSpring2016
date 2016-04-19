@@ -1,0 +1,43 @@
+.home-styling
+{
+    padding-top: 0; !important;
+}
+
+.carousel{
+    height: 380px;
+    padding-bottom: 0;!important;
+    margin-bottom: 0;!important;
+}
+
+.image-styling{
+    width:100%;
+    height: inherit; !important;
+    background-size: cover;
+    overflow-y: hidden;
+}
+
+.panel-default > .panel-heading {
+    background-color: #40A46F;  !important;
+}
+
+
+.header-style{
+    color:#40A46F ;
+}
+
+
+@media(max-width:768px) {
+.home-styling{
+    padding-top: 100px; !important;
+    padding-bottom: 0; !important;
+ }
+    .carousel{
+        height: 100%;
+    }
+}
+
+.page-header{
+    color: #40A46F; !important;
+    font-size: 40px;
+    font-weight: bold;
+}

@@ -26,7 +26,7 @@
                             <br>
                                 <div ng-switch on="field.type" >
                                     <div ng-switch-when = "HEADER">
-                                            <div class="input-group">
+                                            <div class="input-group text-nowrap">
                                                 <h1 ng-if="field.header.size===1">
                                                     {{field.label}}
                                                 </h1>
@@ -52,14 +52,14 @@
 
                                     <div ng-switch-when = "LIST">
                                         <div class="input-group">
-                                            <ul class="col-sm-4"><li ng-repeat="item in field.options">{{item.label}}<br></li></ul>
+                                            <ul><li ng-repeat="item in field.options">{{item.label}}<br></li></ul>
                                             <div class="input-group-btn" ng-include="'views/pages/buttons.view.html'"></div>
                                         </div>
                                     </div>
 
                                     <div ng-switch-when = "PARAGRAPH">
                                         <div class="input-group">
-                                            <p align="justify" class="col-sm-4">{{field.placeholder}}</p>
+                                            <p>{{field.placeholder}}</p>
                                             <div class="input-group-btn" ng-include="'views/pages/buttons.view.html'"></div>
                                         </div>
                                     </div>

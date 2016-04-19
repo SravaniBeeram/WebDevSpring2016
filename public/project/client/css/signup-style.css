@@ -201,7 +201,8 @@ width:70%;
 
 .profile-style{
     padding-left: 250px;
-    padding-right:30px
+    padding-right:30px;
+    padding-top: 70px;
 }
 
 .password-width{
@@ -213,16 +214,47 @@ width:70%;
         padding-left: 40px;
         padding-right:10px;
         padding-bottom:50px;
-        padding-top: 50px;
+        padding-top: 100px;
     }
     .password-width{
         width:88% !important
+    }
+    .submit-btn{
+        padding-right: 48px;
     }
 }
 
 .title-size{
     font-size: 30px;
 }
+
+.submit-btn{
+    text-align: center;
+    padding-right: 60px;
+}
+input[type=submit-btn] {
+    padding: 17px 30px;
+    color: #fff;
+    float: right;
+    background: #40A46F;
+    border: 1px solid #40A46F;
+    cursor: pointer;
+    font-size: 17px;
+    transition: all 0.5s ease-out;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -ms-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    outline:none;
+    width: 100%;
+    height:50px;
+    -webkit-appearance: none;
+}
+.submit-btn input[type=submit-btn]:hover {
+    background:#07793D;
+    border:1px solid #07793D;
+}
+
 
 
 
