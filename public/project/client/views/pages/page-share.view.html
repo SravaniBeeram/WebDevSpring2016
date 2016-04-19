@@ -1,13 +1,4 @@
-<style>
-    body {
-        padding-top: 10px;
-        padding-bottom:20px;
-        padding-left:50px;
-        padding-right:50px;
-    }
-
-</style>
-
+<div class="preview-style">
 <div ng-repeat="field in model.fields track by $index" ng-controller="PageShareController as model">
     <br>
     <div ng-switch on="field.type" >
@@ -110,4 +101,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>
