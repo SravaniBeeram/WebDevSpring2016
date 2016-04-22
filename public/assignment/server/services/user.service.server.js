@@ -5,7 +5,7 @@ var bcrypt = require("bcrypt-nodejs");
 module.exports = function(app,userModel){
 
     var auth = authorized;
-    app.post('/api/assignment/login', passport.authenticate('assignment'), login);
+    app.post('/api/assignment/login', passport.authenticate('local'), login);
     app.post('/api/assignment/logout',logout);
     app.get('/api/assignment/loggedin',loggedin);
     app.post('/api/assignment/register',register);
@@ -15,7 +15,7 @@ module.exports = function(app,userModel){
     app.put("/api/assignment/admin/user/:userId",auth,updateUser);
     app.delete("/api/assignment/admin/user/:userId",auth,deleteUserById);
 
-    passport.use('assignment',new LocalStrategy(localStrategy));
+    passport.use('local',new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
