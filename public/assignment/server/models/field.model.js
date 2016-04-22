@@ -14,7 +14,6 @@ module.exports = function(form){
     return api;
 
     function createField(formId,newField){
-        console.log("create - model");
         var deferred = q.defer();
         form.findById(formId,
             function (err, doc) {

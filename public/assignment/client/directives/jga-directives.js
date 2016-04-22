@@ -8,6 +8,7 @@
         function link(scope, element, attrs) {
             var start = null;
             var end = null;
+            console.log(element);
             $(element)
                 .sortable({
                     axis: "y",
