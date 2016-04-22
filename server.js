@@ -23,7 +23,7 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 }
 var db = mongoose.connect(connectionString);
 app.use(session({
-    secret: "sravani",
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true
 }));
