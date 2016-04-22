@@ -61,7 +61,7 @@ module.exports = function(app,userModel){
         res.json(user);
     }
 
-    function loggedin(req, res) {
+    function loggedin(req,res) {
         res.send(req.isAuthenticated() ? req.user : '0');
     }
 
