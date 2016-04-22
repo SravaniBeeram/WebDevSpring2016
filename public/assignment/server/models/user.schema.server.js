@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-
+console.log("schema");
 module.exports = function () {
     var UserSchema = mongoose.Schema({
         username:String,

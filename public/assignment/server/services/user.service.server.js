@@ -7,7 +7,7 @@ module.exports = function(app,userModel){
     var auth = authorized;
     app.post('/api/assignment/login', passport.authenticate('assignment'), login);
     app.post('/api/assignment/logout',logout);
-    app.get('/api/user/assignment/loggedin',loggedin);
+    app.get('/api/assignment/loggedin',loggedin);
     app.post('/api/assignment/register',register);
     app.post("/api/assignment/admin/user",auth,createUser);
     app.get("/api/assignment/admin/user",auth,allUsers);
