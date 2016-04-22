@@ -14,14 +14,11 @@ module.exports = function (app,db) {
         deletePageById: deletePageById,
         updatePageById: updatePageById,
         findPageById:findPageById,
-        getMongooseModel: getMongooseModel
     };
 
     return api;
 
-    function getMongooseModel(){
-        return page;
-    }
+
 
     function findPageById(pageId){
         return page.findById(pageId);

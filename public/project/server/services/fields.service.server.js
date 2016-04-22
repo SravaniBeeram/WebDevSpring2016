@@ -109,13 +109,15 @@ module.exports = function(app,fieldModel,pageModel) {
         var mimetype      = myFile.mimetype;
         var filename      = myFile.filename;
 
-        pageModel.getMongooseModel()
+        fieldModel.getMongooseModel()
             .findById(pageId)
             .then(
                 function(page) {
+                    console.log("check1");
                     var widget = page._id(pageId).field._id(fieldId);
                     widget.image.url = "/uploads/"+filename;//originalname;
                     widget.image.width = width;
+                    console.log(widget.image.url);
                     return application.save();
                 },
                 function(err) {
@@ -124,6 +126,7 @@ module.exports = function(app,fieldModel,pageModel) {
             )
             .then(
                 function(){
+                    console.log("redirect");
                     res.redirect("/#/user/"+currentUser.username+"/page/"+pageId+"/field");
                 },
                 function(err) {

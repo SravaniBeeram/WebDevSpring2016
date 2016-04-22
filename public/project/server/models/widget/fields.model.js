@@ -8,10 +8,16 @@ module.exports = function(page){
         updateField:updateField,
         findFieldByPageId:findFieldByPageId,
         findPageFields:findPageFields,
-        sortField:sortField
+        sortField:sortField,
+        getMongooseModel: getMongooseModel
     };
 
     return api;
+
+    function getMongooseModel(){
+        console.log("hello");
+        return page;
+    }
 
     function createField(pageId,newField){
         console.log("create - model");
