@@ -9,7 +9,6 @@ module.exports = function(app,userModel){
     app.post('/api/assignment/logout',logout);
     app.get('/api/assignment/loggedin',loggedin);
     app.post('/api/assignment/register',register);
-    app.get("/api/assignment/username/:username",findUserByUsername);
     app.post("/api/assignment/admin/user",auth,createUser);
     app.get("/api/assignment/admin/user",auth,allUsers);
     app.get("/api/assignment/admin/user/:userId",findById);
