@@ -15,12 +15,10 @@ module.exports = function(page){
     return api;
 
     function getMongooseModel(){
-        console.log("hello");
         return page;
     }
 
     function createField(pageId,newField){
-        console.log("create - model");
         var deferred = q.defer();
         page.findById(pageId,
             function (err, doc) {
