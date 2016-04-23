@@ -118,6 +118,10 @@ font-size: 20px;
         padding-right:20px;
     }
 
+    .check-mobile{
+        width:100%; !important;
+    }
+
 }
 
 .button-style{
@@ -127,4 +131,8 @@ font-size: 20px;
 .button-style:hover, .button-style:focus{
     background:#07793D;
     border:1px solid #07793D;
+}
+
+.wrap-up{
+    word-break: break-all ;
 }

@@ -16,7 +16,6 @@
         vm.editField = editField;
         vm.deleteField = deleteField;
         vm.addField=addField;
-        vm.cloneField = cloneField;
         vm.sortField = sortField;
         vm.trustAsHtml= trustAsHtml;
         vm.safeYouTubeUrl = safeYouTubeUrl;
@@ -317,10 +316,6 @@
                     });
         }
 
-        function cloneField(field){
-            FieldService.createField(pageId,field)
-                .then(init());
-        }
     }
 
 })();

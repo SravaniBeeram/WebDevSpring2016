@@ -9,14 +9,15 @@
 
                 <a ng-click="model.ShowHide()" class="btn btn-success pull-right button-style">Share</a>
 
-
                 <a href="#/user/{{currentUser.username}}/page/{{model.page._id}}/preview"
                        class="btn btn-success pull-right button-style">Preview
-                    </a>
+                </a>
 
                 <br><br>
-                <div ng-hide="model.IsHidden" class="pull-right">http://webdev2016-beeramsravani.rhcloud.com/project/client/index.html#/user/{{currentUser.username}}/page/{{model.page._id}}/share</div>
-                <br><br>
+                <div ng-hide="model.IsHidden" class="pull-right wrap-up">
+                    http://webdev2016-beeramsravani.rhcloud.com/project/client/index.html#/user/{{currentUser.username}}/page/{{model.page._id}}/share
+                </div>
+                <br><br><br>
 
                 <div class="form">
                     <div ng-model="model.fields" jga-sortable jga-sortable-callback = "model.sortField(start,end)">
@@ -80,10 +81,11 @@
                                     <div ng-switch-when="YOUTUBE">
                                         <label>{{field.label}}</label>
                                         <div class="input-group">
-                                            <iframe ng-src="{{model.safeYouTubeUrl(field)}}"
-                                                        width="{{field.youTube.width}}"
-                                                        frameborder="0"
-                                                        allowfullscreen>
+                                            <iframe class="check-mobile"
+                                                    ng-src="{{model.safeYouTubeUrl(field)}}"
+                                                    width="{{field.youTube.width}}"
+                                                    frameborder="0"
+                                                    allowfullscreen>
                                             </iframe>
                                             <div class="input-group-btn" ng-include="'views/pages/buttons.view.html'"></div>
                                         </div>
