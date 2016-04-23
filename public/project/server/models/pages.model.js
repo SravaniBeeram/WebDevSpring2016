@@ -13,11 +13,10 @@ module.exports = function (app,db) {
         findAllPages: findAllPages,
         deletePageById: deletePageById,
         updatePageById: updatePageById,
-        findPageById:findPageById,
+        findPageById:findPageById
     };
 
     return api;
-
 
 
     function findPageById(pageId){

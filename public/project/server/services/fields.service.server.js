@@ -10,7 +10,7 @@ module.exports = function(app,fieldModel,pageModel) {
     app.post("/api/project/page/:pageId/field", createField);
     app.put("/api/project/page/:pageId/field/:fieldId", updateFieldById);
     app.put("/api/project/:pageId/field",sortField);
-    app.post ("/api/user/upload", upload.single('myFile'), uploadImage);
+    app.post ("/api/user/upload", upload.single('myFile'),uploadImage);
 
 
     function findPageFields(req,res){
@@ -89,36 +89,23 @@ module.exports = function(app,fieldModel,pageModel) {
 
     function uploadImage(req, res) {
 
+        var pageId = req.body.pageId;
+        var fieldId = req.body.fieldId;
+        var width= req.body.width;
+        var myFile= req.file;
 
-        console.log("image user-server" +req.user.username);
-        console.log("image page-server" +req.body.pageId);
-        console.log("image field-server" +req.body.fieldId);
-        console.log("image width-server" +req.body.width);
-
-
-        var username      = req.user.username;
-        var pageId        = req.body.pageId;
-        var fieldId      = req.body.fieldId;
-        var width         = req.body.width;
-        var myFile        = req.file;
-
-        var destination   = myFile.destination;
-        var path          = myFile.path;
-        var originalname  = myFile.originalname;
-        var size          = myFile.size;
-        var mimetype      = myFile.mimetype;
-        var filename      = myFile.filename;
+        var filename= myFile.filename;
 
         fieldModel.getMongooseModel()
             .findById(pageId)
             .then(
                 function(page) {
-                    console.log("check1");
-                    var widget = page._id(pageId).field._id(fieldId);
-                    widget.image.url = "/uploads/"+filename;//originalname;
-                    widget.image.width = width;
-                    console.log(widget.image.url);
-                    return application.save();
+                    var widget = page.fields.id(fieldId);
+                    var img = {};
+                    img.url = "/uploads/"+filename;
+                    img.width = width;
+                    widget.image = img;
+                    page.save();
                 },
                 function(err) {
                     res.status(400).send(err);
@@ -126,8 +113,7 @@ module.exports = function(app,fieldModel,pageModel) {
             )
             .then(
                 function(){
-                    console.log("redirect");
-                    res.redirect("/#/user/"+currentUser.username+"/page/"+pageId+"/field");
+                    res.redirect("/project/client/index.html#/page/"+pageId+"/field");
                 },
                 function(err) {
                     res.status(400).send(err);
