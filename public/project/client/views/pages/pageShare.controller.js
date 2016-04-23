@@ -4,7 +4,7 @@
     angular.module("PageEditorApp")
         .controller("PageShareController", PageShareController);
 
-    function PageShareController(FieldService, $routeParams) {
+    function PageShareController(FieldService,$routeParams,$sce) {
         var vm = this;
         var pageId;
         vm.getButtonClass = getButtonClass;
