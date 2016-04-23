@@ -47,7 +47,8 @@
                 <div ng-switch-when="YOUTUBE">
                     <label>{{field.label}}</label>
                     <br>
-                    <iframe ng-src="{{model.safeYouTubeUrl(field)}}"
+                    <iframe class="check-mobile"
+                            ng-src="{{model.safeYouTubeUrl(field)}}"
                             width="{{field.youTube.width}}"
                             frameborder="0"
                             allowfullscreen>
