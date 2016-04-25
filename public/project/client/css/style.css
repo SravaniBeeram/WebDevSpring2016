@@ -51,7 +51,11 @@ font-size: 20px;
 }
 
 .anchor-color{
-    color:#40A46F;
+    color:#40A46F; !important;
+}
+
+.anchor-color:hover,.anchor-color:focus{
+    color:#40A46F; !important;
 }
 
 .pages-style{

@@ -15,6 +15,10 @@
         vm.updateUser=updateUser;
         vm.deleteUser=deleteUser;
         vm.selectUser=selectUser;
+        vm.userSort = userSort;
+        vm.sortOnUsername=sortOnUsername;
+        vm.sortOnFirstName=sortOnFirstName;
+        vm.sortOnLastName=sortOnLastName;
 
 
         currentUser = $rootScope.currentUser;
@@ -88,6 +92,66 @@
             vm.lastName = currentUsers[index].lastName;
             vm.role = currentUsers[index].role;
         }
-    }
+        function userSort(func) {
+            vm.users.sort(func);
+            vm.ascending = !vm.ascending;
+        }
 
+        function sortOnUsername(user1, user2) {
+            var val = 0;
+            if (user1.username < user2.username) {
+                val = -1;
+            }
+            else if (user1.username === user2.username) {
+                val = 0;
+            }
+            else {
+                val = 1;
+            }
+
+            if(vm.ascending) {
+                val = val * -1;
+            }
+
+            return val;
+        }
+
+        function sortOnFirstName(user1, user2) {
+            var val = 0;
+            if (user1.firstName < user2.firstName) {
+                val = -1;
+            }
+            else if (user1.firstName === user2.firstName) {
+                val = 0;
+            }
+            else {
+                val = 1;
+            }
+
+            if(vm.ascending) {
+                val = val * -1;
+            }
+
+            return val;
+        }
+
+        function sortOnLastName(user1, user2) {
+            var val = 0;
+            if (user1.lastName < user2.lastName) {
+                val = -1;
+            }
+            else if (user1.lastName === user2.lastName) {
+                val = 0;
+            }
+            else {
+                val = 1;
+            }
+
+            if(vm.ascending) {
+                val = val * -1;
+            }
+
+            return val;
+        }
+    }
 })();
