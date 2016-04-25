@@ -203,15 +203,18 @@ module.exports = function(app,userModel){
 
     function updateUser(req,res){
         var userId =req.params.userId;
-        var newUser = req.body;
+        var UpdatedUser = req.body;
         if(!isAdmin(req.user)) {
-            delete newUser.roles;
+            delete UpdatedUser.roles;
         }
-        if(typeof newUser.roles == "string") {
-            newUser.roles = newUser.roles.split(",");
+        if(typeof UpdatedUser.roles == "string") {
+            UpdatedUser.roles = UpdatedUser.roles.split(",");
+        }
+        if(UpdatedUser.password.length <= 40){
+            UpdatedUser.password = bcrypt.hashSync(UpdatedUser.password);
         }
 
-        userModel.updateUser(userId,newUser)
+        userModel.updateUser(userId,UpdatedUser)
             .then(function (user) {
                 res.json(user);
             },
