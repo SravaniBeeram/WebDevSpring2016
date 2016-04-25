@@ -90,7 +90,6 @@ module.exports = function(app,userModel){
 
     function createUser(req,res){
         var newUser=req.body;
-
         userModel
             .findUserByUsername(newUser.username)
             .then(function (user) {
@@ -189,12 +188,14 @@ module.exports = function(app,userModel){
 
     function updateUser(req,res){
         var userId =req.params.userId;
-        var newUser = req.body;
+        var UpdatedUser = req.body;
         if(!isAdmin(req.user)) {
-            delete newUser.role;
+            delete UpdatedUser.role;
         }
-
-        userModel.updateUser(userId,newUser)
+        if(UpdatedUser.password.length <= 40){
+            UpdatedUser.password = bcrypt.hashSync(UpdatedUser.password);
+        }
+        userModel.updateUser(userId,UpdatedUser)
             .then(function (user) {
                     res.json(user);
                 },

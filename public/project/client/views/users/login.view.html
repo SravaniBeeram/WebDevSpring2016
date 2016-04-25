@@ -1,5 +1,6 @@
 <div class="login-style">
     <div class="wrapper">
+        <div ng-show="model.message" class="alert alert-danger width-class" role="alert">{{model.message}}</div>
         <form class="login">
             <p class="title">Log in</p>
             <input  type="text" ng-model="model.user.username"  placeholder="Username" autofocus/>

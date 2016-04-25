@@ -2,13 +2,13 @@
 
     <h1 align="center">Profile</h1>
 
-    <div ng-show="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
+    <div ng-show="model.message" class="alert alert-success width-class" role="alert">{{model.message}}</div>
 
     <form>
         <div class="lable-2 form-group">
             <label class="col-sm-2">Username</label>
             <div class="col-sm-8">
-                <input type="text" class="text" ng-model="model.username" placeholder="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.placeholder = 'Username ';}">
+                <input type="text" class="text" ng-model="model.username" placeholder="Username" onblur="if (this.value == '') {this.placeholder = 'Username ';}">
             </div>
         </div>
         <div class="clear"> </div>
@@ -16,7 +16,7 @@
         <div class="lable form-group">
             <label class="col-sm-2">Password</label>
             <div class="col-sm-8">
-                <input type="password" order="pwd-style" class="password-width" ng-model="model.password"  placeholder="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.placeholder = 'Password';}">
+                <input type="password" order="pwd-style" class="password-width" ng-model="model.password"  placeholder="Password" onblur="if (this.value == '') {this.placeholder = 'Password';}">
             </div>
         </div>
         <div class="clear"> </div>
@@ -25,7 +25,7 @@
         <div class="lable-2 text-nowrap form-group">
             <label class="col-sm-2">First Name</label>
             <div class="col-sm-8 table-entry">
-                <input type="text" class="text" ng-model="model.firstName" placeholder="firstName" onfocus="this.value = '';" onblur="if (this.value == '') {this.placeholder = 'firstName ';}">
+                <input type="text" class="text" ng-model="model.firstName" placeholder="firstName" onblur="if (this.value == '') {this.placeholder = 'firstName ';}">
             </div>
         </div>
         <div class="clear"> </div>
@@ -34,7 +34,7 @@
         <div class="lable-2 text-nowrap form-group">
             <label class="col-sm-2">Last Name</label>
             <div class="col-sm-8 table-entry">
-                <input type="text" class="text" ng-model="model.lastName" placeholder="lastName" onfocus="this.value = '';" onblur="if (this.value == '') {this.placeholder = 'lastName ';}">
+                <input type="text" class="text" ng-model="model.lastName" placeholder="lastName" onblur="if (this.value == '') {this.placeholder = 'lastName ';}">
             </div>
         </div>
         <div class="clear"> </div>
@@ -43,7 +43,7 @@
         <div class="lable-2 text-nowrap form-group">
             <label class="col-sm-2">Phone Number</label>
             <div class="col-sm-8 table-entry">
-                <input type="text" class="text" ng-model="model.phones" placeholder="Phone Number" onfocus="this.value = '';" onblur="if (this.value == '') {this.placeholder = 'Phone Number ';}">
+                <input type="text" class="text" ng-model="model.phones" placeholder="Phone Number" onblur="if (this.value == '') {this.placeholder = 'Phone Number ';}">
             </div>
         </div>
         <div class="clear"> </div>
@@ -52,7 +52,7 @@
         <div class="lable-2 form-group">
             <label class="col-sm-2">Email</label>
             <div class="col-sm-8 table-entry">
-                <input type="text" class="text" ng-model="model.emails" placeholder="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.placeholder = 'Email ';}">
+                <input type="text" class="text" ng-model="model.emails" placeholder="Email" onblur="if (this.value == '') {this.placeholder = 'Email ';}">
             </div>
         </div>
         <div class="clear"> </div>

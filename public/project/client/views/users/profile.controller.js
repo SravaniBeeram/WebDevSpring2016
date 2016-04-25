@@ -34,12 +34,13 @@
             UserService.updateUser(id,userDetails)
                 .then(function(user){
                         $rootScope.currentUser = user.data;
-                        vm.message = "Your Profile has been updated!!!";
+                        vm.message = "Your Profile has been updated!";
                     },
                     function(err){
-                        vm.message = "Sorry! Please enter your details again!!!";
+                        vm.message ="Your Profile has not been updated";
                     }
                 );
         }
+
     }
 })();
